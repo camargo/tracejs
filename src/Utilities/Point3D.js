@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var Point3D = function (x, y, z) {
+    var Point3D = function (x, y, z) { // Arguments Types: (float, float, float)
         this.x = x;
         this.y = y;
         this.z = z;
@@ -19,7 +19,7 @@
         return this.z;
     };
 
-    Point3D.prototype.d_squared = function (point) {
+    Point3D.prototype.d_squared = function (point) { // Argument Type: (Point3D)
         return (this.x - point.x) * (this.x - point.x) +
                (this.y - point.y) * (this.y - point.y) +
                (this.z - point.z) * (this.z - point.z);
