@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
 
     var Point3D = function (x, y, z) {
