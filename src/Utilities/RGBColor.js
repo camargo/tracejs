@@ -23,21 +23,25 @@
     // and rgb RGBColor class
     RGBColor.prototype.add = function (rgb) { // Argument Type: RGBColor
         // return an object? 
-        return var sum = new RGBColor((this.r + rgb.r),
-                                      (this.g + rgb.g),
-                                      (this.b + rgb.b)); 
+        var sum = new RGBColor((this.r + rgb.r),
+                               (this.g + rgb.g),
+                               (this.b + rgb.b)); 
+        return sum;
     };
    
     RGBColor.prototype.ac = function (a) = {
-        return var ac = new RGBColor((a * this.r), (a * this.g), (a * this.b));
+        var ac = new RGBColor((a * this.r), (a * this.g), (a * this.b));
+        return ac;
     }; 
  
     RGBColor.prototype.ca = function (a) = {
-        return var ca = new RGBColor((this.r * a), (this.g * a), (this.b * a));
+        var ca = new RGBColor((this.r * a), (this.g * a), (this.b * a));
+        return ca;
     };
 
     RGBColor.prototype.division = function (a) {
-        return var div = new RGBColor((this.r / a), (this.g / a), (this.b / a));
+        var div = new RGBColor((this.r / a), (this.g / a), (this.b / a));
+        return div;
     };
 
     // need to return a reference
@@ -46,15 +50,17 @@
     };
 
     RGBColor.prototype.mult = function (rgb) {
-        return var mult = new RGBColor((this.r * rgb.r),
-                                       (this.g * rgb.g),
-                                       (this.b * rgb.b));
+        var mult = new RGBColor((this.r * rgb.r),
+                                (this.g * rgb.g),
+                                (this.b * rgb.b));
+        return mult;
     }; 
 
     RGBColor.prototype.exp = function (n) {
-        return var exp = new RGBColor(Math.pow(this.r, n),
-                                      Math.pow(this.g, n),
-                                      Math.pow(this.b, n));
+        var exp = new RGBColor(Math.pow(this.r, n),
+                               Math.pow(this.g, n),
+                               Math.pow(this.b, n));
+        return exp;
     };
  
     // need to return a reference, not sure about this function in general
