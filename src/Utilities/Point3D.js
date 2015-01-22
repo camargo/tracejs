@@ -19,6 +19,14 @@ var Tracejs = Tracejs || {};
         get_z: function () {
             return this.z
         },
+        negate : function () {
+            this.x = -this.x;
+            this.y = -this.y;
+            this.z = -this.z;
+        },
+        subtract : function (point) { // Argument Type: (Point3D)
+            return new Vector3D(this.x - point.x, this.y - point.y, this.z - point.z);
+        },
         d_squared : function (point) { // Argument Type: (Point3D)
             return (this.x - point.x) * (this.x - point.x) +
                    (this.y - point.y) * (this.y - point.y) +
