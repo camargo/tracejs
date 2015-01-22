@@ -1,11 +1,13 @@
+var Tracejs = Tracejs || {};
+
 (function () {
     'use strict';
 
-    var GeometricObject = function (color) { // Argument Type: (RGBColor).
+    Tracejs.GeometricObject = function (color) { // Argument Type: (RGBColor).
         this.color = color;
     };
 
-    GeometricObject.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
+    Tracejs.GeometricObject.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
         return false;
     };
 }());
