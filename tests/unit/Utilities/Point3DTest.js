@@ -3,8 +3,16 @@ describe("Point3D class", function() {
 
         var point = new Tracejs.Point3D(0.0, 0.0, 0.0);
 
-        expect(point.x).toEqual(0.0);
-        expect(point.y).toEqual(0.0);
-        expect(point.z).toEqual(0.0);
+        expect(point.get_x()).toEqual(0.0);
+        expect(point.get_y()).toEqual(0.0);
+        expect(point.get_z()).toEqual(0.0);
+    });
+
+    it("should return the squared distance between two points", function() {
+
+        var point1 = new Tracejs.Point3D(0.0, 0.0, 0.0);
+        var point2 = new Tracejs.Point3D(2.0, 2.0, 2.0);
+
+        expect(point1.d_squared(point2)).toEqual(12.0);
     });
 });
