@@ -1,9 +1,9 @@
-# trace.js
-A Browser Based Ray Tracer
-
-To install karma with npm:
-    npm install
-    npm install -g karma-cli
-
-To run unit tests type:
-    karma start karma.conf.js
+# trace.js<br>
+A Browser Based Ray Tracer<br>
+<br>
+To install karma with npm:<br>
+    npm install<br>
+    npm install -g karma-cli<br>
+<br>
+To run unit tests type:<br>
+    karma start karma.conf.js<br>
