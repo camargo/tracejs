@@ -2,8 +2,6 @@
  * Created by mzimmerman on 1/21/15.
  */
 
- var Tracerjs = Tracerjs || {};
-
 describe("Is karma working", function() {
     it("should work", function() {
         expect(true).toEqual(true)
