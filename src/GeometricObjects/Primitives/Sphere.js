@@ -1,28 +1,28 @@
-var Tracerjs = Tracerjs || {};
+var Tracejs = Tracejs || {};
 
 (function () {
     'use strict';
 
-    Tracerjs.Sphere = function (center, radius) { // Argument Types: (Point3D, float).
+    Tracejs.Sphere = function (center, radius) { // Argument Types: (Point3D, float).
         this.center = center;
         this.radius = radius;
     };
 
-    Tracerjs.Sphere.prototype = new Tracerjs.GeometricObject(); // Inherit from GeometricObject.
+    Tracejs.Sphere.prototype = new Tracejs.GeometricObject(); // Inherit from GeometricObject.
 
-    Tracerjs.Sphere.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
+    Tracejs.Sphere.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
         // TODO: Implement Sphere-Ray-Intersection routine.
     };
 
-    Tracerjs.Sphere.prototype.center = function () {
+    Tracejs.Sphere.prototype.center = function () {
         return this.center;
     };
 
-    Tracerjs.Sphere.prototype.radius = function () {
+    Tracejs.Sphere.prototype.radius = function () {
         return this.radius;
     };
 
-    Tracerjs.Sphere.prototype.set_center = function (x, y, z) { // Argument Types: (float, float, float)
+    Tracejs.Sphere.prototype.set_center = function (x, y, z) { // Argument Types: (float, float, float)
         this.center.x = x;
         this.center.y = y;
         this.center.z = z;

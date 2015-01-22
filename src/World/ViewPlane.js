@@ -3,11 +3,11 @@ Shahar Zimmerman
 1/21/2015
  */
 
-var Tracerjs = Tracerjs || {};
+var Tracejs = Tracejs || {};
 
 (function() {
 
-    Tracerjs.ViewPlane = function(options) {
+    Tracejs.ViewPlane = function(options) {
         if (typeof options == 'object' && typeof options.hres != 'undefined') {
             this.hres = options.hres;
         }
@@ -28,7 +28,7 @@ var Tracerjs = Tracerjs || {};
         }
     }
 
-    Tracerjs.ViewPlane.prototype = {
+    Tracejs.ViewPlane.prototype = {
         /* getters and setters */
         getHres : function() {
             return this.hres

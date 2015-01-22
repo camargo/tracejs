@@ -12,7 +12,7 @@ describe("ViewPlane class", function() {
 
     it("should default to vres=150, hres=300, psize=1 when no arguments given", function() {
 
-        var viewplane = new Tracerjs.ViewPlane();
+        var viewplane = new Tracejs.ViewPlane();
 
         expect(viewplane.getHres()).toEqual(150);
         expect(viewplane.getVres()).toEqual(300);
@@ -25,7 +25,7 @@ describe("ViewPlane class", function() {
         var vres = 50;
         var psize = 5;
 
-        var viewPlane = new Tracerjs.ViewPlane({
+        var viewPlane = new Tracejs.ViewPlane({
             hres : hres,
             vres : vres,
             psize : psize
