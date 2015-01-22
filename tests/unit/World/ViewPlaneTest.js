@@ -34,7 +34,5 @@ describe("ViewPlane class", function() {
         expect(viewPlane.getHres()).toEqual(hres);
         expect(viewPlane.getVres()).toEqual(vres);
         expect(viewPlane.getPsize()).toEqual(psize);
-    })
+    });
 });
-
-
