@@ -1,3 +1,5 @@
+var Tracejs = Tracejs || {};
+
 (function () {
     'use strict';
 
