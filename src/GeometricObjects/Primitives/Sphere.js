@@ -6,7 +6,7 @@
         this.radius = radius;
     };
 
-    Sphere.prototype = new GeometricObject(); // Inherit from GeometricObject.
+    //Sphere.prototype = new GeometricObject(); // Inherit from GeometricObject.
 
     Sphere.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
         // TODO: Implement Sphere-Ray-Intersection routine.
