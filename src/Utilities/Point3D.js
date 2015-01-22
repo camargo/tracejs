@@ -24,8 +24,14 @@ var Tracejs = Tracejs || {};
             this.y = -this.y;
             this.z = -this.z;
         },
-        subtract : function (point) { // Argument Type: (Point3D)
-            return new Vector3D(this.x - point.x, this.y - point.y, this.z - point.z);
+        sub_point : function (point) { // Argument Type: (Point3D)
+            return new Tracejs.Vector3D(this.x - point.x, this.y - point.y, this.z - point.z);
+        },
+        add_vector : function (vector) { // Argument Type: (Vector3D)
+            return new Tracejs.Point3D(this.x + vector.x, this.y + vector.y, this.z + vector.z);
+        },
+        sub_vector : function (vector) { // Argument Type: (Vector3D)
+            return new Tracejs.Point3D(this.x - vector.x, this.y - vector.y, this.z - vector.z);
         },
         d_squared : function (point) { // Argument Type: (Point3D)
             return (this.x - point.x) * (this.x - point.x) +
