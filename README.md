@@ -12,3 +12,5 @@ To install gulp with npm:<br>
     npm install<br>
     npm install -g gulp<br>
 <br>
+To run type:<br>
+    gulp<br>
