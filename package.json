@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/camargo/tracejs",
   "devDependencies": {
+    "gulp": "^3.8.10",
     "karma": "~0.12.0",
     "karma-chrome-launcher": "^0.1.7",
     "karma-jasmine": "~0.1.0"

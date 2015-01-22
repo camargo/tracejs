@@ -7,3 +7,8 @@ To install karma with npm:<br>
 <br>
 To run unit tests type:<br>
     karma start karma.conf.js<br>
+<br>
+To install gulp with npm:<br>
+    npm install<br>
+    npm install -g gulp<br>
+<br>
