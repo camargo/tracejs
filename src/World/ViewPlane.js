@@ -3,8 +3,6 @@ Shahar Zimmerman
 1/21/2015
  */
 
-var Tracerjs = Tracerjs || {};
-
 (function() {
 
     Tracerjs.ViewPlane = function(options) {
