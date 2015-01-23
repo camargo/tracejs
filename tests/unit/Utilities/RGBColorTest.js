@@ -20,4 +20,12 @@ describe("RGBColor class", function() {
 
 	expect(color.scale(c)).toEqual(new Tracejs.RGBColor(50,60,70));
     });
+
+    it("should divide two RGBColor, returning an RGBColor", function () {
+        var c1 = new Tracejs.RGBColor(45,90,180);
+	var c2 = new Tracejs.RGBColor(5,9,3);  // ans = (9, 10, 60)
+
+	expect(c1.div_color(c2)).toEqual(new Tracejs.RGBColor(9,10,60));
+    });
+
 });
