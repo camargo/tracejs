@@ -18,8 +18,8 @@ describe("Vector3D class", function() {
         var vec_sum = vec_a.add(vec_b);
 
         expect(vec_sum.get_x()).toEqual(0.0);
-        //expect(vec_sum.get_y()).toEqual(3.0);
-        //expect(vec_sum.get_z()).toEqual(27.0);
+        expect(vec_sum.get_y()).toEqual(3.0);
+        expect(vec_sum.get_z()).toEqual(27.0);
     });
 
     it("should subtract the vectors (x,y,z) coordinates", function() {
