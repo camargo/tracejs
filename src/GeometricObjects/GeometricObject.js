@@ -1,13 +1,14 @@
-var Tracejs = Tracejs || {};
-
-(function () {
+/*
+    Shahar Zimmerman 1/22/2015
+ */
+var Tracejs;
+(function (Tracejs) {
     'use strict';
-
-    Tracejs.GeometricObject = function (color) { // Argument Type: (RGBColor).
-        this.color = color;
-    };
-
-    Tracejs.GeometricObject.prototype.hit = function (ray, tmin, shadeRec) { // Argument Types: (Ray, float, ShadeRec)
-        return false;
-    };
-}());
+    var GeometricObject = (function () {
+        function GeometricObject(color) {
+            this.color = color;
+        }
+        return GeometricObject;
+    })();
+    Tracejs.GeometricObject = GeometricObject;
+})(Tracejs || (Tracejs = {}));
