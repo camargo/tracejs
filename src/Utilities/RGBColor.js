@@ -21,6 +21,9 @@ var Tracejs = Tracejs || {};
 	},
 	add_color : function (color) { // arg type: (RGBColor)
 	    return new Tracejs.RGBColor(this.r + color.r, this.g + color.g, this.b + color.b);
+	},
+	scale : function (c) { // arg type: int
+            return new Tracejs.RGBColor(this.r * c, this.g * c, this.b * c);
 	}
     }
 }());

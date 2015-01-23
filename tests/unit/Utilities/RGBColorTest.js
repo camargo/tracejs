@@ -13,4 +13,11 @@ describe("RGBColor class", function() {
 
 	expect(color1.add_color(color2)).toEqual(new Tracejs.RGBColor(8,16,24));
     });
+
+    it("should scale (multiply by a constant) an RGBColor by a constant c", function () {
+        var c = 10;
+	var color = new Tracejs.RGBColor(5,6,7);
+
+	expect(color.scale(c)).toEqual(new Tracejs.RGBColor(50,60,70));
+    });
 });
