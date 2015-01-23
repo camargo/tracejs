@@ -13,6 +13,6 @@ Build Instructions (complete in order):
 3. To install Karma-cli with npm type:<br>
     npm install -g karma-cli<br>
 <br>
-4. To run unit tests type (should always pass in if synced with master):<br>
+4. To run unit tests type (should always pass if synced with master):<br>
     karma start karma.conf.js<br>
 <br>
