@@ -1,8 +1,8 @@
 describe("Vector3D class", function() {
-   it("should return Vector3D", function() {
+    /*it("should return Vector3D", function() {
         var vec = new Tracejs.Vector3D(-1.0, 0.0, 10.0);
         expect(vec.type()).toEqual("Vector3D");
-    });
+    });*/
    
     it("should create vector with set coordinates (x,y,z)", function() {
         var vec = new Tracejs.Vector3D(-1.0, 0.0, 20.0);
@@ -11,7 +11,7 @@ describe("Vector3D class", function() {
         expect(vec.get_z()).toEqual(20.0);
     });
  
-    it("should add the vectors (x,y,z) coordinates", function() {
+    /*it("should add the vectors (x,y,z) coordinates", function() {
         var vec_a = new Tracejs.Vector3D(-1.0, 0.0, 10.0);
         var vec_b = new Tracejs.Vector3D(1.0, 3.0, 17.0);
     
@@ -99,5 +99,5 @@ describe("Vector3D class", function() {
         var angle   = (Math.round(vec_a.angle_between(vec_b)*100)/100);
         var correct = 143.24;
         expect(angle).toEqual(correct);
-    });
+    });*/
 });
