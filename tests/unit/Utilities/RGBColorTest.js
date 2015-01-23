@@ -35,4 +35,10 @@ describe("RGBColor class", function() {
 	expect(c1.mult_color(c2)).toEqual(new Tracejs.RGBColor(10,81,45));
     });
 
+    it("shold raise and RGBColor to the power of n", function () {
+        var c1 = new Tracejs.RGBColor(5,10,12); 
+	var n = 2; // ans = (25, 100, 144)
+
+	expect(c1.exp(n)).toEqual(new Tracejs.RGBColor(25, 100, 144));
+    });
 });

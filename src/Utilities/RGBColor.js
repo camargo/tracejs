@@ -30,6 +30,9 @@ var Tracejs = Tracejs || {};
         },
 	mult_color : function (color) { // arg type: RGBColor
             return new Tracejs.RGBColor(this.r * color.r, this.g * color.g, this.b * color.b);
+	},
+	exp : function (n) { // arg type: int (color raised by this power)
+	    return new Tracejs.RGBColor(Math.pow(this.r, n), Math.pow(this.g, n), Math.pow(this.b, n));
 	}
     }
 }());
