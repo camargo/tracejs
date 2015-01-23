@@ -4,7 +4,6 @@
 
 /* Include modules */
 /// <reference path="Vector3D.ts" />
-
 module Tracejs {
     export class Point3D {
 
@@ -20,7 +19,7 @@ module Tracejs {
          * @param z
          * @constructor
          */
-        constructor(x:number,y:number,z:number) {
+        constructor(x : number, y : number, z : number) {
             this.x = x;
             this.y = y;
             this.z = z;
@@ -52,8 +51,8 @@ module Tracejs {
         }
         d_squared(point : Point3D) {
             return (this.x - point.x) * (this.x - point.x) +
-                (this.y - point.y) * (this.y - point.y) +
-                (this.z - point.z) * (this.z - point.z)
+                   (this.y - point.y) * (this.y - point.y) +
+                   (this.z - point.z) * (this.z - point.z)
         }
     }
 }

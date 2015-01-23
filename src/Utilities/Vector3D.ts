@@ -3,7 +3,6 @@
  */
 
 /// <reference path="Point3D.ts" />
-
 module Tracejs {
     export class Vector3D {
 
@@ -19,7 +18,7 @@ module Tracejs {
          * @param z
          * @constructor
          */
-        constructor(x:number, y:number, z:number) {
+        constructor(x : number, y : number, z : number) {
             this.x = x;
             this.y = y;
             this.z = z;
@@ -34,6 +33,9 @@ module Tracejs {
         }
         get_z() {
             return this.z
+        }
+        add(v : Vector3D) {
+            return new Vector3D(this.x + v.x, this.y + v.y, this.z + v.z);
         }
     }
 }

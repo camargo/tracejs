@@ -27,6 +27,9 @@ var Tracejs;
         Vector3D.prototype.get_z = function () {
             return this.z;
         };
+        Vector3D.prototype.add = function (v) {
+            return new Vector3D(this.x + v.x, this.y + v.y, this.z + v.z);
+        };
         return Vector3D;
     })();
     Tracejs.Vector3D = Vector3D;
