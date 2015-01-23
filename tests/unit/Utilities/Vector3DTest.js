@@ -91,4 +91,13 @@ describe("Vector3D class", function() {
         var correct  = (Math.round(Math.sqrt(14.0) * 100)/100);
         expect(distance).toEqual(correct);
     });
+    
+    it("should return the angle between two vectors", function() {
+        var vec_a = new Tracejs.Vector3D(3.0, -4.0, -1.0);
+        var vec_b = new Tracejs.Vector3D(0.0, 5.0, 2.0);
+        
+        var angle   = (Math.round(vec_a.angle_between(vec_b)*100)/100);
+        var correct = 143.24;
+        expect(angle).toEqual(correct);
+    });
 });

@@ -62,10 +62,13 @@ var Tracejs = Tracejs || {};
         },
 
         // theta = (a . b) / (magnitude(a) * magnitude(b))
+        // currently returns in degrees, if need to convert formula is:
+        // radians = degrees * (pi/180)
         angle_between: function(other){
             // don't divide by 0
-            if(this.length == 0 || other.length == 0) return 0;
-            return Math.acos( this.dot(other) / (this.length() * other.length()));
+            if(this.length() == 0 || other.length() == 0) return 0;
+            var radians = Math.acos(this.dot(other) / (this.length() * other.length()));
+            return radians * (180 / Math.PI);
         },
 
         // turn into unit vector (magnitude = 1) 
