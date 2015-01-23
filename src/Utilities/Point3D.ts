@@ -1,49 +1,59 @@
 /*
-    Shahar Zimmerman 1/22/2015
+    Shahar Zimmerman 1/22/15
  */
 
-/// <reference path="../Interfaces.ts" />
+/* Include modules */
+/// <reference path="Vector3D.ts" />
 
-var Tracejs = Tracejs || {};
+module Tracejs {
+    export class Point3D {
 
-(function() {
-    'use strict';
+        // class properties
+        x : number;
+        y : number;
+        z : number;
 
-    Tracejs.Point3D = function (x:number, y:number, z:number) { // Arguments Types: (float, float, float)
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    };
+        /**
+         * Point3D()
+         * @param x
+         * @param y
+         * @param z
+         * @constructor
+         */
+        constructor(x:number,y:number,z:number) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
 
-    Tracejs.Point3D.prototype = {
-        get_x: function () {
-            return this.x;
-        },
-        get_y: function () {
+        // class methods
+        get_x() {
+            return this.x
+        }
+        get_y() {
             return this.y
-        },
-        get_z: function () {
+        }
+        get_z() {
             return this.z
-        },
-        negate: function () {
+        }
+        negate() {
             this.x = -this.x;
             this.y = -this.y;
             this.z = -this.z;
-        },
-        sub_point: function (point:Point3D) { // Argument Type: (Point3D)
-            return new Tracejs.Vector3D(this.x - point.x, this.y - point.y, this.z - point.z);
-        },
-        add_vector: function (vector:Vector3D) { // Argument Type: (Vector3D)
-            return new Tracejs.Point3D(this.x + vector.x, this.y + vector.y, this.z + vector.z);
-        },
-        sub_vector: function (vector:Vector3D) { // Argument Type: (Vector3D)
-            return new Tracejs.Point3D(this.x - vector.x, this.y - vector.y, this.z - vector.z);
-        },
-        d_squared: function (point:Point3D) { // Argument Type: (Point3D)
+        }
+        sub_point(point : Point3D) {
+            return new Vector3D(this.x - point.x, this.y - point.y, this.z - point.z);
+        }
+        add_vector(vector : Vector3D) {
+            return new Point3D(this.x + vector.x, this.y + vector.y, this.z + vector.z);
+        }
+        sub_vector(vector : Vector3D) {
+            return new Point3D(this.x - vector.x, this.y - vector.y, this.z - vector.z);
+        }
+        d_squared(point : Point3D) {
             return (this.x - point.x) * (this.x - point.x) +
                 (this.y - point.y) * (this.y - point.y) +
-                (this.z - point.z) * (this.z - point.z);
+                (this.z - point.z) * (this.z - point.z)
         }
-    };
-})();
-
+    }
+}

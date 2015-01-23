@@ -2,12 +2,6 @@
  * Created by mzimmerman on 1/21/15.
  */
 
-describe("Is karma working", function() {
-    it("should work", function() {
-        expect(true).toEqual(true)
-    })
-});
-
 describe("ViewPlane class", function() {
 
     it("should default to vres=150, hres=300, psize=1 when no arguments given", function() {

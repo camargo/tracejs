@@ -1,32 +1,40 @@
 /*
     Shahar Zimmerman 1/22/2015
  */
-var Tracejs = Tracejs || {};
 
-interface Vector3D {
-    x:number;
-    y:number;
-    z:number;
-}
+/// <reference path="Point3D.ts" />
 
-(function () {
-    'use strict';
+module Tracejs {
+    export class Vector3D {
 
-    Tracejs.Vector3D = function (x:number, y:number, z:number) { // Arguments Types: (float, float, float)
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    };
+        // class properties
+        x:number;
+        y:number;
+        z:number;
 
-    Tracejs.Vector3D.prototype = {
-        get_x : function () {
+        /**
+         * Vector3D()
+         * @param x
+         * @param y
+         * @param z
+         * @constructor
+         */
+        constructor(x:number, y:number, z:number) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        // class methods
+        get_x() {
             return this.x;
-        },
-        get_y : function () {
+        }
+        get_y() {
             return this.y
-        },
-        get_z : function () {
+        }
+        get_z() {
             return this.z
         }
     }
-}());
+}
+

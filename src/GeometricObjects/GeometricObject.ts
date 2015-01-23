@@ -1,17 +1,19 @@
-/**
- * Created by mzimmerman on 1/22/15.
+/*
+    Shahar Zimmerman 1/22/2015
  */
 
-var Tracejs = Tracejs || {};
+module Tracejs {
 
-(function () {
     'use strict';
 
-    Tracejs.GeometricObject = function (color:string) { // Argument Type: (RGBColor).
-        this.color = color;
-    };
+    export class GeometricObject {
+        // class properties
+        color:string;
 
-    Tracejs.GeometricObject.prototype.hit = function (ray:number, tmin:number, shadeRec:string) { // Argument Types: (Ray, float, ShadeRec)
-        return false;
-    };
-}());
+        constructor(color:string) {
+            this.color = color;
+        }
+
+        // class methods
+    }
+}
