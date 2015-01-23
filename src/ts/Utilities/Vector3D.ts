@@ -7,9 +7,9 @@ module Tracejs {
     export class Vector3D {
 
         // Class properties.
-        x:number;
-        y:number;
-        z:number;
+        x : number;
+        y : number;
+        z : number;
 
         /**
          * Vector3D()
@@ -25,59 +25,59 @@ module Tracejs {
         }
 
         // Class methods.
-        get_x() {
+        get_x() : number {
             return this.x;
         }
 
-        get_y() {
-            return this.y
+        get_y() : number {
+            return this.y;
         }
 
-        get_z() {
-            return this.z
+        get_z() : number {
+            return this.z;
         }
 
-        add(v : Vector3D) {
+        add(v : Vector3D) : Vector3D {
             return new Vector3D(this.x + v.x, 
                                 this.y + v.y, 
                                 this.z + v.z);
         }
 
-        sub(v : Vector3D) {
+        sub(v : Vector3D) : Vector3D {
             return new Vector3D(this.x - v.x, 
                                 this.y - v.y, 
                                 this.z - v.z);
         }
 
-        multiply(scalar : number) {
+        multiply(scalar : number) : Vector3D {
             return new Vector3D(this.x * scalar, 
                                 this.y * scalar, 
                                 this.z * scalar);
         }
 
-        length() {
+        length() : number {
             return Math.sqrt((this.x * this.x) + 
                              (this.y * this.y) + 
                              (this.z * this.z));
         }
 
-        length_squared() {
+        length_squared() : number {
             return (this.length() * this.length());
         }
 
-        dot(v : Vector3D) {
+        dot(v : Vector3D) : number {
             return ((this.x * v.x) + 
                     (this.y * v.y) +
                     (this.z * v.z));
         }
 
-        cross(v : Vector3D) {
+        cross(v : Vector3D) : Vector3D {
             return new Vector3D(this.y * v.z - this.z * v.y,
                                 this.z * v.x - this.x * v.z,
                                 this.x * v.y - this.y * v.x);
         }
 
-        angle_between(v : Vector3D) {
+        angle_between(v : Vector3D) : number {
             if (this.length() == 0 || v.length() == 0) {
                 return 0;
             }
@@ -93,7 +93,7 @@ module Tracejs {
             this.z /= mag;
         }
         
-        distance_from(v : Vector3D) {
+        distance_from(v : Vector3D) : number {
             return Math.sqrt((this.x - v.x) * (this.x - v.x) +
                              (this.y - v.y) * (this.y - v.y) +
                              (this.z - v.z) * (this.z - v.z));

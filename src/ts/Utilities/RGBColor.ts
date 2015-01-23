@@ -10,35 +10,35 @@ module Tracejs {
             this.b = b;
         }
 
-        get_r() {
+        get_r() : number {
             return this.r;
         }
 
-        get_g() {
+        get_g() : number {
             return this.g;
         }
 
-        get_b() {
+        get_b() : number {
             return this.b;
         }
 
-        add_color(color : RGBColor) {
+        add_color(color : RGBColor) : RGBColor {
             return new RGBColor(this.r + color.r, this.g + color.g, this.b + color.b);
         }
 
-        scale(s : number) {
+        scale(s : number) : RGBColor {
             return new RGBColor(this.r * s, this.g * s, this.b * s);
         }
 
-        div_color(color : RGBColor) {
+        div_color(color : RGBColor) : RGBColor {
             return new RGBColor(this.r / color.r, this.g / color.g, this.b / color.b);
         }
 
-        mult_color(color : RGBColor) {
+        mult_color(color : RGBColor) : RGBColor {
             return new RGBColor(this.r * color.r, this.g * color.g, this.b * color.b);
         }
 
-        exp(n : number) {
+        exp(n : number) : RGBColor {
             return new RGBColor(Math.pow(this.r, n), Math.pow(this.g, n), Math.pow(this.b, n));
         }
     }

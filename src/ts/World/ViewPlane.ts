@@ -10,7 +10,7 @@ module Tracejs {
             this.psize = psize;
         }
 
-        get_hres() {
+        get_hres() : number {
             return this.hres;
         }
 
@@ -18,7 +18,7 @@ module Tracejs {
             this.hres = hres;
         }
 
-        get_vres() {
+        get_vres() : number {
             return this.vres;
         }
 
@@ -26,7 +26,7 @@ module Tracejs {
             this.vres = vres;
         }
 
-        get_psize() {
+        get_psize() : number {
             return this.psize;
         }
 

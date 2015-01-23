@@ -26,15 +26,15 @@ module Tracejs {
         }
 
         // class methods
-        get_x() {
+        get_x() : number {
             return this.x
         }
 
-        get_y() {
+        get_y() : number {
             return this.y
         }
 
-        get_z() {
+        get_z() : number {
             return this.z
         }
 
@@ -44,25 +44,25 @@ module Tracejs {
             this.z = -this.z;
         }
 
-        sub_point(point : Point3D) {
+        sub_point(point : Point3D) : Vector3D {
             return new Vector3D(this.x - point.x, 
                                 this.y - point.y, 
                                 this.z - point.z);
         }
 
-        add_vector(vector : Vector3D) {
+        add_vector(vector : Vector3D) : Point3D {
             return new Point3D(this.x + vector.x, 
                                this.y + vector.y, 
                                this.z + vector.z);
         }
 
-        sub_vector(vector : Vector3D) {
+        sub_vector(vector : Vector3D) : Point3D {
             return new Point3D(this.x - vector.x, 
                                this.y - vector.y, 
                                this.z - vector.z);
         }
         
-        d_squared(point : Point3D) {
+        d_squared(point : Point3D) : number {
             return (this.x - point.x) * (this.x - point.x) +
                    (this.y - point.y) * (this.y - point.y) +
                    (this.z - point.z) * (this.z - point.z)
