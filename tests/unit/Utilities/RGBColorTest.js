@@ -28,4 +28,11 @@ describe("RGBColor class", function() {
 	expect(c1.div_color(c2)).toEqual(new Tracejs.RGBColor(9,10,60));
     });
 
+    it("should multiply two RGBColor, returning an RGBColor", function() {
+        var c1 = new Tracejs.RGBColor(5,9,15);
+	var c2 = new Tracejs.RGBColor(2,9,3); // ans = (10,81,45)
+
+	expect(c1.mult_color(c2)).toEqual(new Tracejs.RGBColor(10,81,45));
+    });
+
 });
