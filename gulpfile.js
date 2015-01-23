@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript'); // (https://github.com/ivogabe/gulp-typescript)
 
 var tsProject = { declarationFiles: true,
-                  noExternalResolve: true }
+                  noExternalResolve: false }
 
 gulp.task('ts-to-js-utilities', function() {
     return gulp.src('./src/ts/Utilities/*.ts')
