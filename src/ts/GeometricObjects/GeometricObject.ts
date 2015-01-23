@@ -3,17 +3,11 @@
  */
 
 module Tracejs {
-
-    'use strict';
-
     export class GeometricObject {
-        // class properties
-        color:string;
+        color : string;
 
-        constructor(color:string) {
+        constructor(color : string) {
             this.color = color;
         }
-
-        // class methods
     }
 }

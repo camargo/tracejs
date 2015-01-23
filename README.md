@@ -1,16 +1,18 @@
 # trace.js<br>
 A Browser Based Ray Tracer<br>
 <br>
-To install karma with npm:<br>
-    npm install<br>
-    npm install -g karma-cli<br>
+Build Instructions:
 <br>
-To run unit tests type:<br>
-    karma start karma.conf.js<br>
-<br>
-To install gulp with npm:<br>
+1. To install Gulp with npm type:<br>
     npm install<br>
     npm install -g gulp<br>
 <br>
-To run type:<br>
+2. To Build JavaScript files type:<br>
     gulp<br>
+<br>
+3. To install Karma-cli with npm type:<br>
+    npm install -g karma-cli<br>
+<br>
+To run unit tests type (should always pass in if synced with master):<br>
+    karma start karma.conf.js<br>
+<br>
