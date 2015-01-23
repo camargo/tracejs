@@ -17,7 +17,7 @@ var Tracejs;
             this.y = y;
             this.z = z;
         }
-        // class methods
+        // Class methods.
         Vector3D.prototype.get_x = function () {
             return this.x;
         };
@@ -29,6 +29,40 @@ var Tracejs;
         };
         Vector3D.prototype.add = function (v) {
             return new Vector3D(this.x + v.x, this.y + v.y, this.z + v.z);
+        };
+        Vector3D.prototype.sub = function (v) {
+            return new Vector3D(this.x - v.x, this.y - v.y, this.z - v.z);
+        };
+        Vector3D.prototype.multiply = function (scalar) {
+            return new Vector3D(this.x * scalar, this.y * scalar, this.z * scalar);
+        };
+        Vector3D.prototype.length = function () {
+            return Math.sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+        };
+        Vector3D.prototype.length_squared = function () {
+            return (this.length() * this.length());
+        };
+        Vector3D.prototype.dot = function (v) {
+            return ((this.x * v.x) + (this.y * v.y) + (this.z * v.z));
+        };
+        Vector3D.prototype.cross = function (v) {
+            return new Vector3D(this.y * v.z - this.z * v.y, this.z * v.x - this.x * v.z, this.x * v.y - this.y * v.x);
+        };
+        Vector3D.prototype.angle_between = function (v) {
+            if (this.length() == 0 || v.length() == 0) {
+                return 0;
+            }
+            var radians = Math.acos(this.dot(v) / (this.length() * v.length()));
+            return radians * (180 / Math.PI);
+        };
+        Vector3D.prototype.normalize = function () {
+            var mag = this.length();
+            this.x /= mag;
+            this.y /= mag;
+            this.z /= mag;
+        };
+        Vector3D.prototype.distance_from = function (v) {
+            return Math.sqrt((this.x - v.x) * (this.x - v.x) + (this.y - v.y) * (this.y - v.y) + (this.z - v.z) * (this.z - v.z));
         };
         return Vector3D;
     })();

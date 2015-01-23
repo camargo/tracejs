@@ -18,7 +18,7 @@ describe("Vector3D class", function() {
         expect(vec_sum.get_z()).toEqual(27.0);
     });
 
-    /*it("should subtract the vectors (x,y,z) coordinates", function() {
+    it("should subtract the vectors (x,y,z) coordinates", function() {
         var vec_a = new Tracejs.Vector3D(4.0, -2.0, 5.0);
         var vec_b = new Tracejs.Vector3D(3.0, 3.0, 17.0);
     
@@ -95,5 +95,5 @@ describe("Vector3D class", function() {
         var angle   = (Math.round(vec_a.angle_between(vec_b)*100)/100);
         var correct = 143.24;
         expect(angle).toEqual(correct);
-    });*/
+    });
 });
