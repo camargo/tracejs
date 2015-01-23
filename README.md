@@ -1,7 +1,7 @@
 # trace.js<br>
 A Browser Based Ray Tracer<br>
 <br>
-Build Instructions:
+Build Instructions (complete in order):
 <br>
 1. To install Gulp with npm type:<br>
     npm install<br>
