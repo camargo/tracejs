@@ -10,8 +10,16 @@ describe("ViewPlane class", function() {
 
         var viewPlane = new Tracejs.ViewPlane(hres, vres, psize);
 
-        expect(viewPlane.get_hres()).toEqual(hres);
-        expect(viewPlane.get_vres()).toEqual(vres);
-        expect(viewPlane.get_psize()).toEqual(psize);
+        expect(viewPlane.getHres()).toEqual(hres);
+        expect(viewPlane.getVres()).toEqual(vres);
+        expect(viewPlane.getPsize()).toEqual(psize);
+    });
+
+    it("should default to hres=300, vres=150, psize=1", function() {
+        var viewPlane = new Tracejs.ViewPlane();
+
+        expect(viewPlane.getHres()).toEqual(300);
+        expect(viewPlane.getVres()).toEqual(150);
+        expect(viewPlane.getPsize()).toEqual(1);
     });
 });

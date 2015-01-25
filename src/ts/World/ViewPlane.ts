@@ -4,34 +4,55 @@ module Tracejs {
         vres : number;
         psize : number;
 
-        constructor(hres : number, vres : number, psize : number) {
+        /**
+         * ViewPlane()
+         * @param hres
+         * @param vres
+         * @param psize
+         * @constructor
+         */
+        constructor(hres?:number, vres?:number, psize?:number) {
+            if (hres) {
+                this.hres = hres;
+            }
+            else {
+                this.hres = 300;
+            }
+            if (vres) {
+                this.vres = vres;
+            }
+            else {
+                this.vres = 150
+            }
+            if (psize) {
+                this.psize = psize;
+            }
+            else {
+                this.psize = 1;
+            }
+        }
+
+        /* getters and setters */
+        getHres() : number {
+            return this.hres
+        }
+        setHres(hres:number) : ViewPlane {
             this.hres = hres;
+            return this
+        }
+        getVres() : number {
+            return this.vres
+        }
+        setVres(vres:number) : ViewPlane {
             this.vres = vres;
+            return this
+        }
+        getPsize() : number {
+            return this.psize
+        }
+        setPsize(psize:number) : ViewPlane {
             this.psize = psize;
-        }
-
-        get_hres() : number {
-            return this.hres;
-        }
-
-        set_hres(hres : number) {
-            this.hres = hres;
-        }
-
-        get_vres() : number {
-            return this.vres;
-        }
-
-        set_vres(vres : number) {
-            this.vres = vres;
-        }
-
-        get_psize() : number {
-            return this.psize;
-        }
-
-        set_psize(psize : number) {
-            this.psize = psize;
+            return this
         }
     }
 }
