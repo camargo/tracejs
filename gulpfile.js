@@ -30,8 +30,14 @@ gulp.task('ts-to-js-geometricObjects', function() {
                                .pipe(gulp.dest('./src/js/GeometricObjects'));
 });
 
+gulp.task('ts-to-js-gui', function() {
+    return gulp.src('./src/ts/GUI/*.ts')
+        .pipe(ts(tsProject))
+        .pipe(gulp.dest('./src/js/GUI'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities', 
                       'ts-to-js-world', 
                       'ts-to-js-tracers',
-                      'ts-to-js-geometricObjects']);
+                      'ts-to-js-geometricObjects','ts-to-js-gui']);
