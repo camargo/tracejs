@@ -11,7 +11,7 @@ module Tracejs {
             return this.color;
         }
 
-        set_color(color : RGBColor) {
+        set_color(color : RGBColor) : void {
             this.color = color;
         }
     }
