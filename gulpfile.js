@@ -24,21 +24,14 @@ gulp.task('ts-to-js-tracers', function() {
                       .pipe(gulp.dest('./src/js/Tracers'));
 });
 
-gulp.task('ts-to-js-baseGeometricObjects', function() {
-    return gulp.src('./src/ts/GeometricObjects/BaseObjects/*.ts')
-                               .pipe(ts(tsProject))
-                               .pipe(gulp.dest('./src/js/GeometricObjects'));
-});
-
-gulp.task('ts-to-js-geometricPrimitives', function() {
+gulp.task('ts-to-js-geometricobjects', function() {
     return gulp.src('./src/ts/GeometricObjects/*.ts')
                                .pipe(ts(tsProject))
-                               .pipe(gulp.dest('./src/js/GeometricObjects/Primitives'));
+                               .pipe(gulp.dest('./src/js/GeometricObjects/'));
 });
 
 // The default task (called when you run `gulp` from cli).
-gulp.task('default', ['ts-to-js-utilities', 
-                      'ts-to-js-world', 
+gulp.task('default', ['ts-to-js-utilities',
+                      'ts-to-js-world',
                       'ts-to-js-tracers',
-                      'ts-to-js-baseGeometricObjects',
-                      'ts-to-js-geometricPrimitives']);
+                      'ts-to-js-geometricobjects']);

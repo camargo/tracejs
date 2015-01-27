@@ -24,12 +24,15 @@ describe("World class", function() {
 
     })
 
-    it("bgColor API", function() {
+    it("bgColor and z-distance API", function() {
 
         var world = new Tracejs.World();
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(0,0,0));
+        expect(world.vpzw()).toEqual(100);
 
-        var newBgColor = world.bgColor(new Tracejs.RGBColor(1,2,3));
+        world.bgColor(new Tracejs.RGBColor(1,2,3));
+        world.vpzw(200);
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(1,2,3));
+        expect(world.vpzw()).toEqual(200);
     })
 });

@@ -11,6 +11,7 @@ module Tracejs {
             this.d = dir;
         }
 
+        // class methods
         assign(ray : Ray) : Ray {
             if (this === ray) {
                 return this;
@@ -20,6 +21,24 @@ module Tracejs {
             this.d = ray.d;
 
             return this;
+        }
+        setRay(o?: Point3D, d?: Vector3D) : Ray {
+
+            // setter
+            if (o && d) {
+                if (o) {
+                    this.o = o;
+                }
+                if (d) {
+                    this.d = d;
+                }
+                return this;
+            }
+
+            // getter
+            else {
+                return this;
+            }
         }
     }
 }
