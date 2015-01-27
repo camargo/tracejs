@@ -24,14 +24,14 @@ gulp.task('ts-to-js-tracers', function() {
                       .pipe(gulp.dest('./src/js/Tracers'));
 });
 
-gulp.task('ts-to-js-geometricObjects', function() {
-    return gulp.src('./src/ts/GeometricObjects/*.ts')
+gulp.task('ts-to-js-baseGeometricObjects', function() {
+    return gulp.src('./src/ts/GeometricObjects/BaseObjects/*.ts')
                                .pipe(ts(tsProject))
                                .pipe(gulp.dest('./src/js/GeometricObjects'));
 });
 
-gulp.task('ts-to-js-primitives', function() {
-    return gulp.src('./src/ts/GeometricObjects/Primitives/*.ts')
+gulp.task('ts-to-js-geometricPrimitives', function() {
+    return gulp.src('./src/ts/GeometricObjects/*.ts')
                                .pipe(ts(tsProject))
                                .pipe(gulp.dest('./src/js/GeometricObjects/Primitives'));
 });
@@ -40,5 +40,5 @@ gulp.task('ts-to-js-primitives', function() {
 gulp.task('default', ['ts-to-js-utilities', 
                       'ts-to-js-world', 
                       'ts-to-js-tracers',
-                      'ts-to-js-geometricObjects',
-                      'ts-to-js-primitives']);
+                      'ts-to-js-baseGeometricObjects',
+                      'ts-to-js-geometricPrimitives']);

@@ -25,7 +25,7 @@ module Tracejs {
             }
         }
 
-        hit() : boolean { // TO DO: Implement intersection routine.
+        hit() : boolean { // TODO: Implement intersection routine.
             return false;
         }
 

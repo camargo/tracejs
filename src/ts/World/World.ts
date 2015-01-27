@@ -12,7 +12,8 @@ module Tracejs {
         // class properties
         background_color : RGBColor;
         view_plane : ViewPlane;
-        // TODO: SingleSphere tracer [array ?]
+        view_plane_matrix : RGBColor[][];
+        single_sphere_tracer : SingleSphere[];
         // TODO: Sphere object [array?]
 
         // class constructor
@@ -29,34 +30,29 @@ module Tracejs {
         }
 
         // TODO : All API calls should have good error handling because World is exposed to the user
-        // TODO : API can return Tracejs objects, object literals, or JSON strings. Which one?
+        // TODO : API can return Tracejs objects, object literals, or JSON strings. Current state, returning Tracsjs objects.
         // class methods
         renderScene() {
             // return a nested array of RGBColors (pixels)
             //      -> stream if possible
+            for (v = 0; v < this.view_plane.getVres; v++) {
+                for (h = 0; h < this.view_plane.getHres; h++) {
+                    // this.view_plane_matrix[h][v] =
+                }
+            }
+
+            return JSON.stringify(this.view_plane_matrix);
         }
+
+        // TODO : build() is redundant because all building is done through the World API. Probably shouldn't exist
+        /*
         build() : World {
-            /*
-            if(!this.vp) {
-                console.log("build(): World.vp didn't exist! Created a default ViewPlane");
-                this.vp = new Tracejs.ViewPlane(300,150,1)
-            }
-            this.vp.setHres(this.gui.getVpHres())
-                    .setVres(this.gui.getVpVres())
-                    .setPsize(this.gui.getVpPsize());
-
-            if(!this.background_color) {
-                console.log("build(): World.background_color didn't exist! Created a black one");
-                this.background_color = new Tracejs.RGBColor(0,0,0)
-            }
-            this.background_color = this.gui.getBgColor();
-            */
             return this;
-
         }
+        */
 
         /**
-         * vp()
+         * view_plane()
          * @param hres
          * @param vres
          * @param psize
