@@ -14,29 +14,26 @@ module Tracejs {
         vp : ViewPlane;
         // TODO: SingleSphere tracer [array ?]
         // TODO: Sphere object [array?]
-        gui : GUI;
-        context; // the canvas 2D context
 
         // class constructor
-        constructor(context, background_color?: RGBColor) {
-
-            this.context = context;
+        constructor(background_color?: RGBColor) {
 
             this.vp = new Tracejs.ViewPlane(); // create default ViewPlane
-
-            this.gui = new Tracejs.GUI(this.vp, background_color); // create default GUI
 
             if (background_color) {
                 this.background_color = background_color;
             }
             else {
-                this.background_color = new Tracejs.RGBColor(0, 0, 0);
+                this.background_color = new Tracejs.RGBColor(0, 0, 0); // create black background_color
             }
         }
 
+        // TODO : All API calls should have good error handling because World is exposed to the user
+        // TODO : API can return Tracejs objects, object literals, or JSON strings. Which one?
         // class methods
-        renderScene() : World {
-            return this.build();
+        renderScene() {
+            // return a nested array of RGBColors (pixels)
+            //      -> stream if possible
         }
         build() : World {
             // Read all GUI values
@@ -56,8 +53,57 @@ module Tracejs {
 
             return this;
         }
-        createGUI() : GUI {
-            return this.gui.create()
+
+        /**
+         * vp()
+         * @param hres
+         * @param vres
+         * @param psize
+         * @returns {ViewPlane|function(number=, number=, number=): ViewPlane}
+         */
+        vp(hres?: number, vres?: number, psize?: number) : ViewPlane {
+
+            // setter
+            if (hres > 0 || vres > 0 || psize > 0) {
+                if (hres) {
+                    this.vp.setHres(hres);
+                }
+                if (vres) {
+                    this.vp.setVres(vres);
+                }
+                if (psize) {
+                    this.vp.setPsize(psize);
+                }
+                console.log("set world.vp", this.vp);
+                return this.vp;
+            }
+
+            // getter
+            else {
+                console.log("getting world.vp", this.vp);
+                return this.vp;
+            }
+        }
+
+        /**
+         * bgColor()
+         * @param background_color
+         * @returns {RGBColor}
+         */
+        bgColor(background_color?: RGBColor) : RGBColor {
+
+            // setter
+            if (background_color) {
+                this.background_color = new RGBColor(R,G,B);
+                console.log("set world.background_color",this.background_color);
+                return this.background_color;
+            }
+
+            // getter
+            else {
+                console.log("getting world.background_color",this.background_color);
+                return this.background_color;
+            }
         }
     }
 }
