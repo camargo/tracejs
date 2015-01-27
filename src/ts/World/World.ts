@@ -4,21 +4,21 @@
 
 /* References to required definitions */
 /// <reference path="ViewPlane.ts" />
-/// <reference path="../GUI/GUI.ts" />
+/// <reference path="../Utilities/RGBColor.ts" />
 
 module Tracejs {
     export class World {
 
         // class properties
         background_color : RGBColor;
-        vp : ViewPlane;
+        view_plane : ViewPlane;
         // TODO: SingleSphere tracer [array ?]
         // TODO: Sphere object [array?]
 
         // class constructor
         constructor(background_color?: RGBColor) {
 
-            this.vp = new Tracejs.ViewPlane(); // create default ViewPlane
+            this.view_plane = new Tracejs.ViewPlane(); // create default ViewPlane
 
             if (background_color) {
                 this.background_color = background_color;
@@ -36,7 +36,7 @@ module Tracejs {
             //      -> stream if possible
         }
         build() : World {
-            // Read all GUI values
+            /*
             if(!this.vp) {
                 console.log("build(): World.vp didn't exist! Created a default ViewPlane");
                 this.vp = new Tracejs.ViewPlane(300,150,1)
@@ -50,8 +50,9 @@ module Tracejs {
                 this.background_color = new Tracejs.RGBColor(0,0,0)
             }
             this.background_color = this.gui.getBgColor();
-
+            */
             return this;
+
         }
 
         /**
@@ -66,22 +67,22 @@ module Tracejs {
             // setter
             if (hres > 0 || vres > 0 || psize > 0) {
                 if (hres) {
-                    this.vp.setHres(hres);
+                    this.view_plane.setHres(hres);
                 }
                 if (vres) {
-                    this.vp.setVres(vres);
+                    this.view_plane.setVres(vres);
                 }
                 if (psize) {
-                    this.vp.setPsize(psize);
+                    this.view_plane.setPsize(psize);
                 }
-                console.log("set world.vp", this.vp);
-                return this.vp;
+                console.log("set world.view_plane", this.view_plane);
+                return this.view_plane;
             }
 
             // getter
             else {
-                console.log("getting world.vp", this.vp);
-                return this.vp;
+                console.log("getting world.view_plane", this.view_plane);
+                return this.view_plane;
             }
         }
 
@@ -94,7 +95,7 @@ module Tracejs {
 
             // setter
             if (background_color) {
-                this.background_color = new RGBColor(R,G,B);
+                this.background_color = background_color;
                 console.log("set world.background_color",this.background_color);
                 return this.background_color;
             }
