@@ -1,10 +1,17 @@
 /// <reference path="./../Utilities/RGBColor.ts" />
+
 module Tracejs {
     export class GeometricObject {
         color : RGBColor;
 
         constructor(color : RGBColor) {
-            this.color = color;
+            if (color) {
+                this.color = color;
+            }
+        }
+
+        hit() : boolean {
+            return false;
         }
 
         get_color() : RGBColor {

@@ -11,4 +11,11 @@ describe("GeometricObject class", function() {
 
         expect(object.get_color()).toEqual(color);
     });
+
+    it("should return false for a hit tests", function() {
+        var color = new Tracejs.RGBColor(1.0, 0.0, 0.0); // Red.
+        var object = new Tracejs.GeometricObject(color);
+
+        expect(object.hit()).toEqual(false);
+    });
 });
