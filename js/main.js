@@ -6,11 +6,15 @@
 $(document).ready(function() {
 
    // instantiate a new world
-   world = new Tracejs.World(context);
+   world = new Tracejs.World();
+
+   // instantiate new GUI
+   GUI = new Tracejs.GUI();
+   GUI.create(world);
 
    // hook up buttons
    $('#render').bind('click', function(world) {
-       Tracejs.world.renderScene();
+       GUI.renderScene();
    });
    $('#reset').bind('click', function() {
        var canvasWidth = $('#canvas').css('width');

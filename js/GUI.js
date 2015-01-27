@@ -1,22 +1,22 @@
 /**
  * Created by mzimmerman on 1/24/15.
  */
-/// <reference path="../World/ViewPlane.ts" />
-/// <reference path="../Utilities/RGBColor.ts" />
-var Tracejs;
+
 (function (Tracejs) {
     var GUI = (function () {
+
         // TODO: spheres : Sphere[];
         // TODO: sphere_tracers : SingleSphere[]
-        function GUI(vp, background_color) {
-            this.vp = vp; // require a ViewPlane from World
-            if (background_color) {
-                this.background_color = background_color;
+
+        // GUI Constructor
+        function GUI(world) {
+            if (!world) {
+                console.log("GUI must take a World as an argument");
+                return undefined;
             }
-            else {
-                this.background_color = new Tracejs.RGBColor(0, 0, 0);
-            }
+            this.world = world;
         }
+
         // class methods
         // called from main->world->GUI to make and bind html elements
         GUI.prototype.create = function () {
@@ -31,6 +31,9 @@ var Tracejs;
             // create initial, ViewPlane, controller
             this.addVpController();
             return this;
+        };
+        GUI.prototype.renderScene = function() {
+            // save all data
         };
         // TODO: Needs more work
         GUI.prototype.addSphereButton = function () {
@@ -48,18 +51,7 @@ var Tracejs;
             $('#vp-controller').append('<p>View Plane Settings</p>').append('<input type="text" placeholder="hres" /><br>').append('<input type="text" placeholder="vres" /><br>').append('<input type="text" placeholder="psize" /><br>');
             return this;
         };
-        GUI.prototype.getBgColor = function () {
-            return this.background_color;
-        };
-        GUI.prototype.getVpHres = function () {
-            return this.vp.getHres();
-        };
-        GUI.prototype.getVpVres = function () {
-            return this.vp.getVres();
-        };
-        GUI.prototype.getVpPsize = function () {
-            return this.vp.getPsize();
-        };
+
         return GUI;
     })();
     Tracejs.GUI = GUI;
