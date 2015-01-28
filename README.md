@@ -7,7 +7,7 @@ Build Instructions (complete in order):
     npm install<br>
     npm install -g gulp<br>
 <br>
-2. To build JavaScript files type:<br>
+2. To build JavaScript files type (you must do this every time you change a .ts file):<br>
     gulp<br>
 <br>
 3. To install Karma-cli with npm type:<br>
