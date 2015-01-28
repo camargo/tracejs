@@ -1,4 +1,4 @@
-/// <reference path="./../GeometricObject.ts" />
+/// <reference path="./../_GeometricObject.ts" />
 /// <reference path="./../../Utilities/Point3D.ts" />
 
 module Tracejs {
@@ -25,7 +25,7 @@ module Tracejs {
             }
         }
 
-        hit() : boolean { // TO DO: Implement intersection routine.
+        hit() : boolean { // TODO: Implement intersection routine.
             return false;
         }
 

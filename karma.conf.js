@@ -15,9 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'src/js/Tracers/_Tracer.js',
+        'src/js/GeometricObjects/_GeometricObject.js',
         'src/js/**/*.js',
-        'tests/unit/**/*.js',
-        'tests/unit/**/**/*.js'
+        'tests/unit/**/*.js'
     ],
 
 

@@ -32,4 +32,9 @@ describe("Ray class", function() {
         expect(ray1).toEqual(ray2);
         expect(new_ray).toEqual(ray2);
     });
+
+    it("should set new ray origin and direction", function() {
+        var ray = new Tracejs.Ray(new Tracejs.Point3D(0,0,0), new Tracejs.Vector3D(0,0,1));
+        ray.setRay()
+    })
 });

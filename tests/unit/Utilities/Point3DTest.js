@@ -8,6 +8,15 @@ describe("Point3D class", function() {
         expect(point.get_z()).toEqual(0.0);
     });
 
+    it("should set new point coordinates", function() {
+
+        var point = new Tracejs.Point3D(0,0,0);
+        point.setPoint(2,3,4);
+
+        expect(point).toEqual(new Tracejs.Point3D(2,3,4));
+
+    });
+
     it("should reverse the sign of x, y, and z", function() {
         var point = new Tracejs.Point3D(1.0, 1.0, 1.0);
 
