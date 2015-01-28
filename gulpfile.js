@@ -9,19 +9,19 @@ var tsProject = { declarationFiles: true,
 gulp.task('ts-to-js-utilities', function() {
     return gulp.src('./src/ts/Utilities/*.ts')
                .pipe(ts(tsProject))
-               .pipe(gulp.dest('./src/js/Utilities'));
+               .pipe(gulp.dest('./src/js/Utilities/'));
 });
 
 gulp.task('ts-to-js-world', function() {
     return gulp.src('./src/ts/World/*.ts')
                .pipe(ts(tsProject))
-               .pipe(gulp.dest('./src/js/World'))
+               .pipe(gulp.dest('./src/js/World/'))
 });
 
 gulp.task('ts-to-js-tracers', function() {
     return gulp.src('./src/ts/Tracers/*.ts')
                       .pipe(ts(tsProject))
-                      .pipe(gulp.dest('./src/js/Tracers'));
+                      .pipe(gulp.dest('./src/js/Tracers/'));
 });
 
 gulp.task('ts-to-js-geometricobjects', function() {
@@ -30,8 +30,15 @@ gulp.task('ts-to-js-geometricobjects', function() {
                                .pipe(gulp.dest('./src/js/GeometricObjects/'));
 });
 
+gulp.task('ts-to-js-primitives', function() {
+    return gulp.src('./src/ts/GeometricObjects/Primitives/*.ts')
+        .pipe(ts(tsProject))
+        .pipe(gulp.dest('./src/js/GeometricObjects/Primitives/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
                       'ts-to-js-tracers',
-                      'ts-to-js-geometricobjects']);
+                      'ts-to-js-geometricobjects',
+                      'ts-to-js-primitives']);

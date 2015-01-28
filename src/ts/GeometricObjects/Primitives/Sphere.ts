@@ -1,5 +1,5 @@
 /// <reference path="./../_GeometricObject.ts" />
-/// <reference path="./../Utilities/Point3D.ts" />
+/// <reference path="./../../Utilities/Point3D.ts" />
 
 module Tracejs {
     export class Sphere extends GeometricObject {
