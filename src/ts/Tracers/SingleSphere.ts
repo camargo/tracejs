@@ -1,4 +1,4 @@
-/// <reference path="_Tracer.ts" />
+/// <reference path="Tracer.ts" />
 /// <reference path="../Utilities/Ray.ts" />
 
 module Tracejs {

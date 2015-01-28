@@ -1,4 +1,4 @@
-/// <reference path="./../_GeometricObject.ts" />
+/// <reference path="./../GeometricObject.ts" />
 /// <reference path="./../../Utilities/Point3D.ts" />
 
 module Tracejs {
