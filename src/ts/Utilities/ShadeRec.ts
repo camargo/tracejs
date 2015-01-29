@@ -44,9 +44,6 @@ module Tracejs {
             return this.local_hit_point;
         } 
 
-        get_normal() : Normal{
-            return this.normal;
-        }
 
         get_ray() : Ray{
             return this.ray;
@@ -60,10 +57,18 @@ module Tracejs {
             return this.dir;
         }
 
+
+        /** Error with World file prevent testing
+
+
+        get_normal() : Normal{
+            return this.normal;
+        }
+
         get_world() : World{
             return this.w;
         }
-
+        */
 
       
         
