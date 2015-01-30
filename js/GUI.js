@@ -54,13 +54,18 @@
         };
         GUI.prototype.addVpController = function () {
             $('#GUI').append('<div id="vp-controller" class="gui-controller"></div>');
-            $('#vp-controller').append('<p>View Plane Settings</p>').append('<input type="text" placeholder="hres" /><br>').append('<input type="text" placeholder="vres" /><br>').append('<input type="text" placeholder="psize" /><br>');
+            $('#vp-controller').append('<p>View Plane Settings</p>')
+                .append('<input type="number" placeholder="horizontal resolution" name="vpHres"]><br>')
+                .append('<input type="text" placeholder="vertical resolution" name="vpVres"/><br>')
+                .append('<input type="text" placeholder="pixel size" name="vpPsize"/><br>');
             return this;
         };
-        GUI.prototype.addBgColorController() {
+        GUI.prototype.addBgColorController = function() {
             $('#GUI').append('<div id="bgcolor-controller" class="gui-controller"></div>');
-            $('#bgcolor-controller').append('<p>Background Color')
-        }
+            $('#bgcolor-controller').append('<p>Background Color</p>')
+                .append('<input type="color" name="bgColor"> ')
+
+        };
 
         return GUI;
     })();
