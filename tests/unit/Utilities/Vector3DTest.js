@@ -34,7 +34,7 @@ describe("Vector3D class", function() {
         var vec_a = new Tracejs.Vector3D(-1.0, 2.0, 25.0);
         var scale = 2.0; 
 
-        var vec_scaled = vec_a.multiply(scale);
+        var vec_scaled = vec_a.mult(scale);
         expect(vec_scaled.get_x()).toEqual(-2.0);
         expect(vec_scaled.get_y()).toEqual(4.0);
         expect(vec_scaled.get_z()).toEqual(50.0);

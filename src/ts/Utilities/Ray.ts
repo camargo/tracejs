@@ -1,3 +1,5 @@
+// Trace.js - Ray.ts
+
 /// <reference path="Vector3D.ts" />
 /// <reference path="Point3D.ts" />
 
@@ -22,16 +24,14 @@ module Tracejs {
 
             return this;
         }
+        
         setRay(o?: Point3D, d?: Vector3D) : Ray {
 
             // setter
             if (o && d) {
-                if (o) {
-                    this.o = o;
-                }
-                if (d) {
-                    this.d = d;
-                }
+                this.o = o;
+                this.d = d;
+
                 return this;
             }
 

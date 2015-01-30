@@ -1,6 +1,4 @@
-/*
-    Shahar Zimmerman 1/22/2015
- */
+// Trace.js - Vector3D.ts
 
 /// <reference path="Point3D.ts" />
 
@@ -50,7 +48,7 @@ module Tracejs {
                                 this.z - v.z);
         }
 
-        multiply(scalar : number) : Vector3D {
+        mult(scalar : number) : Vector3D {
             return new Vector3D(this.x * scalar, 
                                 this.y * scalar, 
                                 this.z * scalar);

@@ -1,3 +1,5 @@
+// Trace.js - Sphere.js
+
 /// <reference path="./../GeometricObject.ts" />
 /// <reference path="./../../Utilities/Point3D.ts" />
 
@@ -25,7 +27,37 @@ module Tracejs {
             }
         }
 
-        hit() : boolean { // TODO: Implement intersection routine.
+        hit(ray : Ray) : boolean {
+            var t : number;
+            var temp : Vector3D = ray.o.sub_point(this.center);
+
+            var a : number = ray.d.dot(ray.d);
+            var b : number = temp.mult(2.0).dot(ray.d);
+            var c : number = (temp.dot(temp)) - (this.radius * this.radius);
+
+            var disc : number = (b * b) - (4.0 * a * c);
+
+            if (disc < 0.0) {
+                return false;
+            }
+            else {
+                var e : number = Math.sqrt(disc);
+                var denom : number = 2.0 * a;
+                t = (-b - e) / denom;
+
+                if (t > Sphere.kEpsilon) {
+                    // Later iterations will need to populate ShadeRec.
+                    return true;
+                }
+
+                t = (-b + e) / denom;
+
+                if (t > Sphere.kEpsilon) {
+                    // Later iterations will need to populate ShadeRec.
+                    return true;
+                }
+            }
+
             return false;
         }
 

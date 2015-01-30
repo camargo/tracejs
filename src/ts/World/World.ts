@@ -1,6 +1,4 @@
-/*
-    Shahar Zimmerman 1/24/2015
- */
+// Trace.js - World.ts
 
 /* References to required definitions */
 /// <reference path="ViewPlane.ts" />

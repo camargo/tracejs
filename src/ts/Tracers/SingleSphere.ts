@@ -1,3 +1,5 @@
+// Trace.js - SingleSphere.ts
+
 /// <reference path="Tracer.ts" />
 /// <reference path="../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
