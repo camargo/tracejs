@@ -3,6 +3,7 @@
  */
 
 /// <reference path="Point3D.ts" />
+
 module Tracejs {
     export class Vector3D {
 
