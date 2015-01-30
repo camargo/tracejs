@@ -1,3 +1,5 @@
+// Trace.js - Normal.ts
+
 /// <reference path="Vector3D.ts" />
 /// <reference path="Point3D.ts" />
 

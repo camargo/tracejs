@@ -23,7 +23,7 @@ module Tracejs {
         constructor(hit : boolean, hit_point : Point3D, 
                     local_hit_point : Point3D, normal : Normal, 
                     ray : Ray, depth : number, 
-                    dir : Vector3D, w : World){
+                    dir : Vector3D, w : World) {
             this.hit = hit;
             this.hit_point = hit_point;
             this.local_hit_point = local_hit_point;
@@ -58,15 +58,12 @@ module Tracejs {
             return this.dir;
         }
 
-
         get_normal() : Normal{
             return this.normal;
         }
         
-
         get_world() : World{
             return this.w;
         }
-        
     }
 }

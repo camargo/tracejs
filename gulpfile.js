@@ -4,7 +4,8 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript'); // (https://github.com/ivogabe/gulp-typescript)
 
 var tsProject = { declarationFiles: true,
-                  noExternalResolve: false }
+                  noExternalResolve: false,
+                  removeComments: false }
 
 gulp.task('ts-to-js-utilities', function() {
     return gulp.src('./src/ts/Utilities/*.ts')
@@ -24,7 +25,7 @@ gulp.task('ts-to-js-tracers', function() {
                       .pipe(gulp.dest('./src/js/Tracers/'));
 });
 
-gulp.task('ts-to-js-geometricobjects', function() {
+gulp.task('ts-to-js-geometricObjects', function() {
     return gulp.src('./src/ts/GeometricObjects/*.ts')
                                .pipe(ts(tsProject))
                                .pipe(gulp.dest('./src/js/GeometricObjects/'));
@@ -40,5 +41,5 @@ gulp.task('ts-to-js-primitives', function() {
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
                       'ts-to-js-tracers',
-                      'ts-to-js-geometricobjects',
+                      'ts-to-js-geometricObjects',
                       'ts-to-js-primitives']);

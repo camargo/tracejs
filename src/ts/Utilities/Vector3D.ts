@@ -3,7 +3,6 @@
  */
 
 /// <reference path="Point3D.ts" />
-
 module Tracejs {
     export class Vector3D {
 
@@ -50,7 +49,7 @@ module Tracejs {
                                 this.z - v.z);
         }
 
-        multiply(scalar : number) : Vector3D {
+        mult(scalar : number) : Vector3D {
             return new Vector3D(this.x * scalar, 
                                 this.y * scalar, 
                                 this.z * scalar);

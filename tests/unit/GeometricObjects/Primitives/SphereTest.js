@@ -18,9 +18,25 @@ describe("Sphere class", function() {
         expect(Tracejs.Sphere.kEpsilon).toEqual(0.001);
     });
 
-    it("should correctly record a sphere intersection", function() {
-        var sphere = new Tracejs.Sphere();
+    it("should correctly record a hit sphere intersection", function() {
+        var sphere = new Tracejs.Sphere(new Tracejs.Point3D(0.0, 0.0, 0.0), 1.0);
 
-        expect(sphere.hit()).toEqual(false);
+        var origin = new Tracejs.Point3D(0.0, 0.0, 100.0);
+        var dir = new Tracejs.Vector3D(0.0, 0.0, -1.0);
+
+        var ray = new Tracejs.Ray(origin, dir);
+
+        expect(sphere.hit(ray)).toEqual(true);
+    });
+
+    it("should correctly record a miss sphere intersection", function() {
+        var sphere = new Tracejs.Sphere(new Tracejs.Point3D(0.0, 0.0, 0.0), 1.0);
+
+        var origin = new Tracejs.Point3D(0.0, 2.0, 100.0);
+        var dir = new Tracejs.Vector3D(0.0, 0.0, -1.0);
+
+        var ray = new Tracejs.Ray(origin, dir);
+
+        expect(sphere.hit(ray)).toEqual(false);
     });
 });
