@@ -1,8 +1,7 @@
-/*
-    Shahar Zimmerman 1/22/2015
- */
+// Trace.js - Vector3D.ts
 
 /// <reference path="Point3D.ts" />
+
 module Tracejs {
     export class Vector3D {
 

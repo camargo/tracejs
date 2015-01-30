@@ -1,3 +1,5 @@
+// Trace.js - ViewPlane.ts
+
 module Tracejs {
     export class ViewPlane {
         hres : number;

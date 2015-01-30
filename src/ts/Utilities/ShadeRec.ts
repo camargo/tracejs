@@ -1,6 +1,4 @@
-/**
-Katherine Barsaloux 1/23/2015
-*/
+// Trace.js - ShadeRec.ts
 
 /// <reference path="./../World/World.ts" />
 /// <reference path="Point3D.ts" />

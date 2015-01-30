@@ -1,3 +1,5 @@
+// Trace.js - RGBColor.ts
+
 module Tracejs {
     export class RGBColor {
         r : number;
