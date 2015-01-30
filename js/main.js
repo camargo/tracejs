@@ -9,8 +9,8 @@ $(document).ready(function() {
    world = new Tracejs.World();
 
    // instantiate new GUI
-   GUI = new Tracejs.GUI();
-   GUI.create(world);
+   GUI = new Tracejs.GUI(world);
+   GUI.create();
 
    // hook up buttons
    $('#render').bind('click', function(world) {

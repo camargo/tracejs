@@ -18,9 +18,10 @@
         }
 
         // class methods
-        // called from main->world->GUI to make and bind html elements
+        // called from main->GUI to make and bind html elements
         GUI.prototype.create = function () {
             // create basic GUI bar
+            debugger;
             var GUIContainer = $('#GUI');
             if (!GUIContainer) {
                 console.log("No #GUI HTML element found for GUI");
@@ -28,8 +29,13 @@
             }
             GUIContainer.append('<div id="addelements" class="btn-group"></div>');
             // this.addSphereButton();
-            // create initial, ViewPlane, controller
+
+            // create initial ViewPlane controller
             this.addVpController();
+
+            // create initial bgColor controller
+            this.addBgColorController();
+
             return this;
         };
         GUI.prototype.renderScene = function() {
@@ -51,6 +57,10 @@
             $('#vp-controller').append('<p>View Plane Settings</p>').append('<input type="text" placeholder="hres" /><br>').append('<input type="text" placeholder="vres" /><br>').append('<input type="text" placeholder="psize" /><br>');
             return this;
         };
+        GUI.prototype.addBgColorController() {
+            $('#GUI').append('<div id="bgcolor-controller" class="gui-controller"></div>');
+            $('#bgcolor-controller').append('<p>Background Color')
+        }
 
         return GUI;
     })();

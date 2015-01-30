@@ -21,7 +21,9 @@
     <script type="text/javascript" src="src/js/Utilities/Ray.js"></script>
     <script type="text/javascript" src="src/js/Utilities/RGBColor.js"></script>
     <script type="text/javascript" src="src/js/Utilities/ShadeRec.js"></script>
-    <script type="text/javascript" src="src/js/GeometricObjects/_GeometricObject.js"></script>
+    <script type="text/javascript" src="src/js/Tracers/Tracer.js"></script>
+    <script type="text/javascript" src="src/js/Tracers/SingleSphere.js"></script>
+    <script type="text/javascript" src="src/js/GeometricObjects/GeometricObject.js"></script>
     <script type="text/javascript" src="src/js/GeometricObjects/Primitives/Sphere.js"></script>
     <script type="text/javascript" src="src/js/World/ViewPlane.js"></script>
     <script type="text/javascript" src="src/js/World/World.js"></script>
@@ -38,12 +40,14 @@
             </div>
 
             <div class="col-md-2">
+                <form>
                 <div class="btn-group">
-                    <button class="btn btn-primary">Render</button>
-                    <button class="btn btn-danger">Reset scene</button>
+                    <button class="btn btn-primary" type="submit">Render</button>
+                    <button class="btn btn-danger" type="reset">Reset scene</button>
                 </div>
                 <hr>
-                <form id="GUI"></form>
+                <div id="GUI"></div>
+                </form>
             </div>
         </div>
     </div>
