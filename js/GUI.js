@@ -21,7 +21,6 @@
         // called from main->GUI to make and bind html elements
         GUI.prototype.create = function () {
             // create basic GUI bar
-            debugger;
             var GUIContainer = $('#GUI');
             if (!GUIContainer) {
                 console.log("No #GUI HTML element found for GUI");
@@ -40,6 +39,7 @@
         };
         GUI.prototype.renderScene = function() {
             // save all data
+            return world.renderScene();
         };
         // TODO: Needs more work
         GUI.prototype.addSphereButton = function () {
