@@ -37,18 +37,25 @@ module Tracejs {
         // TODO : All API calls should have good error handling because World is exposed to the user
         // TODO : API returns Tracejs objects, except for renderScene which returns JSON
         // class methods
-        renderScene() {
+        renderScene(fixture?: boolean) : any {
             // return a nested array of RGBColors (pixels)
             //      -> stream if possible
-            var hres = this.view_plane.getHres;
-            var vres = this.view_plane.getVres;
-            var s = this.view_plane.getPsize;
+            var hres = this.view_plane.getHres();
+            var vres = this.view_plane.getVres();
+            var s = this.view_plane.getPsize();
             var zw = this.view_plane_zw;
             var origin = new Tracejs.Point3D(0,0,zw);
             var ray_vector = new Tracejs.Vector3D(0,0,-1);
             var ray = new Tracejs.Ray(origin,ray_vector);
 
+            // initialize view_plane_matrix with n = vres arrays
+            this.view_plane_matrix = new Array(vres);
+
             for (var v:number = 0; v < vres; v++) {
+
+                // initialize view_plane_matrix[v] to new Array
+                this.view_plane_matrix[v] = new Array();
+
                 for (var h:number = 0; h < hres; h++) {
                     var x:number = s * (h - 0.5 * (hres - 1.0));
                     var y:number = s * (v - 0.5 * (vres - 1.0));
@@ -56,7 +63,12 @@ module Tracejs {
                     origin.setPoint(x,y,zw);
                     ray.setRay(origin, ray_vector);
                     // TODO: For now, use one hardcoded SingleSphere tracer
-                    this.view_plane_matrix[h][v] = this.single_sphere_tracer[0].trace(ray);
+                    if (fixture) {
+                        this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255)));
+                    }
+                    else {
+                        this.view_plane_matrix[v].push(this.single_sphere_tracer[0].trace(ray));
+                    }
                 }
             }
 

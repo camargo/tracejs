@@ -2,7 +2,7 @@
 
 .container.page-container{
     width: 100%;
-    padding: 0 0 0 0;
+    padding: 10px 0 0 10px;
 }
 
 .btn-primary {
@@ -20,4 +20,10 @@
 .btn-primary:hover {
     background: #000000;
     border: 2px solid #000000;
+}
+
+.gui-controller {
+    display: inline-block;
+    width: 40%;
+    margin: 0 10px 0 10px;
 }

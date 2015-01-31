@@ -21,7 +21,9 @@
     <script type="text/javascript" src="src/js/Utilities/Ray.js"></script>
     <script type="text/javascript" src="src/js/Utilities/RGBColor.js"></script>
     <script type="text/javascript" src="src/js/Utilities/ShadeRec.js"></script>
-    <script type="text/javascript" src="src/js/GeometricObjects/_GeometricObject.js"></script>
+    <script type="text/javascript" src="src/js/Tracers/Tracer.js"></script>
+    <script type="text/javascript" src="src/js/Tracers/SingleSphere.js"></script>
+    <script type="text/javascript" src="src/js/GeometricObjects/GeometricObject.js"></script>
     <script type="text/javascript" src="src/js/GeometricObjects/Primitives/Sphere.js"></script>
     <script type="text/javascript" src="src/js/World/ViewPlane.js"></script>
     <script type="text/javascript" src="src/js/World/World.js"></script>
@@ -32,18 +34,27 @@
 
     <div class="container page-container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
+                <h1>Trace.js</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
                 <canvas id="canvas" style="border: 3px dashed #000000; width: 100%">
                 </canvas>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-4">
+                <button id="render-scene" class="btn btn-primary" style="margin: 0 auto 10px auto">Render</button>
+                <p style="color: red">Note: Render is currently wired to generate test data until World is tested and produces real data</p>
+                <form id="gui-form">
                 <div class="btn-group">
-                    <button class="btn btn-primary">Render</button>
-                    <button class="btn btn-danger">Reset scene</button>
+                    <button class="btn btn-primary" type="submit">Save scene</button>
+                    <button class="btn btn-danger" type="reset">Reset scene</button>
                 </div>
                 <hr>
-                <form id="GUI"></form>
+                <div id="GUI"></div>
+                </form>
             </div>
         </div>
     </div>
