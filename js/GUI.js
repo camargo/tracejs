@@ -18,7 +18,7 @@
         }
 
         // class methods
-        // called from main->world->GUI to make and bind html elements
+        // called from main->GUI to make and bind html elements
         GUI.prototype.create = function () {
             // create basic GUI bar
             var GUIContainer = $('#GUI');
@@ -28,12 +28,18 @@
             }
             GUIContainer.append('<div id="addelements" class="btn-group"></div>');
             // this.addSphereButton();
-            // create initial, ViewPlane, controller
+
+            // create initial ViewPlane controller
             this.addVpController();
+
+            // create initial bgColor controller
+            this.addBgColorController();
+
             return this;
         };
         GUI.prototype.renderScene = function() {
             // save all data
+            return world.renderScene();
         };
         // TODO: Needs more work
         GUI.prototype.addSphereButton = function () {
@@ -48,8 +54,17 @@
         };
         GUI.prototype.addVpController = function () {
             $('#GUI').append('<div id="vp-controller" class="gui-controller"></div>');
-            $('#vp-controller').append('<p>View Plane Settings</p>').append('<input type="text" placeholder="hres" /><br>').append('<input type="text" placeholder="vres" /><br>').append('<input type="text" placeholder="psize" /><br>');
+            $('#vp-controller').append('<p>View Plane Settings</p>')
+                .append('<input type="number" placeholder="horizontal resolution" name="vpHres"]><br>')
+                .append('<input type="text" placeholder="vertical resolution" name="vpVres"/><br>')
+                .append('<input type="text" placeholder="pixel size" name="vpPsize"/><br>');
             return this;
+        };
+        GUI.prototype.addBgColorController = function() {
+            $('#GUI').append('<div id="bgcolor-controller" class="gui-controller"></div>');
+            $('#bgcolor-controller').append('<p>Background Color</p>')
+                .append('<input type="color" name="bgColor"> ')
+
         };
 
         return GUI;
