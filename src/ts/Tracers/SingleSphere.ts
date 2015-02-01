@@ -9,7 +9,12 @@ module Tracejs {
 
         // class methods
         trace(ray: Ray) : RGBColor {
-            return new RGBColor(1.0, 0.0, 0.0); // TO DO: Implement sphere trace.
+	    // need to check and see if there sphere is a hit.
+            if(true) {
+                return new RGBColor(1.0, 0.0, 0.0);
+	    } else {
+                return new RGBColor(1.0, 1.0, 1.0);
+	    }
         }
     }
 }
