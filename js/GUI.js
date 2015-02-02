@@ -55,9 +55,12 @@
         GUI.prototype.addVpController = function () {
             $('#GUI').append('<div id="vp-controller" class="gui-controller"></div>');
             $('#vp-controller').append('<p>View Plane Settings</p>')
-                .append('<input type="number" placeholder="horizontal resolution" name="vpHres"]><br>')
-                .append('<input type="text" placeholder="vertical resolution" name="vpVres"/><br>')
-                .append('<input type="text" placeholder="pixel size" name="vpPsize"/><br>');
+                .append('<input type="number" placeholder="horizontal resolution" name="vpHres" required /><br>')
+                .append('<input type="number" placeholder="vertical resolution" name="vpVres" required /><br>')
+                .append('<input type="number" placeholder="pixel size" name="vpPsize" required /><br>');
+            $('[name="vpHres"]').attr('value', world.vp().getHres());
+            $('[name="vpVres"]').attr('value', world.vp().getVres());
+            $('[name="vpPsize"]').attr('value', world.vp().getPsize());
             return this;
         };
         GUI.prototype.addBgColorController = function() {
