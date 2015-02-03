@@ -17,21 +17,17 @@ module Tracejs {
         view_plane : ViewPlane;
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
-	// added sphere
-	geo_sphere : Sphere;
-        single_sphere_tracer : SingleSphere[];
-        // TODO: Sphere[]
+        geo_sphere : Sphere;
+        single_sphere_tracer : SingleSphere;
 
         // class constructor
         constructor(background_color?: RGBColor) {
 
             this.view_plane = new Tracejs.ViewPlane(); // create default ViewPlane
-            this.view_plane_zw = 100; // create default view plane z-distance
+            this.view_plane_zw = 100.0; // create default view plane z-distance
+            this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 30.0);
 
-	    // added sphere
-	    this.geo_sphere = new Tracejs.Sphere();
-
-            this.single_sphere_tracer = new Array(new Tracejs.SingleSphere());
+            this.single_sphere_tracer = new Tracejs.SingleSphere(this);
 
             if (background_color) {
                 this.background_color = background_color;
@@ -51,15 +47,15 @@ module Tracejs {
             var vres = this.view_plane.getVres();
             var s = this.view_plane.getPsize();
             var zw = this.view_plane_zw;
-            var origin = new Tracejs.Point3D(0,0,zw);
-            var ray_vector = new Tracejs.Vector3D(0,0,-1);
-            var ray = new Tracejs.Ray(origin,ray_vector);
+
+            var origin = new Tracejs.Point3D(0.0, 0.0, zw);
+            var ray_vector = new Tracejs.Vector3D(0.0, 0.0, -1.0);
+            var ray = new Tracejs.Ray(origin, ray_vector);
 
             // initialize view_plane_matrix with n = vres arrays
             this.view_plane_matrix = new Array(vres);
 
             for (var v:number = 0; v < vres; v++) {
-
                 // initialize view_plane_matrix[v] to new Array
                 this.view_plane_matrix[v] = new Array();
 
@@ -67,14 +63,12 @@ module Tracejs {
                     var x:number = s * (h - 0.5 * (hres - 1.0));
                     var y:number = s * (v - 0.5 * (vres - 1.0));
 
-                    origin.setPoint(x,y,zw);
+                    origin.setPoint(x, y, zw);
                     ray.setRay(origin, ray_vector);
-                    // TODO: For now, use one hardcoded SingleSphere tracer
+
                     if (fixture) {
-                        this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.floor(Math.random()*255)));
-                    }
-                    else {
-                        this.view_plane_matrix[v].push(this.single_sphere_tracer[0].trace(ray));
+                        var color : RGBColor = this.single_sphere_tracer.trace(ray).scale(255);
+                        this.view_plane_matrix[v].push(color);
                     }
                 }
             }

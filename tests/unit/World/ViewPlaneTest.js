@@ -1,7 +1,3 @@
-/**
- * Created by mzimmerman on 1/21/15.
- */
-
 describe("ViewPlane class", function() {
     it("should take on correct hres and vres when specified in arguments", function() {
         var hres = 100;

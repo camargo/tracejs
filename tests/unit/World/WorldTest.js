@@ -1,7 +1,3 @@
-/*
-    Shahar Zimmerman 1/27/15
- */
-
 describe("World class", function() {
     it("constructor", function() {
 

@@ -24,7 +24,7 @@ module Tracejs {
                 this.vres = vres;
             }
             else {
-                this.vres = 150
+                this.vres = 150;
             }
             if (psize) {
                 this.psize = psize;

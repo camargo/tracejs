@@ -7,20 +7,19 @@
 
 module Tracejs {
     export class SingleSphere extends Tracer {
-        
-	// properties
-         
-        // constructor
-        
-        // class methods
+
+        constructor(world_ptr? : World) {
+            super(world_ptr);
+        }
+
         trace(ray: Ray) : RGBColor {
-	    
-	    // need to check and see if there sphere is a hit.
-            if(this.world_ptr.geo_sphere.hit(ray) == true) {
-                return new RGBColor(1.0, 0.0, 0.0);
-	    } else {
-                return new RGBColor(1.0, 1.0, 1.0);
-	    }
+    	    var sphere : Sphere = this.world_ptr.geo_sphere;
+
+            if(sphere.hit(ray)) {
+                return sphere.get_color();
+    	    } else {
+                return this.world_ptr.background_color;
+    	    }
         }
     }
 }

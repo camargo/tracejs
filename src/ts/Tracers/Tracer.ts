@@ -1,8 +1,5 @@
-/*
-    Steven Esser 1/29/15
-*/
+// Trace.js - Tracer.ts
 
-/* References to required definitions */
 /// <reference path="../World/ViewPlane.ts" />
 /// <reference path="../Utilities/RGBColor.ts" />
 /// <reference path="../Tracers/SingleSphere.ts" />
@@ -13,13 +10,12 @@
 
 module Tracejs {
     export class Tracer {
-        
-	// class properties
-	world_ptr : World;
+    	// class properties
+    	world_ptr : World;
 
-	// constructor
-	constructor(world_ptr? : World) {
+    	// constructor
+    	constructor(world_ptr? : World) {
             this.world_ptr = world_ptr;
-	}
+    	}
     }
 }
