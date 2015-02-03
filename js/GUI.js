@@ -37,10 +37,12 @@
 
             return this;
         };
+
         GUI.prototype.renderScene = function() {
             // save all data
             return world.renderScene();
         };
+
         // TODO: Needs more work
         GUI.prototype.addSphereButton = function () {
             var addElementsContainer = $('#addelements').append(function () {
@@ -52,6 +54,7 @@
             });
             return this;
         };
+
         GUI.prototype.addVpController = function () {
             $('#GUI').append('<div id="vp-controller" class="gui-controller"></div>');
             $('#vp-controller').append('<p>View Plane Settings</p>')
@@ -63,6 +66,7 @@
             $('[name="vpPsize"]').attr('value', world.vp().getPsize());
             return this;
         };
+        
         GUI.prototype.addBgColorController = function() {
             $('#GUI').append('<div id="bgcolor-controller" class="gui-controller"></div>');
             $('#bgcolor-controller').append('<p>Background Color</p>')

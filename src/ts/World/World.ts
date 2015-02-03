@@ -59,7 +59,7 @@ module Tracejs {
                 // initialize view_plane_matrix[v] to new Array
                 this.view_plane_matrix[v] = new Array();
 
-                for (var h:number = 0; h < hres; h++) {
+                for (var h:number = 0; h <= hres; h++) {
                     var x:number = s * (h - 0.5 * (hres - 1.0));
                     var y:number = s * (v - 0.5 * (vres - 1.0));
 

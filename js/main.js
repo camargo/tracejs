@@ -80,6 +80,7 @@
             cxt.putImageData(GUI.canvasData,0,0);
 
         };
+
         GUI.hexToRgb = function(hex) {
             var bigint = parseInt(hex, 16);
 
@@ -89,7 +90,6 @@
                 b: bigint & 255
             };
         }
-
     });
 })(Tracejs || null);
 
