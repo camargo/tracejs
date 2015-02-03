@@ -9,15 +9,14 @@ module Tracejs {
     export class SingleSphere extends Tracer {
         
 	// properties
-        
+         
         // constructor
-
+        
         // class methods
         trace(ray: Ray) : RGBColor {
-            var sphere = new Tracejs.Sphere();
 	    
 	    // need to check and see if there sphere is a hit.
-            if(sphere.hit(ray) == true) {
+            if(this.world_ptr.geo_sphere.hit(ray) == true) {
                 return new RGBColor(1.0, 0.0, 0.0);
 	    } else {
                 return new RGBColor(1.0, 1.0, 1.0);
