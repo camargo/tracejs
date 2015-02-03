@@ -7,6 +7,7 @@
 /// <reference path="../Utilities/Ray.ts" />
 /// <reference path="../Utilities/Point3D.ts" />
 /// <reference path="../Utilities/Vector3D.ts" />
+/// <reference path="../GeometricObjects/Primitives/Sphere.ts" />
 
 module Tracejs {
     export class World {
@@ -16,6 +17,8 @@ module Tracejs {
         view_plane : ViewPlane;
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
+	// added sphere
+	geo_sphere : Sphere;
         single_sphere_tracer : SingleSphere[];
         // TODO: Sphere[]
 
@@ -24,6 +27,10 @@ module Tracejs {
 
             this.view_plane = new Tracejs.ViewPlane(); // create default ViewPlane
             this.view_plane_zw = 100; // create default view plane z-distance
+
+	    // added sphere
+	    this.geo_sphere = new Tracejs.Sphere();
+
             this.single_sphere_tracer = new Array(new Tracejs.SingleSphere());
 
             if (background_color) {
