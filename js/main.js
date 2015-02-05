@@ -28,8 +28,6 @@
         $('#render-scene').on('click', function() {
             // var view_plane_matrix = GUI.renderScene();
             var JSONresponse = world.renderScene();
-            alert(JSONresponse);
-            debugger;
             var data = JSON.parse(JSONresponse); // declare as global so can be accessed by renderCanvas
             GUI.renderCanvas(GUI.context.createImageData(GUI.canvas.width, GUI.canvas.height), data);
         });
