@@ -43,6 +43,15 @@
             return world.renderScene();
         };
 
+        GUI.prototype.setCanvasDimensions = function (canvas, width, height) {
+            canvas.width = width;
+            canvas.height = height;
+                $(canvas).css({
+                    width: width.toString(),
+                    height: height.toString()
+                })
+        };
+
         // TODO: Needs more work
         GUI.prototype.addSphereButton = function () {
             var addElementsContainer = $('#addelements').append(function () {

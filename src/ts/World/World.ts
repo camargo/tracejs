@@ -40,6 +40,12 @@ module Tracejs {
         // TODO : All API calls should have good error handling because World is exposed to the user
         // TODO : API returns Tracejs objects, except for renderScene which returns JSON
         // class methods
+
+        /**
+         * renderScene()
+         * @param fixture
+         * @returns {string}
+         */
         renderScene(fixture?: boolean) : any {
             // return a nested array of RGBColors (pixels)
             //      -> stream if possible
@@ -59,7 +65,7 @@ module Tracejs {
                 // initialize view_plane_matrix[v] to new Array
                 this.view_plane_matrix[v] = new Array();
 
-                for (var h:number = 0; h <= hres; h++) {
+                for (var h:number = 0; h < hres; h++) {
                     var x:number = s * (h - 0.5 * (hres - 1.0));
                     var y:number = s * (v - 0.5 * (vres - 1.0));
 
@@ -67,6 +73,9 @@ module Tracejs {
                     ray.setRay(origin, ray_vector);
 
                     if (fixture) {
+                        this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)))
+                    }
+                    else {
                         var color : RGBColor = this.single_sphere_tracer.trace(ray).scale(255);
                         this.view_plane_matrix[v].push(color);
                     }
@@ -103,13 +112,11 @@ module Tracejs {
                 if (psize) {
                     this.view_plane.setPsize(psize);
                 }
-                console.log("set world.view_plane", this.view_plane);
                 return this.view_plane;
             }
 
             // getter
             else {
-                console.log("getting world.view_plane", this.view_plane);
                 return this.view_plane;
             }
         }
@@ -143,13 +150,11 @@ module Tracejs {
             // setter
             if (background_color) {
                 this.background_color = background_color;
-                console.log("set world.background_color",this.background_color);
                 return this.background_color;
             }
 
             // getter
             else {
-                console.log("getting world.background_color",this.background_color);
                 return this.background_color;
             }
         }
