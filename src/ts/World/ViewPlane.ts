@@ -18,13 +18,13 @@ module Tracejs {
                 this.hres = hres;
             }
             else {
-                this.hres = 300;
+                this.hres = 512;
             }
             if (vres) {
                 this.vres = vres;
             }
             else {
-                this.vres = 150;
+                this.vres = 512;
             }
             if (psize) {
                 this.psize = psize;

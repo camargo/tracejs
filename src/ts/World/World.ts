@@ -25,7 +25,7 @@ module Tracejs {
 
             this.view_plane = new Tracejs.ViewPlane(); // create default ViewPlane
             this.view_plane_zw = 100.0; // create default view plane z-distance
-            this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 30.0);
+            this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 200.0);
 
             this.single_sphere_tracer = new Tracejs.SingleSphere(this);
 
