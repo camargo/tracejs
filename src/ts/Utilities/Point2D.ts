@@ -20,6 +20,14 @@ module Tracejs {
             }
         }
 
+        get_x() : number {
+            return this.x;
+        }
+
+        get_y() : number {
+            return this.y;
+        }
+
         set_point(p : Point2D) : Point2D {
             this.x = p.x;
             this.y = p.y;
