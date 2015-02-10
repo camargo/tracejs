@@ -5,11 +5,13 @@
 /// <reference path="Vector3D.ts" />
 /// <reference path="Ray.ts" />
 /// <reference path="Normal.ts" />
+/// <reference path="../Utilities/Material.ts" />
 
 module Tracejs {
     export class ShadeRec {
 
         hit : boolean; 
+        material_ptr : Material;
         hit_point : Point3D; 
         local_hit_point : Point3D; 
         normal : Normal; 
@@ -18,11 +20,13 @@ module Tracejs {
         dir : Vector3D; 
         w : World; 
 
-        constructor(hit : boolean, hit_point : Point3D, 
+        constructor(hit : boolean, material_ptr : Material ,
+                    hit_point : Point3D, 
                     local_hit_point : Point3D, normal : Normal, 
                     ray : Ray, depth : number, 
                     dir : Vector3D, w : World) {
             this.hit = hit;
+            this.material_ptr = material_ptr;
             this.hit_point = hit_point;
             this.local_hit_point = local_hit_point;
             this.normal = normal;
