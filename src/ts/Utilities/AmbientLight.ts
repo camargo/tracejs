@@ -7,6 +7,7 @@
 /// <reference path="Normal.ts" />
 /// <reference path="ShadeRec.ts" />
 /// <reference path="Light.ts" />
+/// <reference path="RGBColor.ts" />
 
 module Tracejs {
     export class AmbientLight extends Light{
