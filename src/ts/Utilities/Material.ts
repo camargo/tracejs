@@ -2,11 +2,8 @@
 /// <reference path="../Utilities/ShadeRec.ts" />
 
 
-
-
 module Tracejs {
     export class Material {
-
 
        //Functions
        shade (sr : ShadeRec) : RGBColor{
@@ -23,7 +20,7 @@ module Tracejs {
        //Set RGBColor to black
            var black = new Tracejs.RGBColor(0,0,0);
            return black;
-       }
+        }
 
     }
 }
