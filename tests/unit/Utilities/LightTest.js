@@ -5,6 +5,12 @@ describe("Light class", function() {
         expect(light.get_shadows()).toEqual(true);
     });
     
+    it("should assign a light with no shadows", function() {
+        var light = new Tracejs.Light(true);
+        light.set_shadows(false);
+        expect(light.get_shadows()).toEqual(false);
+    });
+    
     it("should return the zero color", function() {
         var light = new Tracejs.Light(true);
         var color = light.incident_radiance();
