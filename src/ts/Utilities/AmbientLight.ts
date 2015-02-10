@@ -1,4 +1,4 @@
-// Trace.js - PointLight.ts
+// Trace.js - AmbientLight.ts
 
 /// <reference path="./../World/World.ts" />
 /// <reference path="Point3D.ts" />
@@ -10,21 +10,17 @@
 /// <reference path="RGBColor.ts" />
 
 module Tracejs {
-    export class PointLight extends Light{
+    export class AmbientLight extends Light{
       ls       : number;
       color    : RGBColor;
-      location : Vector3D;
 
-      constructor(shadow ?: boolean, l_s ?: number, 
-                  col ?: RGBColor, loc ?: Vector3D){
+      constructor(shadow ?: boolean, l_s ?: number, col ?: RGBColor){
         if(shadow) super(shadow);
         else       super(false);
         if(l_s) this.ls = l_s;
         else    this.ls = 1.0;
         if(col) this.color = col;
         else    this.color = new RGBColor(0,0,0);
-        if(loc) this.location = loc;
-        else    this.location = new Vector3D(0.0, 0.0, 0.0);
       }
     
       set_ls(l_s : number) : void{
@@ -34,11 +30,7 @@ module Tracejs {
       set_color(col : RGBColor) : void{
         this.color = col;
       }
-  
-      set_location(loc : Vector3D) : void{
-        this.location = loc;
-      }
-
+      
       get_ls() : number{
         return this.ls;
       }
@@ -46,19 +38,9 @@ module Tracejs {
       get_color() : RGBColor{
         return this.color;
       }
-   
-      get_location() : Vector3D{
-        return this.location;
-      }
       
       get_direction(sr : ShadeRec) : Vector3D{
-        var point = sr.get_hit_point();
-        var hit = new Tracejs.Vector3D(point.get_x(),
-                                       point.get_y(),
-                                       point.get_z());
-        var vec = (this.location).sub(hit);
-        vec.normalize();
-        return vec;
+        return new Vector3D(0.0, 0.0, 0.0);
       }
       
       incident_radiance(sr : ShadeRec) : RGBColor{
