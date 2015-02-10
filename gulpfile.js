@@ -37,9 +37,16 @@ gulp.task('ts-to-js-primitives', function() {
         .pipe(gulp.dest('./src/js/GeometricObjects/Primitives/'));
 });
 
+gulp.task('ts-to-js-samplers', function() {
+    return gulp.src('./src/ts/Samplers/*.ts')
+                               .pipe(ts(tsProject))
+                               .pipe(gulp.dest('./src/js/Samplers/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
                       'ts-to-js-tracers',
                       'ts-to-js-geometricObjects',
-                      'ts-to-js-primitives']);
+                      'ts-to-js-primitives',
+                      'ts-to-js-samplers']);

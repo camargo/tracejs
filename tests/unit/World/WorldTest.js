@@ -13,7 +13,7 @@ describe("World class", function() {
     it("View Plane API", function() {
 
         var world = new Tracejs.World();
-        expect(world.vp()).toEqual(new Tracejs.ViewPlane(300,150,1));
+        expect(world.vp()).toEqual(new Tracejs.ViewPlane(512,512,1));
 
         var newVp = world.vp(100,50,5);
         expect(world.vp()).toEqual(new Tracejs.ViewPlane(100,50,5));
@@ -38,7 +38,7 @@ describe("World class", function() {
         _(4).times(function() {
             world.push(new Tracejs.World())
         });
-        world[1].vp(150,300,1); // view plane small hres, big vres
+        world[1].vp(512,512,1); // view plane small hres, big vres
         world[2].vp(300,300,1); // view plane square
 
         // if sphere at origin, test that origin pixel is not black
