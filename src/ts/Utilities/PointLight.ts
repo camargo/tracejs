@@ -7,6 +7,7 @@
 /// <reference path="Normal.ts" />
 /// <reference path="ShadeRec.ts" />
 /// <reference path="Light.ts" />
+/// <reference path="RGBColor.ts" />
 
 module Tracejs {
     export class PointLight extends Light{
@@ -55,7 +56,9 @@ module Tracejs {
         var hit = new Tracejs.Vector3D(point.get_x(),
                                        point.get_y(),
                                        point.get_z());
-        return (this.location).sub(hit);
+        var vec = (this.location).sub(hit);
+        vec.normalize();
+        return vec;
       }
       
       incident_radiance(sr : ShadeRec) : RGBColor{
