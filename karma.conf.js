@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
         'src/js/Tracers/Tracer.js',
         'src/js/GeometricObjects/GeometricObject.js',
+        'src/js/Utilities/Light.js',
         'src/js/**/*.js',
         'tests/unit/**/*.js',
         'js/underscore-min.js',
