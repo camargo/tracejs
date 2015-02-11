@@ -1,11 +1,11 @@
 // Trace.js - Light.ts
 
 /// <reference path="./../World/World.ts" />
-/// <reference path="Point3D.ts" />
-/// <reference path="Vector3D.ts" />
-/// <reference path="Ray.ts" />
-/// <reference path="Normal.ts" />
-/// <reference path="ShadeRec.ts" />
+/// <reference path="./../Utilities/Point3D.ts" />
+/// <reference path="./../Utilities/Vector3D.ts" />
+/// <reference path="./../Utilities/Ray.ts" />
+/// <reference path="./../Utilities/Normal.ts" />
+/// <reference path="./../Utilities/ShadeRec.ts" />
 
 module Tracejs {
     export class Light {
