@@ -35,7 +35,7 @@
         $('#gui-form').submit(function (event) {
             event.preventDefault();
 
-            // save all GUI settings to world using Tracejs.World API
+            // get inputs
             var inputs = $('#gui-form :input').serializeArray();
             var hres = parseInt(inputs[0].value, 10);
             var vres = parseInt(inputs[1].value, 10);
@@ -43,6 +43,7 @@
             var bgColorHex = inputs[3].value;
             var bgcolor = GUI.hexToRgb(bgColorHex.slice(-(bgColorHex.length-1)));
 
+            // save all GUI settings to world using Tracejs.World API
             world.vp(hres, vres, psize);
             GUI.setCanvasDimensions(GUI.canvas, hres, vres);
 
