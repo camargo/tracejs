@@ -6,13 +6,14 @@
 /// <reference path="../Tracers/SingleSphere.ts" />
 /// <reference path="../Utilities/Ray.ts" />
 /// <reference path="../Utilities/Point3D.ts" />
+/// <reference path="../Utilities/Point2D.ts" />
 /// <reference path="../Utilities/Vector3D.ts" />
 /// <reference path="../GeometricObjects/Primitives/Sphere.ts" />
+/// <reference path="./../Samplers/Sampler.ts" />
+/// <reference path="./../Samplers/Regular.ts" />
 
 module Tracejs {
     export class World {
-
-        // class properties
         background_color : RGBColor;
         view_plane : ViewPlane;
         view_plane_zw: number;
@@ -20,11 +21,13 @@ module Tracejs {
         geo_sphere : Sphere;
         single_sphere_tracer : SingleSphere;
 
-        // class constructor
         constructor(background_color?: RGBColor) {
+            this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
 
-            this.view_plane = new Tracejs.ViewPlane(); // create default ViewPlane
-            this.view_plane_zw = 100.0; // create default view plane z-distance
+            this.view_plane.set_sampler(new Tracejs.Regular(4)); // Set sampler (4 samples / pixel).
+
+            this.view_plane_zw = 100.0; // Create default view plane z-distance.
+
             this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 200.0);
 
             this.single_sphere_tracer = new Tracejs.SingleSphere(this);
@@ -33,7 +36,7 @@ module Tracejs {
                 this.background_color = background_color;
             }
             else {
-                this.background_color = new Tracejs.RGBColor(0, 0, 0); // create black background_color
+                this.background_color = new Tracejs.RGBColor(0, 0, 0); // Create black background_color.
             }
         }
 
@@ -51,6 +54,7 @@ module Tracejs {
             //      -> stream if possible
             var hres = this.view_plane.getHres();
             var vres = this.view_plane.getVres();
+
             var s = this.view_plane.getPsize();
             var zw = this.view_plane_zw;
 
@@ -58,27 +62,37 @@ module Tracejs {
             var ray_vector = new Tracejs.Vector3D(0.0, 0.0, -1.0);
             var ray = new Tracejs.Ray(origin, ray_vector);
 
-            // initialize view_plane_matrix with n = vres arrays
+            var sp : Point2D; // Sample point in [0, 1] x [0, 1].
+            var pp : Point2D = new Point2D(); // Sample point on a pixel.
+
+            // Initialize view_plane_matrix with n = vres arrays.
             this.view_plane_matrix = new Array(vres);
 
             for (var v:number = 0; v < vres; v++) {
-                // initialize view_plane_matrix[v] to new Array
+                // Initialize view_plane_matrix[v] to new Array.
                 this.view_plane_matrix[v] = new Array();
 
                 for (var h:number = 0; h < hres; h++) {
-                    var x:number = s * (h - 0.5 * (hres - 1.0));
-                    var y:number = s * (v - 0.5 * (vres - 1.0));
+                    var color : RGBColor = new RGBColor(0.0, 0.0, 0.0);
 
-                    origin.setPoint(x, y, zw);
-                    ray.setRay(origin, ray_vector);
+                    for (var j:number = 0; j < this.view_plane.num_samples; ++j) {
+                        sp = this.view_plane.sampler.sample_unit_square();
 
-                    if (fixture) {
-                        this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)))
+                        pp.x = s * (h - 0.5 * (hres - sp.x));
+                        pp.y = s * (v - 0.5 * (vres - sp.y));
+
+                        origin.setPoint(pp.x, pp.y, zw);
+                        ray.setRay(origin, ray_vector);
+
+                        if (fixture) {
+                            this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)))
+                        }
+                        else {
+                            color = color.add_color(this.single_sphere_tracer.trace(ray).scale(255));
+                        }
                     }
-                    else {
-                        var color : RGBColor = this.single_sphere_tracer.trace(ray).scale(255);
-                        this.view_plane_matrix[v].push(color);
-                    }
+                    color.div(this.view_plane.num_samples);
+                    this.view_plane_matrix[v].push(color);
                 }
             }
 
