@@ -1,10 +1,15 @@
 // Trace.js - ViewPlane.ts
 
+/// <reference path="./../Utilities/Point2D.ts" />
+/// <reference path="./../Samplers/Sampler.ts" />
+
 module Tracejs {
     export class ViewPlane {
         hres : number;
         vres : number;
         psize : number;
+        sampler : Sampler;
+        num_samples : number; // Samples per pixel.
 
         /**
          * ViewPlane()
@@ -35,23 +40,33 @@ module Tracejs {
         }
 
         /* getters and setters */
+        set_sampler(sp : Sampler) : void {
+            this.num_samples = sp.get_num_samples();
+            this.sampler = sp;
+        }
+
         getHres() : number {
             return this.hres
         }
+
         setHres(hres:number) : ViewPlane {
             this.hres = hres;
             return this
         }
+
         getVres() : number {
             return this.vres
         }
+
         setVres(vres:number) : ViewPlane {
             this.vres = vres;
             return this
         }
+
         getPsize() : number {
             return this.psize
         }
+
         setPsize(psize:number) : ViewPlane {
             this.psize = psize;
             return this

@@ -12,6 +12,8 @@ module Tracejs {
                 super(1); // Default to 1 sample per pixel.
             }
 
+            this.samples = new Array();
+
             this.generate_samples();
         }
 

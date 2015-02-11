@@ -36,6 +36,14 @@ module Tracejs {
             return new RGBColor(this.r / color.r, this.g / color.g, this.b / color.b);
         }
 
+        div(n : number) : RGBColor {
+            this.r /= n;
+            this.g /= n;
+            this.b /= n;
+
+            return this;
+        }
+
         mult_color(color : RGBColor) : RGBColor {
             return new RGBColor(this.r * color.r, this.g * color.g, this.b * color.b);
         }
