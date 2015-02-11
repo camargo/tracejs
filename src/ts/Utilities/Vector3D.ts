@@ -85,7 +85,7 @@ module Tracejs {
             return radians * (180 / Math.PI);
         }
 
-        normalize() {
+        normalize() : void{
             var mag = this.length();
             this.x /= mag;
             this.y /= mag;

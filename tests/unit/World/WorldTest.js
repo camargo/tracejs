@@ -49,7 +49,7 @@ describe("World class", function() {
                 var json = world[i].renderScene();
                 var data = JSON.parse(json);
 
-                console.log("testing coordinates "+Math.floor(vres / 2).toString()+", "+Math.floor(hres / 2).toString()+" world w/ vp ",world[i].vp());
+                //console.log("testing coordinates "+Math.floor(vres / 2).toString()+", "+Math.floor(hres / 2).toString()+" world w/ vp ",world[i].vp());
                 expect(data[Math.floor(vres / 2)][Math.floor(hres / 2)].r).not.toEqual(0);
                 expect(data[0][0].r).toEqual(0);
                 expect(data[vres-1][hres-1].r).toEqual(0);

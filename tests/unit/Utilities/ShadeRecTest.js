@@ -1,6 +1,13 @@
 describe("ShadeRec class", function() {
     it("should return no errors", function() {
 
+
+           //Test Material variable
+
+           //NOT FINISHED NEED HELP PASSING POINTER
+           var material = new Tracejs.Material(); 
+
+
            //Test Point3D variables 
            var point_a = new Tracejs.Point3D(0.0, 0.0, 0.0);
            var point_b = new Tracejs.Point3D(1.0, 0.0, 1.0);
