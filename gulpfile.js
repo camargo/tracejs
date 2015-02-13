@@ -49,6 +49,12 @@ gulp.task('ts-to-js-samplers', function() {
                                .pipe(gulp.dest('./src/js/Samplers/'));
 });
 
+gulp.task('ts-to-js-brdfs', function() {
+    return gulp.src('./src/ts/BRDFs/*.ts')
+                               .pipe(ts(tsProject))
+                               .pipe(gulp.dest('./src/js/BRDFs/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
@@ -56,4 +62,5 @@ gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-geometricObjects',
                       'ts-to-js-primitives',
                       'ts-to-js-samplers',
+                      'ts-to-js-brdfs',
                       'ts-to-js-lights']);
