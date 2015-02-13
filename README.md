@@ -1,7 +1,8 @@
 # trace.js<br>
-A Browser Based Ray Tracer<br>
+A Browser Based Ray Tracer
 <br>
 Scrum Board: https://trello.com/b/hDYuaHtJ/tracejs-scrum-board
+<br>
 <br>
 Build Instructions (complete in order):
 <br>
