@@ -5,7 +5,7 @@
 /// <reference path="Vector3D.ts" />
 /// <reference path="Ray.ts" />
 /// <reference path="Normal.ts" />
-/// <reference path="../Utilities/Material.ts" />
+/// <reference path="./../Materials/Material.ts" />
 
 module Tracejs {
     export class ShadeRec {

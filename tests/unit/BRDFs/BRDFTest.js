@@ -13,5 +13,4 @@ describe("BRDF class", function() {
         var BRDF = new Tracejs.BRDF(); 
         expect(BRDF.rho()).toEqual(new Tracejs.RGBColor(0,0,0));
     });
- 
 });
