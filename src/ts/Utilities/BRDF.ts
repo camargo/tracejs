@@ -4,7 +4,10 @@
 /// <reference path="../Samplers/Sampler.ts" />
 
 
-//From chapter 13.6 page 229 in the book.
+/**
+From chapter 13.6 page 229 in the book.
+Base class used for Lambertian, PerfectSpecular, and GlossySpecular.
+*/
 
 module Tracejs {
     export class BRDF {
