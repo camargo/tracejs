@@ -38,7 +38,6 @@ describe("ShadeRec class", function() {
            //Test boolean in ShadeRec
            expect(a.get_hit() == true); //works
 
-
            //Test Material in ShadeRec
            expect(material.shade()).toEqual(new Tracejs.RGBColor(0,0,0));
 
@@ -64,4 +63,5 @@ describe("ShadeRec class", function() {
            expect(a.get_world()).toEqual(w);
 
      });
+
 });
