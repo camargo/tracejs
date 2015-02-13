@@ -19,6 +19,7 @@ module.exports = function(config) {
         'src/js/GeometricObjects/GeometricObject.js',
         'src/js/Lights/Light.js',
         'src/js/Samplers/Sampler.js',
+	'src/js/Cameras/Camera.js',
         'src/js/**/*.js',
         'tests/unit/**/*.js',
         'js/underscore-min.js',

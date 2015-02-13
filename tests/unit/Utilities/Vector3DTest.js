@@ -98,9 +98,12 @@ describe("Vector3D class", function() {
     });
 
     it("should return Vector3D that is the exponentiation of two Vector3Ds", function() {
-        var vec1 = new Tracejs.Vector(3.0, 4.0, 5.0);
-	var vec2 = new Tracejs.Vector(2.0, 2.0, 2.0);
+        // 3^2, 4^2, 5^2
+        var vec1 = new Tracejs.Vector3D(3.0, 4.0, 5.0);
+	var vec2 = new Tracejs.Vector3D(2.0, 2.0, 2.0);
 
-	// test to see if the shit exponeiatens
+	var exp = vec1.exp(vec2);
+	var sol = new Tracejs.Vector3D(9.0, 16.0, 25.0);
+	expect(exp).toEqual(sol);
     });
 });

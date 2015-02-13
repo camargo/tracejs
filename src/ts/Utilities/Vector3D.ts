@@ -99,7 +99,7 @@ module Tracejs {
         }
 
 	exp(v : Vector3D) : Vector3D {
-            return new Vector(Math.pow(this.x, v.x),
+            return new Vector3D(Math.pow(this.x, v.x),
 	                      Math.pow(this.y, v.y),
 			      Math.pow(this.z, v.z));
 	}
