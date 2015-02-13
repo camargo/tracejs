@@ -49,6 +49,12 @@ gulp.task('ts-to-js-samplers', function() {
                                .pipe(gulp.dest('./src/js/Samplers/'));
 });
 
+gulp.task('ts-to-js-cameras', function() {
+    return gulp.src('./src/ts/Cameras/*.ts')
+                              .pipe(ts(tsProject))
+			      .pipe(gulp.dest('./src/js/Cameras/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
@@ -56,4 +62,5 @@ gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-geometricObjects',
                       'ts-to-js-primitives',
                       'ts-to-js-samplers',
-                      'ts-to-js-lights']);
+                      'ts-to-js-lights',
+		      'ts-to-js-cameras']);
