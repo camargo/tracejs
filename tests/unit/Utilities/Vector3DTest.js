@@ -96,4 +96,11 @@ describe("Vector3D class", function() {
         var correct = 143.24;
         expect(angle).toEqual(correct);
     });
+
+    it("should return Vector3D that is the exponentiation of two Vector3Ds", function() {
+        var vec1 = new Tracejs.Vector(3.0, 4.0, 5.0);
+	var vec2 = new Tracejs.Vector(2.0, 2.0, 2.0);
+
+	// test to see if the shit exponeiatens
+    });
 });
