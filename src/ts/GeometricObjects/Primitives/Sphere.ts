@@ -1,4 +1,4 @@
-// Trace.js - Sphere.js
+// Trace.js - Sphere.ts
 
 /// <reference path="./../GeometricObject.ts" />
 /// <reference path="./../../Utilities/Point3D.ts" />

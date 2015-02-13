@@ -55,6 +55,18 @@ gulp.task('ts-to-js-cameras', function() {
 			      .pipe(gulp.dest('./src/js/Cameras/'));
 });
 
+gulp.task('ts-to-js-brdfs', function() {
+    return gulp.src('./src/ts/BRDFs/*.ts')
+                               .pipe(ts(tsProject))
+                               .pipe(gulp.dest('./src/js/BRDFs/'));
+});
+
+gulp.task('ts-to-js-materials', function() {
+    return gulp.src('./src/ts/Materials/*.ts')
+                               .pipe(ts(tsProject))
+                               .pipe(gulp.dest('./src/js/Materials/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
@@ -62,5 +74,7 @@ gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-geometricObjects',
                       'ts-to-js-primitives',
                       'ts-to-js-samplers',
-                      'ts-to-js-lights',
-		      'ts-to-js-cameras']);
+		      'ts-to-js-cameras',
+                      'ts-to-js-brdfs',
+                      'ts-to-js-materials',
+                      'ts-to-js-lights']);

@@ -5,7 +5,5 @@ describe("Material class", function() {
     	expect(material.shade()).toEqual(new Tracejs.RGBColor(0,0,0));
     	expect(material.area_light_shade()).toEqual(new Tracejs.RGBColor(0,0,0));
     	expect(material.path_shade()).toEqual(new Tracejs.RGBColor(0,0,0));
-    	
-    	
     });
 });
