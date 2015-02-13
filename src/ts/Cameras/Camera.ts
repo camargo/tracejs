@@ -18,14 +18,22 @@ module Tracejs {
     v : Vector3D;
     w : Vector3D;
     exposure_time : number;
-
+    
+    constructor() {
+      this.eye    = new Tracejs.Point3D(0,0,0);
+      this.lookat = new Tracejs.Point3D(0,0,0);
+      this.up     = new Tracejs.Vector3D(0,0,0);
+      this.u      = new Tracejs.Vector3D(0,0,0);
+      this.v      = new Tracejs.Vector3D(0,0,0);
+      this.w      = new Tracejs.Vector3D(0,0,0);
+    }
     // functions
     compute_uvw() : void {
       this.w = this.eye.sub_point(this.lookat);
       this.w.normalize();
-      // this.u = up ^ w;
+      this.u = this.up.exp(this.w);
       this.u.normalize();
-      // this.v = w ^ u;
+      this.v = this.w.exp(this.u);
     }
 
     render_scene(w : World) : void {
