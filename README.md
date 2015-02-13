@@ -1,9 +1,8 @@
 # trace.js<br>
 A Browser Based Ray Tracer
-<br>
+<br><br>
 Scrum Board: https://trello.com/b/hDYuaHtJ/tracejs-scrum-board
-<br>
-<br>
+<br><br>
 Build Instructions (complete in order):
 <br>
 1. To install Gulp with npm type:<br>
