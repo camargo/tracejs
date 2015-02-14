@@ -31,9 +31,9 @@ module Tracejs {
     compute_uvw() : void {
       this.w = this.eye.sub_point(this.lookat);
       this.w.normalize();
-      this.u = this.up.exp(this.w);
+      this.u = this.up.cross(this.w);
       this.u.normalize();
-      this.v = this.w.exp(this.u);
+      this.v = this.w.cross(this.u);
     }
 
     render_scene(w : World) : void {

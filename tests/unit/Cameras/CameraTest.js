@@ -26,13 +26,13 @@ describe("Camera Class", function() {
 
 	// checking u value
 	var v2 = new Tracejs.Vector3D(0,0,0);
-	v2 = cam1.up.exp(cam1.w);
+	v2 = cam1.up.cross(cam1.w);
 	v2.normalize();
 	expect(cam1.u).toEqual(v2);
 
 	// checking v value
 	var v3 = new Tracejs.Vector3D(0,0,0);
-	v3 = cam1.w.exp(cam1.u);
+	v3 = cam1.w.cross(cam1.u);
 	expect(cam1.v).toEqual(v3);
     });
 });
