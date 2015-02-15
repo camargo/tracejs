@@ -1,6 +1,7 @@
 // Trace.js - Sampler.ts
 
 /// <reference path="./../Utilities/Point2D.ts" />
+/// <reference path="./../Utilities/Utils.ts" />
 
 module Tracejs {
     export class Sampler {
@@ -44,11 +45,6 @@ module Tracejs {
         }
 
         setup_shuffled_indices() : void {
-            var shuffle = function (o) { // Need to put this somewhere else. Works for now.
-                for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-                return o;
-            };
-
             // Setup shuffled indices.
             var indices : Array<number> = [];
             for (var i = 0; i < this.num_samples; ++i) {
@@ -56,7 +52,7 @@ module Tracejs {
             }
 
             for (var i = 0; i < this.num_sets; ++i) {
-                shuffle(indices);
+                shuffleArray(indices);
 
                 for (var j = 0; j < this.num_samples; ++j) {
                     this.shuffled_indices.push(indices[j]);

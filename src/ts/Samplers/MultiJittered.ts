@@ -3,6 +3,7 @@
  */
 
 /// <reference path="Sampler.ts" />
+/// <reference path="./../Utilities/Utils.ts" />
 
 module Tracejs {
     export class MultiJittered extends Sampler {
@@ -38,7 +39,7 @@ module Tracejs {
             for (var p=0; p < this.num_sets; p++) {
                 for (var i=0; i < n; i++) {
                     for (var j=0; j < n; j++) {
-                        var k = this.randomInt(j, n-1);
+                        var k : number = randomInt(j, n-j);
                         var temp = this.samples[i * n + j + p * this.num_samples].x;
                         this.samples[i * n + j + p * this.num_samples].x = this.samples[i * n + k + p * this.num_samples].x;
                         this.samples[i * n + k + p * this.num_samples].x = temp;
@@ -50,21 +51,12 @@ module Tracejs {
             for (var p=0; p < this.num_sets; p++) {
                 for (var i=0; i < n; i++) {
                     for (var j=0; j < n; j++) {
-                        var k = this.randomInt(j, n-1);
+                        var k = randomInt(j, n-j);
                         var temp = this.samples[j * n + i + p * this.num_samples].y;
                         this.samples[j * n + i + p * this.num_samples].y = this.samples[k * n + i + p * this.num_samples].y;
                         this.samples[k * n + i + p * this.num_samples].y = temp;
                     }
                 }
-            }
-        }
-
-        randomInt(min ?:number, max ?:number) : number {
-            if (min && max) {
-                return Math.floor(Math.random() * (max - min)) + min;
-            }
-            else {
-                return Math.floor(Math.random()*100)
             }
         }
     }

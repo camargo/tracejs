@@ -13,12 +13,6 @@ gulp.task('ts-to-js-utilities', function() {
                .pipe(gulp.dest('./src/js/Utilities/'));
 });
 
-gulp.task('ts-to-js-world', function() {
-    return gulp.src('./src/ts/World/*.ts')
-               .pipe(ts(tsProject))
-               .pipe(gulp.dest('./src/js/World/'))
-});
-
 gulp.task('ts-to-js-tracers', function() {
     return gulp.src('./src/ts/Tracers/*.ts')
                       .pipe(ts(tsProject))
@@ -47,6 +41,12 @@ gulp.task('ts-to-js-samplers', function() {
     return gulp.src('./src/ts/Samplers/*.ts')
                                .pipe(ts(tsProject))
                                .pipe(gulp.dest('./src/js/Samplers/'));
+});
+
+gulp.task('ts-to-js-world', function() {
+    return gulp.src('./src/ts/World/*.ts')
+        .pipe(ts(tsProject))
+        .pipe(gulp.dest('./src/js/World/'))
 });
 
 // The default task (called when you run `gulp` from cli).

@@ -12,9 +12,9 @@ describe("MultiJitteredTest", function() {
     });
 
     it("generate_samples", function() {
-        var sampler = new Tracejs.MultiJittered(10);
+        var sampler = new Tracejs.MultiJittered(9);
         var samples = sampler.generate_samples();
 
-        expect(samples).toHaveLength(sampler.num_samples * sampler.num_sets)
+        expect(sampler.samples.length).toEqual(sampler.num_samples * sampler.num_sets)
     })
 })
