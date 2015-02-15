@@ -97,5 +97,11 @@ module Tracejs {
                              (this.y - v.y) * (this.y - v.y) +
                              (this.z - v.z) * (this.z - v.z));
         }
+
+	exp(v : Vector3D) : Vector3D {
+            return new Vector3D(Math.pow(this.x, v.x),
+	                      Math.pow(this.y, v.y),
+			      Math.pow(this.z, v.z));
+	}
     }
 }
