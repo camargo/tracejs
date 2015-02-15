@@ -2,6 +2,8 @@
 
 /// <reference path="./../Utilities/Point2D.ts" />
 /// <reference path="./../Samplers/Sampler.ts" />
+/// <reference path="./../Samplers/MultiJittered.ts" />
+/// <reference path="./../Samplers/Regular.ts" />
 
 module Tracejs {
     export class ViewPlane {
@@ -43,6 +45,16 @@ module Tracejs {
         set_sampler(sp : Sampler) : void {
             this.num_samples = sp.get_num_samples();
             this.sampler = sp;
+        }
+
+        set_samples(n_samples ?: number) : number {
+            if (n_samples && n_samples > 1) {
+                this.sampler = new MultiJittered(n_samples)
+            }
+            else if (n_samples && n_samples === 1) {
+                this.sampler = new Regular(n_samples)
+            }
+            return this.num_samples
         }
 
         getHres() : number {

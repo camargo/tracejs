@@ -24,7 +24,7 @@ module Tracejs {
         constructor(background_color?: RGBColor) {
             this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
 
-            this.view_plane.set_sampler(new Tracejs.Regular(4)); // Set sampler (4 samples / pixel).
+            this.view_plane.set_sampler(new Tracejs.MultiJittered(4)); // Set sampler (4 samples / pixel).
 
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
