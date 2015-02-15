@@ -9,16 +9,16 @@ module Tracejs {
     export class BRDF {
         sampler : Sampler;
  
-         f(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor{
-             return new RGBColor(0,0,0);  
-         }
+        f(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor{
+            return new RGBColor(0,0,0);  
+        }
          
-         fSample(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor{
-             return new RGBColor(0,0,0);
-         }
+        fSample(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor{
+            return new RGBColor(0,0,0);
+        }
 
-         rho(sr : ShadeRec, wo : Vector3D) : RGBColor{
-             return new RGBColor(0,0,0);
-         }
+        rho(sr : ShadeRec, wo : Vector3D) : RGBColor{
+            return new RGBColor(0,0,0);
+        }
     }
 }
