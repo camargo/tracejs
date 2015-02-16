@@ -40,7 +40,7 @@ module Tracejs {
             this.single_sphere_tracer = new Tracejs.SingleSphere(this);
 
             this.lights = [];
-            //this.ambient_ptr = new Tracejs.AmbientLight(false, 1.0, new RGBColor(0.0, 0.0, 0.0));
+            this.ambient_ptr = new Tracejs.AmbientLight();
 
             if (background_color) {
                 this.background_color = background_color;
