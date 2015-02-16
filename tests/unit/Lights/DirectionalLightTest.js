@@ -50,7 +50,7 @@ describe("DirectionalLight class", function() {
         var dlight = new Tracejs.DirectionalLight(true, 2, 
                                            new Tracejs.RGBColor(1, 3, 5),
                                            new Tracejs.Vector3D(1.0, 3.0, 5.0));
-        var color = dlight.incident_radiance();
+        var color = dlight.L();
         expect(color.get_r()).toEqual(2);
         expect(color.get_g()).toEqual(6);
         expect(color.get_b()).toEqual(10);

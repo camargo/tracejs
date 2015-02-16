@@ -1,10 +1,10 @@
 // Trace.js - ShadeRec.ts
 
 /// <reference path="./../World/World.ts" />
-/// <reference path="Point3D.ts" />
-/// <reference path="Vector3D.ts" />
-/// <reference path="Ray.ts" />
-/// <reference path="Normal.ts" />
+/// <reference path="./Point3D.ts" />
+/// <reference path="./Vector3D.ts" />
+/// <reference path="./Ray.ts" />
+/// <reference path="./Normal.ts" />
 /// <reference path="./../Materials/Material.ts" />
 
 module Tracejs {

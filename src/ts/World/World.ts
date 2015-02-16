@@ -1,25 +1,32 @@
 // Trace.js - World.ts
 
-/* References to required definitions */
-/// <reference path="ViewPlane.ts" />
-/// <reference path="../Utilities/RGBColor.ts" />
-/// <reference path="../Tracers/SingleSphere.ts" />
-/// <reference path="../Utilities/Ray.ts" />
-/// <reference path="../Utilities/Point3D.ts" />
-/// <reference path="../Utilities/Point2D.ts" />
-/// <reference path="../Utilities/Vector3D.ts" />
-/// <reference path="../GeometricObjects/Primitives/Sphere.ts" />
+/// <reference path="./ViewPlane.ts" />
+/// <reference path="./../Utilities/RGBColor.ts" />
+/// <reference path="./../Tracers/SingleSphere.ts" />
+/// <reference path="./../Utilities/Ray.ts" />
+/// <reference path="./../Utilities/Point3D.ts" />
+/// <reference path="./../Utilities/Point2D.ts" />
+/// <reference path="./../Utilities/Vector3D.ts" />
+/// <reference path="./../GeometricObjects/Primitives/Sphere.ts" />
 /// <reference path="./../Samplers/Sampler.ts" />
 /// <reference path="./../Samplers/Regular.ts" />
+/// <reference path="./../Lights/Light.ts" />
+/// <reference path="./../Lights/AmbientLight.ts" />
+/// <reference path="./../Lights/DirectionalLight.ts" />
 
 module Tracejs {
     export class World {
         background_color : RGBColor;
+
         view_plane : ViewPlane;
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
+
         geo_sphere : Sphere;
         single_sphere_tracer : SingleSphere;
+
+        lights :  Light[];
+        ambient_ptr : AmbientLight;
 
         constructor(background_color?: RGBColor) {
             this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
@@ -31,6 +38,9 @@ module Tracejs {
             this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 200.0);
 
             this.single_sphere_tracer = new Tracejs.SingleSphere(this);
+
+            this.lights = [];
+            this.ambient_ptr = new Tracejs.AmbientLight();
 
             if (background_color) {
                 this.background_color = background_color;
@@ -98,13 +108,6 @@ module Tracejs {
 
             return JSON.stringify(this.view_plane_matrix);
         }
-
-        // TODO : build() is redundant because all building is done through the World API. Probably shouldn't exist
-        /*
-        build() : World {
-            return this;
-        }
-        */
 
         /**
          * vp()

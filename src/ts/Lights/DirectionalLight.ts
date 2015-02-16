@@ -6,7 +6,7 @@
 /// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/Normal.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
-/// <reference path="Light.ts" />
+/// <reference path="./Light.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
 
 module Tracejs {
@@ -15,19 +15,33 @@ module Tracejs {
       color    : RGBColor;
       dir      : Vector3D;
 
-      constructor(shadow ?: boolean, l_s ?: number, col ?: RGBColor,
-                  direction ?: Vector3D){
-        if(shadow) super(shadow);
-        else       super(false);
-        if(l_s) this.ls = l_s;
-        else    this.ls = 1.0;
-        if(col) this.color = col;
-        else    this.color = new RGBColor(0,0,0);
-        if(direction){ 
+      constructor(shadow ?: boolean, l_s ?: number, col ?: RGBColor, direction ?: Vector3D) {
+        if (shadow) {
+          super(shadow);
+        }
+        else {
+          super(false);
+        }
+
+        if (l_s) {
+          this.ls = l_s;
+        }
+        else {
+          this.ls = 1.0;
+        }
+
+        if (col) {
+          this.color = col;
+        }
+        else {
+          this.color = new RGBColor(0,0,0);
+        }
+
+        if (direction) { 
           this.dir = direction;
           this.dir.normalize();
         }
-        else{ 
+        else { 
           this.dir = new Vector3D(0,0,0);
         }
       }
@@ -57,9 +71,8 @@ module Tracejs {
         return this.dir;
       }
       
-      incident_radiance(sr : ShadeRec) : RGBColor{
+      L(sr : ShadeRec) : RGBColor{
         return (this.color).scale(this.ls);
       }
-
     }
 }

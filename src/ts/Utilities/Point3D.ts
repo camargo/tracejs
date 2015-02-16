@@ -35,14 +35,17 @@ module Tracejs {
         get_z() : number {
             return this.z
         }
+
         setPoint(x: number, y: number, z: number) : Point3D {
             if (x && y && z) {
-                    this.x = x;
-                    this.y = y;
-                    this.z = z;
+                this.x = x;
+                this.y = y;
+                this.z = z;
             }
+
             return this;
         }
+        
         negate() {
             this.x = -this.x;
             this.y = -this.y;

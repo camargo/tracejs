@@ -6,7 +6,7 @@
 /// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/Normal.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
-/// <reference path="Light.ts" />
+/// <reference path="./Light.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
 
 module Tracejs {
@@ -61,7 +61,7 @@ module Tracejs {
         return vec;
       }
       
-      incident_radiance(sr : ShadeRec) : RGBColor{
+      L(sr : ShadeRec) : RGBColor {
         return (this.color).scale(this.ls);
       }
     }
