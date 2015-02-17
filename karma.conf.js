@@ -23,7 +23,7 @@ module.exports = function(config) {
 	    'src/js/Utilities/Vector3D.js',
         'src/js/**/*.js',
         'tests/unit/**/*.js',
-        'js/underscore-min.js',
+        'js/underscore-min.js'
     ],
 
 
