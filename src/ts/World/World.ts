@@ -59,7 +59,7 @@ module Tracejs {
          * @param fixture
          * @returns {string}
          */
-        renderScene(fixture?: boolean) : any {
+        renderScene(fixture?: boolean, callback ?: any) : any {
             // return a nested array of RGBColors (pixels)
             //      -> stream if possible
             var hres = this.view_plane.getHres();
@@ -162,11 +162,11 @@ module Tracejs {
          * @param background_color
          * @returns {RGBColor}
          */
-        bgColor(background_color?: RGBColor) : RGBColor {
+        bgColor(r ?: number, g ?: number, b ?: number) : RGBColor {
 
             // setter
-            if (background_color) {
-                this.background_color = background_color;
+            if (r >= 0 && r <= 255 && g >= 0 && g <=255 && b >= 0 && b <= 255) {
+                this.background_color = new Tracejs.RGBColor(r, g, b);
                 return this.background_color;
             }
 
@@ -174,6 +174,21 @@ module Tracejs {
             else {
                 return this.background_color;
             }
+        }
+
+        sphere(center ?: any, radius ?: number) : Sphere {
+            if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
+                this.geo_sphere.set_center(new Tracejs.Point3D(center.x, center.y, center.z));
+            }
+            else if (center) {
+                console.log("Incorrect or undefined argument object fields in world.sphere()")
+            }
+
+            if (radius > 0) {
+                this.geo_sphere.set_radius(radius)
+            }
+
+            return this.geo_sphere;
         }
     }
 }

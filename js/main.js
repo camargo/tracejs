@@ -19,7 +19,7 @@
         GUI.create();
 
         // set canvas to size representing world
-        GUI.canvas = $('canvas')[0];
+        //GUI.canvas = $('canvas')[0];
         GUI.context = GUI.canvas.getContext('2d');
 
         GUI.setCanvasDimensions(GUI.canvas, world.vp().getHres(), world.vp().getVres());
@@ -32,6 +32,7 @@
             GUI.renderCanvas(GUI.context.createImageData(GUI.canvas.width, GUI.canvas.height), data);
         });
 
+        /*
         $('#gui-form').submit(function (event) {
             event.preventDefault();
 
@@ -49,11 +50,14 @@
 
             world.bgColor(new Tracejs.RGBColor(bgcolor.r,bgcolor.g,bgcolor.b));
         });
+        */
 
+        /*
         $('#gui-form').bind('reset', function () {
             world.vp(300, 150, 1);
             GUI.setCanvasDimensions(GUI.canvas, 300, 150);
         });
+        */
 
         // helper functions
         // attach function to display rendered matrix to canvas

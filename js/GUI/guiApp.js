@@ -4,6 +4,6 @@
 
 (function(angular) {
 
-    angular.module('guiApp', ['guiControllers']);
+    angular.module('guiApp', ['guiControllers', 'guiServices', 'guiDirectives']);
 
 })(angular || (angular = {}));
