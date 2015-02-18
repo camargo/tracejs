@@ -48,7 +48,7 @@ module Tracejs {
 
             if(r_dot_wo > 0){
                 //DOES NOT WORK
-                var L : RGBColor = ks.mult_color(pow(r_dot_wo, exp)); //L = ks * pow(r_dot_wo, exp);
+                var L : RGBColor = ks.mult_color(exp(r_dot_wo, exp)); //L = ks * pow(r_dot_wo, exp);
             }
 
             return L;
