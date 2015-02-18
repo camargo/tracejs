@@ -1,4 +1,12 @@
 describe("World class", function() {
+    var world = {};
+    beforeEach(function() {
+        world = new Tracejs.World()
+    });
+    afterEach(function() {
+        world = {}
+    });
+
     it("constructor", function() {
 
         var defaultWorld = new Tracejs.World();
@@ -25,10 +33,17 @@ describe("World class", function() {
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(0,0,0));
         expect(world.vpzw()).toEqual(100);
 
-        world.bgColor(new Tracejs.RGBColor(1,2,3));
+        world.bgColor(1, 2, 3);
         world.vpzw(200);
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(1,2,3));
         expect(world.vpzw()).toEqual(200);
+    });
+
+    it("sphere API", function() {
+        expect(world.sphere()).toEqual(new Tracejs.Sphere(null, 200.0));
+
+        world.sphere({x:1,y:2,z:3},5.0);
+        expect(world.sphere()).toEqual(new Tracejs.Sphere(new Tracejs.Point3D(1,2,3), 5.0));
     });
 
     it("renderScene()", function() {
