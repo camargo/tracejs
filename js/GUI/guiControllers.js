@@ -63,8 +63,6 @@
                 };
 
                 $scope.resetScene = function() {
-                    // Note: normal HTML5 form reset and data-binding automatically resets data
-                    //       just reset the canvas size
                     canvasService.setCanvasDimensions($canvas, '512', '512');
                     this.world.vp.hres = this.world.vp.vres = 512;
                     this.world.vp.psize = 1

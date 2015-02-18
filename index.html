@@ -48,7 +48,6 @@
     <script type="text/javascript" src="js/GUI/guiServices.js"></script>
     <script type="text/javascript" src="js/GUI/guiDirectives.js"></script>
     <script type="text/javascript" src="js/GUI/guiApp.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body ng-app="guiApp">
 
@@ -68,7 +67,7 @@
 
                 <form name="guiForm" id="gui-form">
                 <div class="btn-group">
-                    <button id="render-scene" class="btn btn-primary" ng-click="renderScene()">Render</button>
+                    <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
                     <button class="btn btn-danger" type="reset" ng-click="resetScene()">Reset scene</button>
                 </div>
                 <div class="rendering" ng-show="rendering">Rendering...</div>
