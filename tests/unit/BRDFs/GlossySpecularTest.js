@@ -1,5 +1,5 @@
 describe("GlossySpecular class", function() {   
-     /**
+/**    
      it("should return GlossySpecular f's function and be equal to black", function() {
         var gs_black = new Tracejs.GlossySpecular();
 

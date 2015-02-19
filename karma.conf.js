@@ -24,6 +24,7 @@ module.exports = function(config) {
         'src/js/Samplers/Sampler.js',
 	    'src/js/Cameras/Camera.js',
 	    'src/js/Utilities/Vector3D.js',
+        'src/js/BRDFs/BRDF.js',
         'src/js/**/*.js',
         'js/GUI/*.js',
         'tests/unit/**/*.js'
