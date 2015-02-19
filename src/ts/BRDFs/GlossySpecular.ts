@@ -3,6 +3,7 @@
 /// <reference path="./../Utilities/Utils.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
 /// <reference path="./../Utilities/Vector3D.ts" />
+/// <reference path="./../Utilities/Normal.ts" />
 
 module Tracejs {
     export class GlossySpecular extends BRDF {
@@ -74,6 +75,18 @@ module Tracejs {
             this.cs = cs;
         }
 
+        //Code below is for testing purposes
+        get_ks() : number{
+            return this.ks;
+        }
+
+        get_exp() : number{
+            return this.exp;
+        }
+
+        get_cs() : RGBColor{
+            return this.cs;
+        }
 
     }
 }

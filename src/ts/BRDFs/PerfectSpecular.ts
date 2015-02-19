@@ -54,5 +54,14 @@ module Tracejs {
         set_cr(cr : RGBColor) : void {
             this.cr = cr;
         }
+
+        //For testing purposes
+        get_kr() : number{
+            return this.kr;
+        }
+
+        get_cr(): RGBColor{
+            return this.cr;
+        }
     }
  }
