@@ -14,7 +14,7 @@ module Tracejs {
     	world_ptr : World;
 
     	// constructor
-    	constructor(world_ptr? : World) {
+    	constructor(world_ptr ?: World) {
             this.world_ptr = world_ptr;
     	}
     }

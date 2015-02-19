@@ -34,7 +34,7 @@ module Tracejs {
           this.color = col;
         }
         else {
-          this.color = new RGBColor(0,0,0);
+          this.color = new RGBColor(0.0 , 0.0, 0.0);
         }
 
         if (direction) { 
@@ -42,7 +42,7 @@ module Tracejs {
           this.dir.normalize();
         }
         else { 
-          this.dir = new Vector3D(0,0,0);
+          this.dir = new Vector3D(0.0, 0.0, 0.0);
         }
       }
     

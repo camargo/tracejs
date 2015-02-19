@@ -3,6 +3,7 @@
 /// <reference path="./ViewPlane.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
 /// <reference path="./../Tracers/SingleSphere.ts" />
+/// <reference path="./../Tracers/RayCast.ts" />
 /// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/Point3D.ts" />
 /// <reference path="./../Utilities/Point2D.ts" />
@@ -13,6 +14,11 @@
 /// <reference path="./../Lights/Light.ts" />
 /// <reference path="./../Lights/AmbientLight.ts" />
 /// <reference path="./../Lights/DirectionalLight.ts" />
+/// <reference path="./../Lights/PointLight.ts" />
+/// <reference path="./../BRDFs/BRDF.ts" />
+/// <reference path="./../BRDFs/Lambertian.ts" />
+/// <reference path="./../Materials/Material.ts" />
+/// <reference path="./../Materials/Matte.ts" />
 
 module Tracejs {
     export class World {
@@ -23,30 +29,37 @@ module Tracejs {
         view_plane_matrix : RGBColor[][];
 
         geo_sphere : Sphere;
-        single_sphere_tracer : SingleSphere;
+        ray_cast_tracer : RayCast;
 
         lights :  Light[];
         ambient_ptr : AmbientLight;
 
         constructor(background_color?: RGBColor) {
             this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
-
-            this.view_plane.set_sampler(new Tracejs.MultiJittered(4)); // Set sampler (4 samples / pixel).
-
+            this.view_plane.set_sampler(new Tracejs.Regular(1)); // Set sampler (10 samples / pixel).
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
-            this.geo_sphere = new Tracejs.Sphere(new Point3D(0.0, 0.0, 0.0), 200.0);
+            var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.0, 0.0, 0.0)); // Black.
+            var diffuse_brdf : Lambertian = new Lambertian(1.0, new RGBColor(1.0, 0.0, 0.0));
 
-            this.single_sphere_tracer = new Tracejs.SingleSphere(this);
+            var material : Matte = new Matte(ambient_brdf, diffuse_brdf);
+
+            this.geo_sphere = new Tracejs.Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
+
+            this.ray_cast_tracer = new Tracejs.RayCast(this);
 
             this.lights = [];
-            this.ambient_ptr = new Tracejs.AmbientLight();
+            this.lights[0] = new PointLight(false, 1.0, 
+                                                  new RGBColor(1.0, 1.0, 1.0), 
+                                                  new Vector3D(300.0, 300.0, 0.0));
+
+            this.ambient_ptr = new Tracejs.AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
 
             if (background_color) {
                 this.background_color = background_color;
             }
             else {
-                this.background_color = new Tracejs.RGBColor(0, 0, 0); // Create black background_color.
+                this.background_color = new Tracejs.RGBColor(0.0, 0.0, 0.0); // Create black background_color.
             }
         }
 
@@ -98,7 +111,7 @@ module Tracejs {
                             this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)))
                         }
                         else {
-                            color = color.add_color(this.single_sphere_tracer.trace(ray).scale(255));
+                            color = color.add_color(this.ray_cast_tracer.trace(ray, 1.0).scale(255));
                         }
                     }
                     color.div(this.view_plane.num_samples);

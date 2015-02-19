@@ -30,9 +30,9 @@
                     },
                     bgColorHex: "",
                     bgColor: {
-                        r: 255,
-                        g: 255,
-                        b: 255
+                        r: 0,
+                        g: 0,
+                        b: 0
                     },
                     sphere : {
                         center: {

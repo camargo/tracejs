@@ -9,8 +9,8 @@ module Tracejs {
         center : Point3D;
         radius : number;
 
-        constructor(center ?: Point3D, r ?: number) {
-            super(new RGBColor(1.0, 0.0, 0.0)); // Red (hard-code for now).
+        constructor(material ?: Material, color ?: RGBColor, center ?: Point3D, r ?: number) {
+            super(material, color);
 
             if (center) {
                 this.center = center;
@@ -27,7 +27,7 @@ module Tracejs {
             }
         }
 
-        hit(ray : Ray) : boolean {
+        hit(ray : Ray, sr ?: ShadeRec) : boolean {
             var t : number;
             var temp : Vector3D = ray.o.sub_point(this.center);
 
@@ -46,14 +46,28 @@ module Tracejs {
                 t = (-b - e) / denom;
 
                 if (t > Sphere.kEpsilon) {
-                    // Later iterations will need to populate ShadeRec.
+                    if (sr) {
+                        sr.t = t;
+                        sr.ray = ray;
+                        var n : Vector3D = ray.d.mult(t).add(temp).div(this.radius);
+                        sr.normal = new Normal(n.x, n.y, n.z);
+                        sr.local_hit_point = ray.o.add_vector(ray.d.mult(t));
+                        sr.hit_point = ray.o.add_vector(ray.d.mult(sr.t));
+                    }
                     return true;
                 }
 
                 t = (-b + e) / denom;
 
                 if (t > Sphere.kEpsilon) {
-                    // Later iterations will need to populate ShadeRec.
+                    if (sr) {
+                        sr.t = t;
+                        sr.ray = ray;
+                        var n : Vector3D = ray.d.mult(t).add(temp).div(this.radius);
+                        sr.normal = new Normal(n.x, n.y, n.z);
+                        sr.local_hit_point = ray.o.add_vector(ray.d.mult(t));
+                        sr.hit_point = ray.o.add_vector(ray.d.mult(sr.t));
+                    }
                     return true;
                 }
             }

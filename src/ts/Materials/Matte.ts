@@ -10,11 +10,22 @@ module Tracejs {
         ambient_brdf : Lambertian;
         diffuse_brdf : Lambertian;
 
-        constructor() {
+        constructor(ambient_brdf ?: Lambertian, diffuse_brdf ?: Lambertian) {
             super();
 
-            this.ambient_brdf = new Lambertian();
-            this.diffuse_brdf = new Lambertian();
+            if (ambient_brdf) {
+                this.ambient_brdf = ambient_brdf;
+            }
+            else {
+                this.ambient_brdf = new Lambertian();
+            }
+
+            if (diffuse_brdf) {
+                this.diffuse_brdf = diffuse_brdf;
+            }
+            else {
+                this.diffuse_brdf = new Lambertian();
+            }
         }
 
         shade(sr : ShadeRec) : RGBColor {

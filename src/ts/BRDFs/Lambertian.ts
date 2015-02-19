@@ -15,7 +15,7 @@ module Tracejs {
                 this.kd = kd;
             }
             else {
-                this.kd = 0.0;
+                this.kd = 1.0;
             }
 
             if (cd) {
@@ -27,7 +27,7 @@ module Tracejs {
         }
 
         f(sr : ShadeRec, wo : Vector3D, wi : Vector3D) : RGBColor {
-            return this.cd.scale(this.kd).scale(invPI);
+            return this.cd.scale(this.kd);//.scale(invPI);
         }
 
         rho(sr : ShadeRec, wo : Vector3D) : RGBColor {

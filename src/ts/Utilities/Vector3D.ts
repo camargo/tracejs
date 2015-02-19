@@ -48,6 +48,12 @@ module Tracejs {
                                 this.z - v.z);
         }
 
+        div(scalar : number) : Vector3D  {
+            return new Vector3D(this.x / scalar,
+                                this.y / scalar,
+                                this.z / scalar);
+        }
+
         mult(scalar : number) : Vector3D {
             return new Vector3D(this.x * scalar, 
                                 this.y * scalar, 
