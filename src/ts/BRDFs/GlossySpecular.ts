@@ -35,11 +35,10 @@ module Tracejs {
             }
         }
 
-        f(sr : ShadeRec, wo : Vector3D, wi : Vector3D) : RGBColor {
+        f(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor {
             var L : RGBColor;
             var n_dot_wi : number = sr.normal.dot_vec(wi); //n_dot_wi = sr.normal * wi;
-            
-            //Vector r(-wi + 2.0 * sr.normal * n_dot_wi);
+        
             var n : Normal = sr.normal.mult_right(n_dot_wi); // sr.normal * n_dot_wi
             n = Normal.mult_left(2.0, n); // 2.0 * sr.normal
             var r : Vector3D = Normal.add_vec_norm(wi.negate(), n); // Vector r(-wi + 2.0 * sr.normal * n_dot_wi);
