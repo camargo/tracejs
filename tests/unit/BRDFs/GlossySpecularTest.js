@@ -29,7 +29,7 @@ describe("GlossySpecular class", function() {
         var test_shadeRec = new Tracejs.ShadeRec(true, material.shade(), point_a, point_b, n, r, 0, vector_a, w);
         
         //f(ShadeRec, Vector3D, Vector3D)
-        expect(gs_black.f(0, 0, 0)).toEqual(new Tracejs.RGBColor(0,0,0));
+        expect(gs_black.f(test_shadeRec, vector_a, vector_b)).toEqual(new Tracejs.RGBColor(0,0,0));
 
      });
     */

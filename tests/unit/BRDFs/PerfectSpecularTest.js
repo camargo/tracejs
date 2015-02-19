@@ -7,8 +7,8 @@ describe("PerfectSpecular class", function() {
 	});
 
 /**
-	it("should return GlossySpecular fSample's function and be equal to black", function() {
-        var gs_black = new Tracejs.GlossySpecular(0,0,0); 
+	it("should return PerfectSpecular fSample's function and be equal to black", function() {
+        var gs_black = new Tracejs.PerfectSpecular(0,0,0); 
         expect(gs_black.fSample(0,0,0)).toEqual(new Tracejs.RGBColor(0,0,0));
 
     });
