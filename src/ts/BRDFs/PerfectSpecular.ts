@@ -1,3 +1,5 @@
+// Trace.js - PerfectSpecular.ts
+
 /// <reference path="./BRDF.ts" />
 /// <reference path="./../Utilities/Utils.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />

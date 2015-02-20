@@ -1,3 +1,4 @@
+// Trace.js - GlossySpecular.ts
 
 /// <reference path="./BRDF.ts" />
 /// <reference path="./../Utilities/Utils.ts" />

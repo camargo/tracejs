@@ -12,6 +12,7 @@
 /// <reference path="./../Samplers/Sampler.ts" />
 /// <reference path="./../Samplers/Regular.ts" />
 /// <reference path="./../Cameras/Camera.ts" />
+/// <reference path="./../Cameras/Orthographic.ts" />
 /// <reference path="./../Cameras/Pinhole.ts" />
 /// <reference path="./../Lights/Light.ts" />
 /// <reference path="./../Lights/AmbientLight.ts" />
@@ -63,6 +64,7 @@ module Tracejs {
             this.ambient_ptr = new Tracejs.AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
 
             this.camera = new Pinhole();
+            //this.camera = new Orthographic();
 
             if (background_color) {
                 this.background_color = background_color;
