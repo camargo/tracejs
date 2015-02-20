@@ -57,7 +57,7 @@
                     },
                     sampler : {
                         type : $scope.samplerOptions.type[1],
-                        num_samples : $scope.samplerOptions.num_samples[0]
+                        num_samples : $scope.samplerOptions.num_samples[2]
                     }
                 };
 

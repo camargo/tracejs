@@ -37,7 +37,7 @@ module Tracejs {
         }
 
         f(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor {
-            var L : RGBColor;
+            var L : RGBColor = new RGBColor(0.0, 0.0, 0.0);
             var n_dot_wi : number = sr.normal.dot_vec(wi); //n_dot_wi = sr.normal * wi;
         
             var n : Normal = sr.normal.mult_right(n_dot_wi); // sr.normal * n_dot_wi
@@ -48,7 +48,7 @@ module Tracejs {
 
             if(r_dot_wo > 0){
                 var power : number = Math.pow(r_dot_wo, this.exp); //power = pow(r_dot_wo, exp)
-                L = L.scale(this.ks).mult_color(L.scale(power)); //L = ks * power
+                L = this.cs.scale(this.ks).scale(power); //L = ks * power
             }
 
             return L;

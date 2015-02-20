@@ -19,8 +19,10 @@
 /// <reference path="./../Lights/PointLight.ts" />
 /// <reference path="./../BRDFs/BRDF.ts" />
 /// <reference path="./../BRDFs/Lambertian.ts" />
+/// <reference path="./../BRDFs/GlossySpecular.ts" />
 /// <reference path="./../Materials/Material.ts" />
 /// <reference path="./../Materials/Matte.ts" />
+/// <reference path="./../Materials/Phong.ts" />
 
 module Tracejs {
     export class World {
@@ -44,9 +46,10 @@ module Tracejs {
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
             var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
-            var diffuse_brdf : Lambertian = new Lambertian(1.0, new RGBColor(1.0, 0.0, 0.0));
+            var diffuse_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.9, 0.4, 0.1));
+            var specular_brdf : GlossySpecular = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
 
-            var material : Matte = new Matte(ambient_brdf, diffuse_brdf);
+            var material : Phong = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
 
             this.geo_sphere = new Tracejs.Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
 

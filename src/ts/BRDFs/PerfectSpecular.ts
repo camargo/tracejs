@@ -40,7 +40,6 @@ module Tracejs {
 
             //Swapped cr and kr from book, should not matter. 
             return(this.cr.scale(this.kr).div(sr.normal.dot_vec(wi))); //return(cr * kr / (sr.normal * wi))
-
         }
 
         rho(sr : ShadeRec, wo : Vector3D) : RGBColor{

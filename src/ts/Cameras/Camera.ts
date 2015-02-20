@@ -15,7 +15,7 @@ module Tracejs {
         exposure_time : number;
 
         constructor() {
-            this.eye    = new Point3D(50.0, -50.0, 500.0);
+            this.eye    = new Point3D(0.0, 0.0, 500.0);
             this.lookat = new Point3D(0.0, 0.0, 0.0);
             this.up     = new Vector3D(0.0, 1.0, 0.0);
             this.u      = new Vector3D(1.0, 0.0, 0.0);
