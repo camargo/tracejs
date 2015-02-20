@@ -189,6 +189,12 @@ module Tracejs {
             }
         }
 
+        /**
+         * sphere()
+         * @param center
+         * @param radius
+         * @returns {Sphere}
+         */
         sphere(center ?: any, radius ?: number) : Sphere {
             if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
                 this.geo_sphere.set_center(new Tracejs.Point3D(center.x, center.y, center.z));
@@ -202,6 +208,34 @@ module Tracejs {
             }
 
             return this.geo_sphere;
+        }
+
+        /**
+         * sampler()
+         * @param sp
+         * @param num_samples
+         * @returns {Sampler}
+         */
+        sampler(sp ?: string, num_samples ?: number) : Sampler {
+            if (sp && num_samples > 0) {
+                var newSampler;
+                sp = sp.toLowerCase();
+                switch (sp) {
+                    case 'regular':
+                        newSampler = new Tracejs.Regular(num_samples);
+                        break;
+                    case 'multijittered':
+                        newSampler = new Tracejs.MultiJittered(num_samples);
+                        break;
+                    default:
+                        newSampler = new Tracejs.Regular(num_samples)
+                }
+                this.view_plane.set_sampler(newSampler);
+            }
+            else if (num_samples < 0) {
+                console.log("World sampler: called with num_samples < 0! Sampler not set")
+            }
+            return this.view_plane.sampler
         }
     }
 }
