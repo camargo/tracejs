@@ -22,6 +22,19 @@
                  */
                 $scope.rendering = false;
 
+                $scope.samplerOptions = {
+                    type : [
+                        'regular',
+                        'multijittered'
+                    ],
+                    num_samples : [
+                        1,
+                        4,
+                        9,
+                        16
+                    ]
+                };
+
                 $scope.world = {
                     vp: {
                         hres: 512,
@@ -41,6 +54,10 @@
                             z: 0
                         },
                         radius: 200
+                    },
+                    sampler : {
+                        type : $scope.samplerOptions.type[1],
+                        num_samples : $scope.samplerOptions.num_samples[0]
                     }
                 };
 
