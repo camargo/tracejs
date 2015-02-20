@@ -6,13 +6,13 @@ describe("Pinhole Class", function() {
     
     it("ray_direction() works", function() {
         var c = new Tracejs.Pinhole();
-	var pp = new Tracejs.Point2D(0,0);
-	var v = new Tracejs.Vector3D(0,0,0);
-	var k = new Tracejs.Vector3D(0,0,0);
+	    var pp = new Tracejs.Point2D(0,0);
+	    var v = new Tracejs.Vector3D(0,0,-1);
+	    var k = new Tracejs.Vector3D(0,0,0);
 
-	k = c.ray_direction(pp);
+	    k = c.ray_direction(pp);
 
-	expect(v).toEqual(k);
+	    expect(v).toEqual(k);
     });
 
     it("render_scene() works", function() {

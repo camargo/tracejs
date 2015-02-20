@@ -11,6 +11,8 @@
 /// <reference path="./../GeometricObjects/Primitives/Sphere.ts" />
 /// <reference path="./../Samplers/Sampler.ts" />
 /// <reference path="./../Samplers/Regular.ts" />
+/// <reference path="./../Cameras/Camera.ts" />
+/// <reference path="./../Cameras/Pinhole.ts" />
 /// <reference path="./../Lights/Light.ts" />
 /// <reference path="./../Lights/AmbientLight.ts" />
 /// <reference path="./../Lights/DirectionalLight.ts" />
@@ -29,24 +31,26 @@ module Tracejs {
         view_plane_matrix : RGBColor[][];
 
         geo_sphere : Sphere;
-        ray_cast_tracer : RayCast;
+        tracer : RayCast;
 
         lights :  Light[];
         ambient_ptr : AmbientLight;
 
+        camera : Camera;
+
         constructor(background_color?: RGBColor) {
             this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
-            this.view_plane.set_sampler(new Tracejs.Regular(1)); // Set sampler (10 samples / pixel).
+            this.view_plane.set_sampler(new Tracejs.Regular(10)); // Set sampler (10 samples / pixel).
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
-            var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.0, 0.0, 0.0)); // Black.
+            var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
             var diffuse_brdf : Lambertian = new Lambertian(1.0, new RGBColor(1.0, 0.0, 0.0));
 
             var material : Matte = new Matte(ambient_brdf, diffuse_brdf);
 
             this.geo_sphere = new Tracejs.Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
 
-            this.ray_cast_tracer = new Tracejs.RayCast(this);
+            this.tracer = new Tracejs.RayCast(this);
 
             this.lights = [];
             this.lights[0] = new PointLight(false, 1.0, 
@@ -54,6 +58,8 @@ module Tracejs {
                                                   new Vector3D(300.0, 300.0, 0.0));
 
             this.ambient_ptr = new Tracejs.AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
+
+            this.camera = new Pinhole();
 
             if (background_color) {
                 this.background_color = background_color;
@@ -73,51 +79,7 @@ module Tracejs {
          * @returns {string}
          */
         renderScene(fixture?: boolean, callback ?: any) : any {
-            // return a nested array of RGBColors (pixels)
-            //      -> stream if possible
-            var hres = this.view_plane.getHres();
-            var vres = this.view_plane.getVres();
-
-            var s = this.view_plane.getPsize();
-            var zw = this.view_plane_zw;
-
-            var origin = new Tracejs.Point3D(0.0, 0.0, zw);
-            var ray_vector = new Tracejs.Vector3D(0.0, 0.0, -1.0);
-            var ray = new Tracejs.Ray(origin, ray_vector);
-
-            var sp : Point2D; // Sample point in [0, 1] x [0, 1].
-            var pp : Point2D = new Point2D(); // Sample point on a pixel.
-
-            // Initialize view_plane_matrix with n = vres arrays.
-            this.view_plane_matrix = new Array(vres);
-
-            for (var v:number = 0; v < vres; v++) {
-                // Initialize view_plane_matrix[v] to new Array.
-                this.view_plane_matrix[v] = new Array();
-
-                for (var h:number = 0; h < hres; h++) {
-                    var color : RGBColor = new RGBColor(0.0, 0.0, 0.0);
-
-                    for (var j:number = 0; j < this.view_plane.num_samples; ++j) {
-                        sp = this.view_plane.sampler.sample_unit_square();
-
-                        pp.x = s * (h - 0.5 * (hres - sp.x));
-                        pp.y = s * (v - 0.5 * (vres - sp.y));
-
-                        origin.setPoint(pp.x, pp.y, zw);
-                        ray.setRay(origin, ray_vector);
-
-                        if (fixture) {
-                            this.view_plane_matrix[v].push(new Tracejs.RGBColor(Math.floor(Math.random()*255), Math.floor(Math.random()*255), Math.floor(Math.random()*255)))
-                        }
-                        else {
-                            color = color.add_color(this.ray_cast_tracer.trace(ray, 1.0).scale(255));
-                        }
-                    }
-                    color.div(this.view_plane.num_samples);
-                    this.view_plane_matrix[v].push(color);
-                }
-            }
+            this.camera.render_scene(this);
 
             return JSON.stringify(this.view_plane_matrix);
         }
