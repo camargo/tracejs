@@ -4,6 +4,7 @@
 /// <reference path="../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
+/// <reference path="../GeometricObjects/GeometricObject.ts" />
 /// <reference path="../GeometricObjects/Primitives/Sphere.ts" />
 
 module Tracejs {
@@ -14,11 +15,11 @@ module Tracejs {
         }
 
         trace(ray : Ray, depth : number) : RGBColor {
-            var sr : ShadeRec = new ShadeRec(this.world_ptr);
-            var sphere : Sphere = this.world_ptr.geo_sphere;
+            var sr : ShadeRec = this.world_ptr.hit_objects(ray);
 
-            if(sphere.hit(ray, sr)) {
-                return sphere.material.shade(sr);
+            if(sr.hit_an_object) {
+                sr.ray = ray;
+                return sr.material_ptr.shade(sr);
             } else {
                 return this.world_ptr.background_color;
             }

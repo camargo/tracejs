@@ -8,6 +8,7 @@
 /// <reference path="./../Utilities/Point3D.ts" />
 /// <reference path="./../Utilities/Point2D.ts" />
 /// <reference path="./../Utilities/Vector3D.ts" />
+/// <reference path="./../Utilities/Utils.ts" />
 /// <reference path="./../GeometricObjects/Primitives/Sphere.ts" />
 /// <reference path="./../Samplers/Sampler.ts" />
 /// <reference path="./../Samplers/Regular.ts" />
@@ -33,7 +34,7 @@ module Tracejs {
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
 
-        geo_sphere : Sphere;
+        objects : GeometricObject[];
         tracer : RayCast;
 
         lights :  Light[];
@@ -52,7 +53,16 @@ module Tracejs {
 
             var material : Phong = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
 
-            this.geo_sphere = new Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
+            this.objects = [];
+            this.objects[0] = new Sphere(material, null, new Point3D(-50.0, 0.0, 0.0), 100.0);
+
+            ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
+            diffuse_brdf = new Lambertian(1.0, new RGBColor(0.4, 0.9, 0.1));
+            specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
+
+            material = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
+
+            this.objects[1] = new Sphere(material, null, new Point3D(100.0, -80.0, 200.0), 100.0);
 
             this.tracer = new RayCast(this);
 
@@ -87,6 +97,33 @@ module Tracejs {
             this.camera.render_scene(this);
 
             return JSON.stringify(this.view_plane_matrix);
+        }
+
+        hit_objects(ray : Ray) : ShadeRec {
+            var sr : ShadeRec = new ShadeRec(this);
+            var normal : Normal;
+            var local_hit_point : Point3D;
+            var tmin : number = kHugeValue;
+            var num_objects = this.objects.length;
+
+            for (var i = 0; i < num_objects; ++i) {
+                if (this.objects[i].hit(ray, sr) && (sr.t < tmin)) {
+                    sr.hit_an_object = true;
+                    tmin = sr.t;
+                    sr.material_ptr = this.objects[i].material;
+                    sr.hit_point = ray.o.add_vector(ray.d.mult(sr.t));
+                    normal = sr.normal;
+                    local_hit_point = sr.local_hit_point;
+                }
+            }
+
+            if (sr.hit_an_object) {
+                sr.t = tmin;
+                sr.normal = normal;
+                sr.local_hit_point = local_hit_point;
+            }
+
+            return sr;
         }
 
         /**
@@ -162,7 +199,8 @@ module Tracejs {
          * @param radius
          * @returns {Sphere}
          */
-        sphere(center ?: any, radius ?: number) : Sphere {
+        // Need to make this work for a general array of geometric objects.
+        /*sphere(center ?: any, radius ?: number) : Sphere {
             if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
                 this.geo_sphere.set_center(new Point3D(center.x, center.y, center.z));
             }
@@ -175,7 +213,7 @@ module Tracejs {
             }
 
             return this.geo_sphere;
-        }
+        }*/
 
         /**
          * sampler()

@@ -58,7 +58,7 @@ describe("World class", function() {
 
         // if sphere at origin, test that origin pixel is not black
         for (var i = 0; i < 4; i++) {
-            if (world[i].geo_sphere.get_center().get_x() === 0 && world[i].geo_sphere.get_center().get_y() === 0 && world[i].geo_sphere.get_center().get_z() === 0) {
+            if (world[i].objects[0].get_center().get_x() === 0 && world[i].objects[0].get_center().get_y() === 0 && world[i].objects[0].get_center().get_z() === 0) {
                 var hres = world[i].vp().getHres();
                 var vres = world[i].vp().getVres();
                 var json = world[i].renderScene();
