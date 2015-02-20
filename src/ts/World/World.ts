@@ -42,8 +42,8 @@ module Tracejs {
         camera : Camera;
 
         constructor(background_color?: RGBColor) {
-            this.view_plane = new Tracejs.ViewPlane(); // Create default ViewPlane.
-            this.view_plane.set_sampler(new Tracejs.Regular(10)); // Set sampler (10 samples / pixel).
+            this.view_plane = new ViewPlane(); // Create default ViewPlane.
+            this.view_plane.set_sampler(new Regular(10)); // Set sampler (10 samples / pixel).
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
             var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
@@ -52,16 +52,16 @@ module Tracejs {
 
             var material : Phong = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
 
-            this.geo_sphere = new Tracejs.Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
+            this.geo_sphere = new Sphere(material, null, new Point3D(0.0, 0.0, 0.0), 100.0);
 
-            this.tracer = new Tracejs.RayCast(this);
+            this.tracer = new RayCast(this);
 
             this.lights = [];
             this.lights[0] = new PointLight(false, 1.0, 
                                                   new RGBColor(1.0, 1.0, 1.0), 
                                                   new Vector3D(300.0, 300.0, 0.0));
 
-            this.ambient_ptr = new Tracejs.AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
+            this.ambient_ptr = new AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
 
             this.camera = new Pinhole();
             //this.camera = new Orthographic();
@@ -70,7 +70,7 @@ module Tracejs {
                 this.background_color = background_color;
             }
             else {
-                this.background_color = new Tracejs.RGBColor(0.0, 0.0, 0.0); // Create black background_color.
+                this.background_color = new RGBColor(0.0, 0.0, 0.0); // Create black background_color.
             }
         }
 
@@ -146,7 +146,7 @@ module Tracejs {
 
             // setter
             if (r >= 0 && r <= 255 && g >= 0 && g <=255 && b >= 0 && b <= 255) {
-                this.background_color = new Tracejs.RGBColor(r, g, b);
+                this.background_color = new RGBColor(r, g, b);
                 return this.background_color;
             }
 
@@ -164,7 +164,7 @@ module Tracejs {
          */
         sphere(center ?: any, radius ?: number) : Sphere {
             if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
-                this.geo_sphere.set_center(new Tracejs.Point3D(center.x, center.y, center.z));
+                this.geo_sphere.set_center(new Point3D(center.x, center.y, center.z));
             }
             else if (center) {
                 console.log("Incorrect or undefined argument object fields in world.sphere()")
@@ -189,13 +189,13 @@ module Tracejs {
                 sp = sp.toLowerCase();
                 switch (sp) {
                     case 'regular':
-                        newSampler = new Tracejs.Regular(num_samples);
+                        newSampler = new Regular(num_samples);
                         break;
                     case 'multijittered':
-                        newSampler = new Tracejs.MultiJittered(num_samples);
+                        newSampler = new MultiJittered(num_samples);
                         break;
                     default:
-                        newSampler = new Tracejs.Regular(num_samples)
+                        newSampler = new Regular(num_samples)
                 }
                 this.view_plane.set_sampler(newSampler);
             }
