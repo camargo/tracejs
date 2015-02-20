@@ -6,6 +6,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
     <link rel="stylesheet" href="css/main.css" />
 
@@ -15,6 +16,7 @@
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-select.js"></script>
 
     <!-- Tracejs -->
     <script type="text/javascript" src="src/js/Utilities/Utils.js"></script>
@@ -107,10 +109,29 @@
                     <input type="number" placeholder="center z" ng-model="world.sphere.center.z" required /><br>
                     <input type="number" placeholder="radius" ng-model="world.sphere.radius" required /><br>
                 </div>
+
+                    <div id="sampler-controller" class="gui-controller" ng-if="world.sampler">
+                        <span>Sampling</span>
+                        <select class="selectpicker" ng-model="world.sampler.type"
+                                ng-options="value for value in samplerOptions.type">
+                        </select>
+                        <select class="selectpicker" ng-model="world.sampler.num_samples"
+                                ng-options="value for value in samplerOptions.num_samples">
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            // bootstrap-select
+            $('.selectpicker').selectpicker({
+                style: 'btn-primary',
+                width: '150px'
+            });
+        })
+    </script>
 </body>
 </html>

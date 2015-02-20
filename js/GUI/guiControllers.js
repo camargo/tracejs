@@ -14,13 +14,26 @@
                 /**
                  * private variables
                  */
-                var $world = worldService.createWorld();
-                var $canvas = canvasService.getCanvas();
+                $scope.$world = worldService.createWorld();
+                $scope.$canvas = canvasService.getCanvas();
 
                 /**
                  * scope objects
                  */
                 $scope.rendering = false;
+
+                $scope.samplerOptions = {
+                    type : [
+                        'regular',
+                        'multijittered'
+                    ],
+                    num_samples : [
+                        1,
+                        4,
+                        9,
+                        16
+                    ]
+                };
 
                 $scope.world = {
                     vp: {
@@ -28,7 +41,7 @@
                         vres: 512,
                         psize: 1
                     },
-                    bgColorHex: "",
+                    bgColorHex: "#000000",
                     bgColor: {
                         r: 0,
                         g: 0,
@@ -41,13 +54,19 @@
                             z: 0
                         },
                         radius: 200
+                    },
+                    sampler : {
+                        type : $scope.samplerOptions.type[1],
+                        num_samples : $scope.samplerOptions.num_samples[0]
                     }
                 };
 
                 $scope.renderScene = function () {
+                    var self = this;
+
                     // save values using Tracejs World API
                     // $scope.rendering = true;
-                    var JSONdata = worldService.renderScene($world, this.world);
+                    var JSONdata = worldService.renderScene(self.$world, self.world);
 
                     var data;
                     if (JSONdata) {
@@ -58,20 +77,24 @@
                     }
 
                     // push to canvas
-                    canvasService.setCanvasDimensions($canvas, this.world.vp.hres, this.world.vp.vres);
-                    canvasService.renderCanvas($canvas, data)
+                    canvasService.setCanvasDimensions(self.$canvas, self.world.vp.hres, self.world.vp.vres);
+                    canvasService.renderCanvas(self.$canvas, data)
                 };
 
                 $scope.resetScene = function() {
-                    canvasService.setCanvasDimensions($canvas, '512', '512');
-                    this.world.vp.hres = this.world.vp.vres = 512;
-                    this.world.vp.psize = 1
+                    var self = this;
+
+                    canvasService.setCanvasDimensions(self.$canvas, '512', '512');
+                    self.world.vp.hres = self.world.vp.vres = 512;
+                    self.world.vp.psize = 1
                 };
 
                 $scope.evalBgColor = function() {
-                    debugger;
-                    _.map(hexToRgb(this.world.bgColorHex), function(value, key) {
-                        this.world.bgColor[key] = value
+                    var self = this;
+
+                    //self.world.bgColor = self.hexToRgb(self.world.bgColorHex)
+                    _.map(self.hexToRgb(self.world.bgColorHex), function(value, key) {
+                        self.world.bgColor[key] = value
                     })
                 };
 
@@ -79,7 +102,7 @@
                  * helper functions
                   */
                 // see http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-                function hexToRgb(hex) {
+                $scope.hexToRgb = function(hex) {
                     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
                     return result ? {
                         r: parseInt(result[1], 16),
