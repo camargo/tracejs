@@ -93,9 +93,12 @@ module Tracejs {
 
         normalize() : void{
             var mag = this.length();
-            this.x /= mag;
-            this.y /= mag;
-            this.z /= mag;
+	    // added this to account for divide by zero (running into NaN probs)
+	    if(mag != 0) {
+                this.x /= mag;
+                this.y /= mag;
+                this.z /= mag;
+	    }
         }
         
         distance_from(v : Vector3D) : number {
