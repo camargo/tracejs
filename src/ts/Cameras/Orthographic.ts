@@ -11,15 +11,24 @@
 
 module Tracejs {
     export class Orthographic extends Camera {
-        constructor() {
+        zw : number;
+
+        constructor( zw ?: number) {
             super();
+
+            if (zw) {
+                this.zw = zw;
+            }
+            else {
+                this.zw = -100;
+            }
         }
 
         render_scene(w : World) : void {
             var L = new RGBColor(0, 0, 0); 
             var vp = w.view_plane;
 
-            var origin = new Point3D(0.0, 0.0, -100);     
+            var origin = new Point3D(0.0, 0.0, this.zw);     
             var ray_vector = new Vector3D(0.0, 0.0, -1.0);
             var ray = new Ray(origin, ray_vector);
 
@@ -41,7 +50,7 @@ module Tracejs {
                         pp.x = vp.psize * (h - 0.5 * (vp.hres - sp.x));
                         pp.y = vp.psize * (v - 0.5 * (vp.vres - sp.y));
 
-                        origin.setPoint(pp.x, pp.y, -100);
+                        origin.setPoint(pp.x, pp.y, this.zw);
                         ray.setRay(origin, ray_vector);
 
                         L = L.add_color(w.tracer.trace(ray, depth));
