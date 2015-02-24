@@ -292,7 +292,6 @@ module Tracejs {
         light(light ?: any) : any {
             if (light) {
                 for (var i:number = 0; i < light.length; i++) {
-                    debugger;
                     if (this.lights[i] && this.lights[i].set_direction ? 'directional' : 'point' === light[i].type) { // check if World has light at index and it's the right type of light
                         var worldLightType:string = this.lights[i].set_direction ? 'directional' : 'point';
                             if (light[i]) { // check if light exists at index
