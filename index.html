@@ -10,7 +10,6 @@
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
     <link rel="stylesheet" href="css/main.css" />
 
-
     <!-- JS -->
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
@@ -102,15 +101,16 @@
 
                 <div id="bgcolor-controller" class="gui-controller" ng-if="world.bgColor">
                     <span>Background color</span><br>
-                    <input type="color" ng-model="world.bgColorHex" ng-change="evalBgColor()">
+                    <input type="color" ng-model="world.bgColorHex" ng-change="postColor(world.bgColorHex,world.bgColor)">
                 </div>
 
-                <div id="sphere-controller" class="gui-controller" ng-if="world.sphere">
-                    <span>Sphere</span>
-                    <input type="number" placeholder="center x" ng-model="world.sphere.center.x" required /><br>
-                    <input type="number" placeholder="center y" ng-model="world.sphere.center.y" required /><br>
-                    <input type="number" placeholder="center z" ng-model="world.sphere.center.z" required /><br>
-                    <input type="number" placeholder="radius" ng-model="world.sphere.radius" required /><br>
+                <div id="sphere-controller" class="gui-controller" ng-repeat="object in world.object">
+                    <span>{{capitalize(object.type)}}</span>
+                    <input type="number" placeholder="center x" ng-model="object.center.x" required /><br>
+                    <input type="number" placeholder="center y" ng-model="object.center.y" required /><br>
+                    <input type="number" placeholder="center z" ng-model="object.center.z" required /><br>
+                    <input type="number" placeholder="radius" ng-model="object.radius" required /><br>
+                    Color: <input type="color" ng-model="object.colorHex" ng-change="postColor(object.colorHex,object.color)" required /><br>
                 </div>
 
                     <div id="sampler-controller" class="gui-controller" ng-if="world.sampler">

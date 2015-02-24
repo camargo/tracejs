@@ -34,7 +34,12 @@ module Tracejs {
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
 
-        objects : GeometricObject[];
+        ambient_brdf : Lambertian;
+        diffuse_brdf : Lambertian;
+        specular_brdf : GlossySpecular;
+        material : Material;
+
+        objects : Sphere[]; // TODO : assume for now all objects are spheres
         tracer : RayCast;
 
         lights :  Light[];
@@ -47,22 +52,15 @@ module Tracejs {
             this.view_plane.set_sampler(new Regular(10)); // Set sampler (10 samples / pixel).
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
-            var ambient_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
-            var diffuse_brdf : Lambertian = new Lambertian(1.0, new RGBColor(0.9, 0.4, 0.1));
-            var specular_brdf : GlossySpecular = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
+            this.ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
+            this.diffuse_brdf = new Lambertian(1.0, new RGBColor(0.4, 0.9, 0.1));
+            this.specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
 
-            var material : Phong = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
+            this.material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf);
 
             this.objects = [];
-            this.objects[0] = new Sphere(material, null, new Point3D(-50.0, 0.0, 0.0), 100.0);
-
-            ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
-            diffuse_brdf = new Lambertian(1.0, new RGBColor(0.4, 0.9, 0.1));
-            specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
-
-            material = new Phong(ambient_brdf, diffuse_brdf, specular_brdf);
-
-            this.objects[1] = new Sphere(material, null, new Point3D(100.0, -80.0, 200.0), 100.0);
+            this.objects[0] = new Sphere(this.material, null, new Point3D(-50.0, 0.0, 0.0), 100.0); // for legacy testing purposes
+            //this.objects[1] = new Sphere(this.material, null, new Point3D(100.0, -80.0, 200.0), 100.0);
 
             this.tracer = new RayCast(this);
 
@@ -200,7 +198,8 @@ module Tracejs {
          * @returns {Sphere}
          */
         // Need to make this work for a general array of geometric objects.
-        /*sphere(center ?: any, radius ?: number) : Sphere {
+        /*
+        sphere(center ?: any, radius ?: number) : Sphere {
             if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
                 this.geo_sphere.set_center(new Point3D(center.x, center.y, center.z));
             }
@@ -213,7 +212,57 @@ module Tracejs {
             }
 
             return this.geo_sphere;
-        }*/
+        }
+        */
+
+        /**
+         * object()
+         * @param object
+         * @returns {Sphere[]}
+         */
+        object(object ?: any) : any {
+            if (object) {
+                // TODO: assume for now that all objects are spheres
+                for (var i : number = 0; i < object.length; i++) {
+                    if (object[i]) { // check GUI object exists at index
+                        if (this.objects[i]) { // if this World has object at index, update it
+                            if (object[i].center) {
+                                this.objects[i].set_center(new Point3D(object[i].center.x, object[i].center.y, object[i].center.z))
+                            }
+                            if (object[i].radius > 0) {
+                                this.objects[i].set_radius(object[i].radius)
+                            }
+                            if (object[i].color) {
+                                this.objects[i].set_color(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
+                            }
+                        }
+                        else { // else create a new object at this index
+                            // set defaults
+                            var material = this.material,
+                                color =  new RGBColor(255,255,255),
+                                center = new Point3D(0,0,0),
+                                radius = 50;
+
+                            if (object[i].center) {
+                                center = new Point3D(object[i].center.x, object[i].center.y, object[i].center.z)
+                            }
+                            if (object[i].radius > 0) {
+                                radius = object[i].radius
+                            }
+                            if (object[i].color) {
+                                color = new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b)
+                            }
+
+                            this.objects[i] = new Sphere(material, color, center, radius)
+                        }
+                    }
+                    else {
+                        console.log("World object(): object array is empty")
+                    }
+                }
+            }
+            return this.objects
+        }
 
         /**
          * sampler()

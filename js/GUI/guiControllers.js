@@ -35,6 +35,9 @@
                     ]
                 };
 
+                /**
+                 * world data model
+                 */
                 $scope.world = {
                     vp: {
                         hres: 512,
@@ -47,18 +50,42 @@
                         g: 0,
                         b: 0
                     },
-                    sphere : {
-                        center: {
-                            x: 0,
-                            y: 0,
-                            z: 0
-                        },
-                        radius: 200
-                    },
                     sampler : {
                         type : $scope.samplerOptions.type[1],
                         num_samples : $scope.samplerOptions.num_samples[2]
-                    }
+                    },
+                    object : [
+                        {
+                            type : 'sphere',
+                            center: {
+                                x: -100,
+                                y: -100,
+                                z: 150
+                            },
+                            radius: 100,
+                            colorHex : "#48F342",
+                            color : {
+                                r : 72,
+                                g : 243,
+                                b : 66
+                            }
+                        },
+                        {
+                            type : 'sphere',
+                            center : {
+                                x : 50,
+                                y : 50,
+                                z : 0
+                            },
+                            radius : 100,
+                            colorHex : "#D52828",
+                            color : {
+                                r : 213,
+                                g : 40,
+                                b : 40
+                            }
+                        }
+                    ]
                 };
 
                 $scope.renderScene = function () {
@@ -89,14 +116,16 @@
                     self.world.vp.psize = 1
                 };
 
-                $scope.evalBgColor = function() {
+                $scope.postColor = function(hex, colorObj) {
                     var self = this;
+                    debugger;
 
                     //self.world.bgColor = self.hexToRgb(self.world.bgColorHex)
-                    _.map(self.hexToRgb(self.world.bgColorHex), function(value, key) {
-                        self.world.bgColor[key] = value
+                    _.map(self.hexToRgb(hex), function(value, key) {
+                        colorObj[key] = value
                     })
                 };
+
 
                 /**
                  * helper functions
@@ -109,6 +138,10 @@
                         g: parseInt(result[2], 16),
                         b: parseInt(result[3], 16)
                     } : null;
+                }
+
+                $scope.capitalize = function(word) {
+                    return word.charAt(0).toUpperCase() + word.slice(1)
                 }
 
             }])
