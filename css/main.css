@@ -5,30 +5,29 @@
     padding: 10px 0 0 10px;
 }
 
-.btn-primary {
+.controls-wrapper, .settings-wrapper {
+    margin: 0 0 20px 0;
+}
+
+.btn-primary, .btn-danger, .nav li a {
     color: #000000;
     background: transparent;
     border: 2px solid #000000;
 }
 
-.btn-primary:focus {
-    background: #000000;
-    border: 2px solid #000000;
-}
-
-.btn-danger {
-    color: #000000;
-    background: transparent;
-    border: 2px solid #000000;
-}
-
-.btn-primary:hover {
-    background: #000000;
-    border: 2px solid #000000;
+.btn-primary:focus, .btn-primary:hover, .btn-primary:active,
+.open .dropdown-toggle.btn-primary, .nav li a:hover, .nav li a.active {
+    background: #000000; !important;
+    border: 2px solid #000000; !important;
+    color : white; !important;
 }
 
 .gui-controller {
     display: inline-block;
     width: 40%;
     margin: 0 10px 0 10px;
+}
+
+.nav-tabs {
+    border-bottom: 1.5px solid black;
 }

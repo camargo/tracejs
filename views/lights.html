@@ -1,0 +1,10 @@
+<div id="light-controller" class="gui-controller" ng-if="world.light" ng-repeat="light in world.light">
+    <span>{{capitalize(light.type)}} Light</span><br>
+    <select class="selectpicker" ng-model="light.type"
+            ng-options="value for value in lightOptions.type"></select>
+    <span>Location</span><br>
+    <input type="number" placeholder="x" ng-model="light.location.x" required /><br>
+    <input type="number" placeholder="y" ng-model="light.location.y" required /><br>
+    <input type="number" placeholder="z" ng-model="light.location.z" required /><br>
+    Color: <input type="color" ng-model="light.colorHex" ng-change="postColor(light.colorHex, light.color)" required /><br>
+</div>

@@ -7,9 +7,10 @@
     angular.module('guiControllers', [])
         .controller('MainController', [
             '$scope',
+            '$timeout',
             'worldService',
             'canvasService',
-            function($scope, worldService, canvasService) {
+            function($scope, $timeout, worldService, canvasService) {
 
                 /**
                  * private variables
@@ -21,8 +22,6 @@
                  * scope objects
                  */
                 $scope.rendering = false;
-                $scope.baseUrl = "#/tracejs";
-
                 $scope.samplerOptions = {
                     type : [
                         'regular',
@@ -35,11 +34,16 @@
                         16
                     ]
                 };
-
                 $scope.materialOptions = {
                     type : [
                         'phong',
                         'matte'
+                    ]
+                };
+                $scope.lightOptions = {
+                    type : [
+                        'point',
+                        'directional'
                     ]
                 };
 
@@ -62,6 +66,22 @@
                         type : $scope.samplerOptions.type[1],
                         num_samples : $scope.samplerOptions.num_samples[2]
                     },
+                    light : [
+                        {
+                            type : $scope.lightOptions.type[1],
+                            location : {
+                                x : 300,
+                                y : 300,
+                                z : 300
+                            },
+                            colorHex : "#010101",
+                            color : {
+                                r: 1,
+                                g: 1,
+                                b: 1
+                            }
+                        }
+                    ],
                     object : [
                         {
                             type : 'sphere',
@@ -96,7 +116,7 @@
                                 b : 40
                             },
                             material : {
-                                type : $scope.materialOptions.type[0]
+                                type : $scope.materialOptions.type[1]
                             }
                         }
                     ]
@@ -152,10 +172,21 @@
                         g: parseInt(result[2], 16),
                         b: parseInt(result[3], 16)
                     } : null;
-                }
+                };
 
                 $scope.capitalize = function(word) {
                     return word.charAt(0).toUpperCase() + word.slice(1)
+                };
+
+                $scope.bootstrapSelect = function() {
+                    // "dumb" jquery bootstrap
+                    $timeout(function() {
+                        // bootstrap-select
+                        $('.selectpicker').selectpicker({
+                            style: 'btn-primary',
+                            width: '150px'
+                        });
+                    }, 100)
                 }
 
             }])

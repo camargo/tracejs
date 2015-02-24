@@ -29,6 +29,7 @@
                     $world.bgColor(params.bgColor.r, params.bgColor.g, params.bgColor.b);
                     $world.object(params.object);
                     $world.sampler(params.sampler.type, params.sampler.num_samples);
+                    $world.light(params.light);
 
                     return $world.renderScene();
                 }

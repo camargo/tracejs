@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="css/main.css" />
 
     <!-- JS -->
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
     <script type="text/javascript" src="js/bootstrap-select.js"></script>
@@ -80,34 +80,33 @@
 
             <div class="col-md-4">
 
-                <form name="guiForm" id="gui-form">
-                <div class="btn-group">
-                    <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
-                    <button class="btn btn-danger" type="reset" ng-click="resetScene()">Reset scene</button>
+                <div class="controls-wrapper">
+                    <div class="btn-group">
+                        <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
+                        <button class="btn btn-danger" type="reset" ng-click="resetScene()">Reset scene</button>
+                    </div>
+                    <div class="rendering" ng-show="rendering">Rendering...</div>
                 </div>
-                <div class="rendering" ng-show="rendering">Rendering...</div>
 
-                <hr>
-                </form>
-                <ul class="nav nav-pills">
-                    <li><a ng-href="#/scene">Scene</a></li>
-                    <li><a ng-href="#/objects">Objects</a></li>
-                </ul>
+                <div class="settings-wrapper">
+                    <ul class="nav nav-tabs">
+                        <li><a class="active" ng-href="#/scene">General</a></li>
+                        <li><a ng-href="#/objects">Objects</a></li>
+                        <li><a ng-href="#/lights">Lights</a></li>
+                    </ul>
+                </div>
 
-                <ng-view></ng-view>
+                <ng-view onload="bootstrapSelect()"></ng-view>
 
             </div>
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            // bootstrap-select
-            $('.selectpicker').selectpicker({
-                style: 'btn-primary',
-                width: '150px'
-            });
+<!-- bootstrap nav -->
+<script>
+        $('ul.nav.nav-tabs li a').click(function() {
+            $(this).addClass('active').parent().siblings().children().removeClass('active');
         })
-    </script>
+</script>
 </body>
 </html>
