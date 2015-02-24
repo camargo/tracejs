@@ -192,30 +192,6 @@ module Tracejs {
         }
 
         /**
-         * sphere()
-         * @param center
-         * @param radius
-         * @returns {Sphere}
-         */
-        // Need to make this work for a general array of geometric objects.
-        /*
-        sphere(center ?: any, radius ?: number) : Sphere {
-            if (center && (center.x || center.x === 0) && (center.y || center.y === 0) && (center.z || center.z === 0)) {
-                this.geo_sphere.set_center(new Point3D(center.x, center.y, center.z));
-            }
-            else if (center) {
-                console.log("Incorrect or undefined argument object fields in world.sphere()")
-            }
-
-            if (radius > 0) {
-                this.geo_sphere.set_radius(radius)
-            }
-
-            return this.geo_sphere;
-        }
-        */
-
-        /**
          * object()
          * @param object
          * @returns {Sphere[]}
@@ -235,6 +211,14 @@ module Tracejs {
                             if (object[i].color) {
                                 this.objects[i].set_color(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
                             }
+                            if (object[i].material) {
+                                if (object[i].material === 'matte') {
+                                    this.objects[i].set_material(new Matte(this.ambient_brdf, this.diffuse_brdf))
+                                }
+                                else if (object[i].material === 'phong') {
+                                    this.objects[i].set_material(new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf))
+                                }
+                            }
                         }
                         else { // else create a new object at this index
                             // set defaults
@@ -251,6 +235,14 @@ module Tracejs {
                             }
                             if (object[i].color) {
                                 color = new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b)
+                            }
+                            if (object[i].material) {
+                                if (object[i].material === 'matte') {
+                                    material = new Matte(this.ambient_brdf, this.diffuse_brdf)
+                                }
+                                else if (object[i].material === 'phong') {
+                                    material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf)
+                                }
                             }
 
                             this.objects[i] = new Sphere(material, color, center, radius)

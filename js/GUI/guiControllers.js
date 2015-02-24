@@ -21,6 +21,7 @@
                  * scope objects
                  */
                 $scope.rendering = false;
+                $scope.baseUrl = "#/tracejs";
 
                 $scope.samplerOptions = {
                     type : [
@@ -32,6 +33,13 @@
                         4,
                         9,
                         16
+                    ]
+                };
+
+                $scope.materialOptions = {
+                    type : [
+                        'phong',
+                        'matte'
                     ]
                 };
 
@@ -68,6 +76,9 @@
                                 r : 72,
                                 g : 243,
                                 b : 66
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[0]
                             }
                         },
                         {
@@ -83,6 +94,9 @@
                                 r : 213,
                                 g : 40,
                                 b : 40
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[0]
                             }
                         }
                     ]

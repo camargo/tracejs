@@ -12,6 +12,7 @@
 
     <!-- JS -->
     <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-route.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
@@ -87,42 +88,14 @@
                 <div class="rendering" ng-show="rendering">Rendering...</div>
 
                 <hr>
-
-                <!--<div id="GUI" ng-gui></div>-->
-
-                <div id="addelements" class="btn-group"></div>
-
-                <div id="viewplane-controller" class="gui-controller" ng-if="world.vp">
-                    <span>View Plane</span><br>
-                    <input type="number" placeholder="horizontal resolution" ng-model="world.vp.hres" required /><br>
-                    <input type="number" placeholder="vertical resolution" ng-model="world.vp.vres" required /><br>
-                    <input type="number" placeholder="pixel size" ng-model="world.vp.psize" required /><br>
-                </div>
-
-                <div id="bgcolor-controller" class="gui-controller" ng-if="world.bgColor">
-                    <span>Background color</span><br>
-                    <input type="color" ng-model="world.bgColorHex" ng-change="postColor(world.bgColorHex,world.bgColor)">
-                </div>
-
-                <div id="sphere-controller" class="gui-controller" ng-repeat="object in world.object">
-                    <span>{{capitalize(object.type)}}</span>
-                    <input type="number" placeholder="center x" ng-model="object.center.x" required /><br>
-                    <input type="number" placeholder="center y" ng-model="object.center.y" required /><br>
-                    <input type="number" placeholder="center z" ng-model="object.center.z" required /><br>
-                    <input type="number" placeholder="radius" ng-model="object.radius" required /><br>
-                    Color: <input type="color" ng-model="object.colorHex" ng-change="postColor(object.colorHex,object.color)" required /><br>
-                </div>
-
-                    <div id="sampler-controller" class="gui-controller" ng-if="world.sampler">
-                        <span>Sampling</span>
-                        <select class="selectpicker" ng-model="world.sampler.type"
-                                ng-options="value for value in samplerOptions.type">
-                        </select>
-                        <select class="selectpicker" ng-model="world.sampler.num_samples"
-                                ng-options="value for value in samplerOptions.num_samples">
-                        </select>
-                    </div>
                 </form>
+                <ul class="nav nav-pills">
+                    <li><a ng-href="#/scene">Scene</a></li>
+                    <li><a ng-href="#/objects">Objects</a></li>
+                </ul>
+
+                <ng-view></ng-view>
+
             </div>
         </div>
     </div>
