@@ -11,7 +11,7 @@ describe("Sphere class", function() {
 
         var center = new Tracejs.Point3D(10.0, 10.0, 10.0);
         var radius = 200.0;
-        var sphere = new Tracejs.Sphere(center, radius);
+        var sphere = new Tracejs.Sphere(null, null, center, radius);
         expect(sphere.get_center()).toEqual(center);
         expect(sphere.get_radius()).toEqual(radius);
 

@@ -19,7 +19,7 @@
         GUI.create();
 
         // set canvas to size representing world
-        GUI.canvas = $('canvas')[0];
+        //GUI.canvas = $('canvas')[0];
         GUI.context = GUI.canvas.getContext('2d');
 
         GUI.setCanvasDimensions(GUI.canvas, world.vp().getHres(), world.vp().getVres());
@@ -32,10 +32,11 @@
             GUI.renderCanvas(GUI.context.createImageData(GUI.canvas.width, GUI.canvas.height), data);
         });
 
+        /*
         $('#gui-form').submit(function (event) {
             event.preventDefault();
 
-            // save all GUI settings to world using Tracejs.World API
+            // get inputs
             var inputs = $('#gui-form :input').serializeArray();
             var hres = parseInt(inputs[0].value, 10);
             var vres = parseInt(inputs[1].value, 10);
@@ -43,16 +44,20 @@
             var bgColorHex = inputs[3].value;
             var bgcolor = GUI.hexToRgb(bgColorHex.slice(-(bgColorHex.length-1)));
 
+            // save all GUI settings to world using Tracejs.World API
             world.vp(hres, vres, psize);
             GUI.setCanvasDimensions(GUI.canvas, hres, vres);
 
             world.bgColor(new Tracejs.RGBColor(bgcolor.r,bgcolor.g,bgcolor.b));
         });
+        */
 
+        /*
         $('#gui-form').bind('reset', function () {
             world.vp(300, 150, 1);
             GUI.setCanvasDimensions(GUI.canvas, 300, 150);
         });
+        */
 
         // helper functions
         // attach function to display rendered matrix to canvas

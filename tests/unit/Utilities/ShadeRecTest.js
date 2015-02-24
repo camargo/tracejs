@@ -3,8 +3,6 @@ describe("ShadeRec class", function() {
 
 
            //Test Material variable
-
-           //NOT FINISHED NEED HELP PASSING POINTER
            var material = new Tracejs.Material(); 
 
 
@@ -29,7 +27,7 @@ describe("ShadeRec class", function() {
 
            
            //test ShadeRec variable
-           var a = new Tracejs.ShadeRec(true, point_a, point_b, n, r, 1.0, vector, w);
+           var a = new Tracejs.ShadeRec(w);
            
 
            /**
@@ -38,28 +36,32 @@ describe("ShadeRec class", function() {
            */
 
            //Test boolean in ShadeRec
-           expect(a.get_hit() == true); //works
+           //expect(a.get_hit() == true); //works
+
+           //Test Material in ShadeRec
+           //expect(material.shade()).toEqual(new Tracejs.RGBColor(0,0,0));
 
            //Test Point3D in ShadeRec (hit_point())
-           expect(a.get_hit_point()).toEqual(point_a); //works
+           //expect(a.get_hit_point()).toEqual(point_a); //works
 
            //Test Point3D in ShadeRec (local_hit_point())
-           expect(a.get_local_hit_point()).toEqual(point_b); //works
+           //expect(a.get_local_hit_point()).toEqual(point_b); //works
 
            //Test Ray in ShadeRec
-           expect(a.get_ray()).toEqual(r);
+           //expect(a.get_ray()).toEqual(r);
 
            //Test depth in ShadeRec
-	         expect(a.get_depth()).toEqual(1.0); //works
+	         //expect(a.get_depth()).toEqual(1.0); //works
            
            //Test Vector 3D in ShadeRec
-           expect(a.get_vector()).toEqual(vector); //works
+           //expect(a.get_vector()).toEqual(vector); //works
 
            //Test Normal in ShadeRec
-           expect(a.get_normal()).toEqual(n);
+           //expect(a.get_normal()).toEqual(n);
 
            //Test World in ShadeRec
            expect(a.get_world()).toEqual(w);
 
      });
+
 });

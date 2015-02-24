@@ -3,18 +3,35 @@
 /// <reference path="./../Utilities/RGBColor.ts" />
 /// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
+/// <reference path="./../Materials/Material.ts" />
+/// <reference path="./../Materials/Matte.ts" />
 
 module Tracejs {
     export class GeometricObject {
         color : RGBColor;
+        material : Material;
 
-        constructor(color : RGBColor) {
+        constructor(material ?: Material, color ?: RGBColor) {
             if (color) {
                 this.color = color;
             }
+            else {
+                this.color = new RGBColor(1.0, 0.0, 0.0); // Red (default).
+            }
+
+            if (material) {
+                this.material = material;
+            }
+            else {
+                this.material = new Matte(); // Matte (default).
+            }
         }
 
-        hit(ray : Ray) : boolean {
+        set_material(material : Material) {
+            this.material = material;
+        }
+
+        hit(ray : Ray, sr ?: ShadeRec) : boolean {
             return false;
         }
 

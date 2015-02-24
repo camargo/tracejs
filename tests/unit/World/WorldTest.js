@@ -1,4 +1,12 @@
 describe("World class", function() {
+    var world = {};
+    beforeEach(function() {
+        world = new Tracejs.World()
+    });
+    afterEach(function() {
+        world = {}
+    });
+
     it("constructor", function() {
 
         var defaultWorld = new Tracejs.World();
@@ -25,10 +33,18 @@ describe("World class", function() {
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(0,0,0));
         expect(world.vpzw()).toEqual(100);
 
-        world.bgColor(new Tracejs.RGBColor(1,2,3));
+        world.bgColor(1, 2, 3);
         world.vpzw(200);
         expect(world.bgColor()).toEqual(new Tracejs.RGBColor(1,2,3));
         expect(world.vpzw()).toEqual(200);
+    });
+
+    it("sphere API", function() {
+        // Need different testing method as the geometry will change a lot.
+        //expect(world.sphere()).toEqual(new Tracejs.Sphere(null, null, null, 200.0));
+
+        //world.sphere({x:1,y:2,z:3},5.0);
+        //expect(world.sphere()).toEqual(null, null, new Tracejs.Sphere(new Tracejs.Point3D(1,2,3), 5.0));
     });
 
     it("renderScene()", function() {
@@ -42,7 +58,7 @@ describe("World class", function() {
 
         // if sphere at origin, test that origin pixel is not black
         for (var i = 0; i < 4; i++) {
-            if (world[i].geo_sphere.get_center().get_x() === 0 && world[i].geo_sphere.get_center().get_y() === 0 && world[i].geo_sphere.get_center().get_z() === 0) {
+            if (world[i].objects[0].get_center().get_x() === 0 && world[i].objects[0].get_center().get_y() === 0 && world[i].objects[0].get_center().get_z() === 0) {
                 var hres = world[i].vp().getHres();
                 var vres = world[i].vp().getVres();
                 var json = world[i].renderScene();

@@ -30,10 +30,10 @@
             // this.addSphereButton();
 
             // create initial ViewPlane controller
-            this.addVpController();
+            //this.addVpController();
 
             // create initial bgColor controller
-            this.addBgColorController();
+            //this.addBgColorController();
 
             return this;
         };

@@ -6,16 +6,20 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
     <link rel="stylesheet" href="css/main.css" />
 
 
     <!-- JS -->
+    <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-select.js"></script>
 
     <!-- Tracejs -->
+    <script type="text/javascript" src="src/js/Utilities/Utils.js"></script>
     <script type="text/javascript" src="src/js/Utilities/Point3D.js"></script>
     <script type="text/javascript" src="src/js/Utilities/Point2D.js"></script>
     <script type="text/javascript" src="src/js/Utilities/Vector3D.js"></script>
@@ -23,20 +27,46 @@
     <script type="text/javascript" src="src/js/Utilities/Ray.js"></script>
     <script type="text/javascript" src="src/js/Utilities/RGBColor.js"></script>
     <script type="text/javascript" src="src/js/Utilities/ShadeRec.js"></script>
+
     <script type="text/javascript" src="src/js/Tracers/Tracer.js"></script>
     <script type="text/javascript" src="src/js/Tracers/SingleSphere.js"></script>
+    <script type="text/javascript" src="src/js/Tracers/RayCast.js"></script>
+
     <script type="text/javascript" src="src/js/GeometricObjects/GeometricObject.js"></script>
     <script type="text/javascript" src="src/js/GeometricObjects/Primitives/Sphere.js"></script>
+
     <script type="text/javascript" src="src/js/Samplers/Sampler.js"></script>
     <script type="text/javascript" src="src/js/Samplers/Regular.js"></script>
+    <script type="text/javascript" src="src/js/Samplers/MultiJittered.js"></script>
+
+    <script type="text/javascript" src="src/js/Cameras/Camera.js"></script>
+    <script type="text/javascript" src="src/js/Cameras/Pinhole.js"></script>
+    <script type="text/javascript" src="src/js/Cameras/Orthographic.js"></script>
+
+    <script type="text/javascript" src="src/js/Lights/Light.js"></script>
+    <script type="text/javascript" src="src/js/Lights/AmbientLight.js"></script>
+    <script type="text/javascript" src="src/js/Lights/DirectionalLight.js"></script>
+    <script type="text/javascript" src="src/js/Lights/PointLight.js"></script>
+
+    <script type="text/javascript" src="src/js/BRDFs/BRDF.js"></script>
+    <script type="text/javascript" src="src/js/BRDFs/Lambertian.js"></script>
+    <script type="text/javascript" src="src/js/BRDFs/GlossySpecular.js"></script>
+
+    <script type="text/javascript" src="src/js/Materials/Material.js"></script>
+    <script type="text/javascript" src="src/js/Materials/Matte.js"></script>
+    <script type="text/javascript" src="src/js/Materials/Phong.js"></script>
+
     <script type="text/javascript" src="src/js/World/ViewPlane.js"></script>
     <script type="text/javascript" src="src/js/World/World.js"></script>
-    <script type="text/javascript" src="js/GUI.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-</head>
-<body>
 
-    <div class="container page-container">
+    <script type="text/javascript" src="js/GUI/guiControllers.js"></script>
+    <script type="text/javascript" src="js/GUI/guiServices.js"></script>
+    <script type="text/javascript" src="js/GUI/guiDirectives.js"></script>
+    <script type="text/javascript" src="js/GUI/guiApp.js"></script>
+</head>
+<body ng-app="guiApp">
+
+    <div class="container page-container" ng-controller="MainController">
         <div class="row">
             <div class="col-md-12">
                 <h1>Trace.js</h1>
@@ -44,23 +74,67 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <canvas id="canvas" style="box-shadow: 0 0 3px 3px #888888; width: 100%">
+                <canvas id="canvas" width="512" height="512" style="box-shadow: 0 0 3px 3px #888888;">
                 </canvas>
             </div>
 
             <div class="col-md-4">
-                <button id="render-scene" class="btn btn-primary" style="margin: 0 auto 10px auto">Render</button>
-                <form id="gui-form">
+
+                <form name="guiForm" id="gui-form">
                 <div class="btn-group">
-                    <button class="btn btn-primary" type="submit">Save scene</button>
-                    <button class="btn btn-danger" type="reset">Reset scene</button>
+                    <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
+                    <button class="btn btn-danger" type="reset" ng-click="resetScene()">Reset scene</button>
                 </div>
+                <div class="rendering" ng-show="rendering">Rendering...</div>
+
                 <hr>
-                <div id="GUI"></div>
+
+                <!--<div id="GUI" ng-gui></div>-->
+
+                <div id="addelements" class="btn-group"></div>
+
+                <div id="viewplane-controller" class="gui-controller" ng-if="world.vp">
+                    <span>View Plane</span><br>
+                    <input type="number" placeholder="horizontal resolution" ng-model="world.vp.hres" required /><br>
+                    <input type="number" placeholder="vertical resolution" ng-model="world.vp.vres" required /><br>
+                    <input type="number" placeholder="pixel size" ng-model="world.vp.psize" required /><br>
+                </div>
+
+                <div id="bgcolor-controller" class="gui-controller" ng-if="world.bgColor">
+                    <span>Background color</span><br>
+                    <input type="color" ng-model="world.bgColorHex" ng-change="evalBgColor()">
+                </div>
+
+                <div id="sphere-controller" class="gui-controller" ng-if="world.sphere">
+                    <span>Sphere</span>
+                    <input type="number" placeholder="center x" ng-model="world.sphere.center.x" required /><br>
+                    <input type="number" placeholder="center y" ng-model="world.sphere.center.y" required /><br>
+                    <input type="number" placeholder="center z" ng-model="world.sphere.center.z" required /><br>
+                    <input type="number" placeholder="radius" ng-model="world.sphere.radius" required /><br>
+                </div>
+
+                    <div id="sampler-controller" class="gui-controller" ng-if="world.sampler">
+                        <span>Sampling</span>
+                        <select class="selectpicker" ng-model="world.sampler.type"
+                                ng-options="value for value in samplerOptions.type">
+                        </select>
+                        <select class="selectpicker" ng-model="world.sampler.num_samples"
+                                ng-options="value for value in samplerOptions.num_samples">
+                        </select>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+            // bootstrap-select
+            $('.selectpicker').selectpicker({
+                style: 'btn-primary',
+                width: '150px'
+            });
+        })
+    </script>
 </body>
 </html>

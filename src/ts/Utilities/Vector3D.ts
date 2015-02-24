@@ -48,6 +48,12 @@ module Tracejs {
                                 this.z - v.z);
         }
 
+        div(scalar : number) : Vector3D  {
+            return new Vector3D(this.x / scalar,
+                                this.y / scalar,
+                                this.z / scalar);
+        }
+
         mult(scalar : number) : Vector3D {
             return new Vector3D(this.x * scalar, 
                                 this.y * scalar, 
@@ -87,15 +93,28 @@ module Tracejs {
 
         normalize() : void{
             var mag = this.length();
-            this.x /= mag;
-            this.y /= mag;
-            this.z /= mag;
+	        // added this to account for divide by zero (running into NaN probs)
+    	    if(mag != 0) {
+                this.x /= mag;
+                this.y /= mag;
+                this.z /= mag;
+    	    }
         }
         
         distance_from(v : Vector3D) : number {
             return Math.sqrt((this.x - v.x) * (this.x - v.x) +
                              (this.y - v.y) * (this.y - v.y) +
                              (this.z - v.z) * (this.z - v.z));
+        }
+
+	    exp(v : Vector3D) : Vector3D {
+            return new Vector3D(Math.pow(this.x, v.x),
+                                Math.pow(this.y, v.y),
+                                Math.pow(this.z, v.z));
+	    }
+
+        negate() : Vector3D {
+            return new Vector3D(-this.x, -this.y, -this.z);
         }
     }
 }
