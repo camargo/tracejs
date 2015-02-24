@@ -27,8 +27,16 @@ describe("GUITest", function() {
                 }
             };
 
+            var $timeout = function(callback, timeout) {
+                while (timeout) {
+                    timeout--
+                }
+                callback()
+            };
+
             $provide.value('worldService', worldService);
-            $provide.value('canvasService', canvasService)
+            $provide.value('canvasService', canvasService);
+            $provide.value('$timeout', $timeout)
         }));
 
         var scope,
