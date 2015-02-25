@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
         'js/underscore-min.js',
         'js/angular.min.js',
-        'js/angular-mocks.js',
+        'js/angular*.js',
         'src/js/Tracers/Tracer.js',
         'src/js/GeometricObjects/GeometricObject.js',
         'src/js/Lights/Light.js',

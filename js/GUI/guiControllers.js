@@ -7,9 +7,10 @@
     angular.module('guiControllers', [])
         .controller('MainController', [
             '$scope',
+            '$timeout',
             'worldService',
             'canvasService',
-            function($scope, worldService, canvasService) {
+            function($scope, $timeout, worldService, canvasService) {
 
                 /**
                  * private variables
@@ -21,7 +22,6 @@
                  * scope objects
                  */
                 $scope.rendering = false;
-
                 $scope.samplerOptions = {
                     type : [
                         'regular',
@@ -34,7 +34,28 @@
                         16
                     ]
                 };
+                $scope.materialOptions = {
+                    type : [
+                        'phong',
+                        'matte'
+                    ]
+                };
+                $scope.lightOptions = {
+                    type : [
+                        'point',
+                        'directional'
+                    ]
+                };
+                $scope.cameraOptions = {
+                    type : [
+                        'pinhole',
+                        'orthographic'
+                    ]
+                };
 
+                /**
+                 * world data model
+                 */
                 $scope.world = {
                     vp: {
                         hres: 512,
@@ -47,18 +68,67 @@
                         g: 0,
                         b: 0
                     },
-                    sphere : {
-                        center: {
-                            x: 0,
-                            y: 0,
-                            z: 0
-                        },
-                        radius: 200
-                    },
                     sampler : {
                         type : $scope.samplerOptions.type[1],
                         num_samples : $scope.samplerOptions.num_samples[2]
-                    }
+                    },
+                    camera : {
+                        type : $scope.cameraOptions.type[0]
+                    },
+                    light : [
+                        {
+                            type : $scope.lightOptions.type[1],
+                            location : {
+                                x : 300,
+                                y : 300,
+                                z : 300
+                            },
+                            colorHex : "#010101",
+                            color : {
+                                r: 1,
+                                g: 1,
+                                b: 1
+                            }
+                        }
+                    ],
+                    object : [
+                        {
+                            type : 'sphere',
+                            center: {
+                                x: -100,
+                                y: -100,
+                                z: 150
+                            },
+                            radius: 100,
+                            colorHex : "#FF0000",
+                            color : {
+                                r : 255,
+                                g : 0,
+                                b : 0
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[0]
+                            }
+                        },
+                        {
+                            type : 'sphere',
+                            center : {
+                                x : 50,
+                                y : 50,
+                                z : 0
+                            },
+                            radius : 100,
+                            colorHex : "#D52828",
+                            color : {
+                                r : 213,
+                                g : 40,
+                                b : 40
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[1]
+                            }
+                        }
+                    ]
                 };
 
                 $scope.renderScene = function () {
@@ -89,14 +159,16 @@
                     self.world.vp.psize = 1
                 };
 
-                $scope.evalBgColor = function() {
+                $scope.postColor = function(hex, colorObj) {
                     var self = this;
+                    debugger;
 
                     //self.world.bgColor = self.hexToRgb(self.world.bgColorHex)
-                    _.map(self.hexToRgb(self.world.bgColorHex), function(value, key) {
-                        self.world.bgColor[key] = value
+                    _.map(self.hexToRgb(hex), function(value, key) {
+                        colorObj[key] = value
                     })
                 };
+
 
                 /**
                  * helper functions
@@ -109,6 +181,21 @@
                         g: parseInt(result[2], 16),
                         b: parseInt(result[3], 16)
                     } : null;
+                };
+
+                $scope.capitalize = function(word) {
+                    return word.charAt(0).toUpperCase() + word.slice(1)
+                };
+
+                $scope.bootstrapSelect = function() {
+                    // "dumb" jquery bootstrap
+                    $timeout(function() {
+                        // bootstrap-select
+                        $('.selectpicker').selectpicker({
+                            style: 'btn-primary',
+                            width: '150px'
+                        });
+                    }, 100)
                 }
 
             }])

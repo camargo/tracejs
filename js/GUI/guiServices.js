@@ -27,8 +27,10 @@
                 renderScene : function($world, params) {
                     $world.vp(params.vp.hres, params.vp.vres, params.vp.psize);
                     $world.bgColor(params.bgColor.r, params.bgColor.g, params.bgColor.b);
-                    //$world.sphere(params.sphere.center, params.sphere.radius);
+                    $world.object(params.object);
                     $world.sampler(params.sampler.type, params.sampler.num_samples);
+                    $world.light(params.light);
+                    $world.camera(params.camera);
 
                     return $world.renderScene();
                 }

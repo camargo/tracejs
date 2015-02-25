@@ -21,11 +21,22 @@ describe("GUITest", function() {
                     return {
                         key : 'value'
                     }
+                },
+                renderScene : function() {
+                    return
                 }
             };
 
+            var $timeout = function(callback, timeout) {
+                while (timeout) {
+                    timeout--
+                }
+                callback()
+            };
+
             $provide.value('worldService', worldService);
-            $provide.value('canvasService', canvasService)
+            $provide.value('canvasService', canvasService);
+            $provide.value('$timeout', $timeout)
         }));
 
         var scope,
@@ -47,7 +58,7 @@ describe("GUITest", function() {
 
         it("evalBgColor()", function () {
             scope.world.bgColorHex = "#646E78";
-            scope.evalBgColor();
+            scope.postColor(scope.world.bgColorHex, scope.world.bgColor);
             expect(scope.world.bgColor.r).toEqual(100);
             expect(scope.world.bgColor.g).toEqual(110);
             expect(scope.world.bgColor.b).toEqual(120)
@@ -83,11 +94,15 @@ describe("GUITest", function() {
             $provide.value('$window', $window)
         }));
 
-        it("canvasService", inject(function (canvasService) {
+        it("canvasService", inject(function(canvasService) {
             expect(canvasService.getCanvas).toBeDefined();
 
             var $canvas = canvasService.getCanvas();
             expect($canvas).toBeDefined();
+        }));
+
+        it("worldService", inject(function(worldService) {
+
         }))
 
     })

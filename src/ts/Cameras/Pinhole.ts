@@ -14,10 +14,17 @@ module Tracejs {
         d : number;
         zoom : number;
 
-        constructor() {
-            this.d = 300;
-            this.zoom = 1;
+        constructor(d ?: number) {
             super();
+
+            if (d) {
+                this.d = d
+            }
+            else {
+                this.d = 300
+            }
+
+            this.zoom = 1;
         }
 
         ray_direction(p : Point2D) : Vector3D {
