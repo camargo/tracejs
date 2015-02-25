@@ -45,7 +45,7 @@ module Tracejs {
         lights :  any; // some methods not inherited (set_color, etc)
         ambient_ptr : AmbientLight;
 
-        camera : Camera;
+        world_camera : Camera;
 
         constructor(background_color?: RGBColor) {
             this.view_plane = new ViewPlane(); // Create default ViewPlane.
@@ -71,8 +71,8 @@ module Tracejs {
 
             this.ambient_ptr = new AmbientLight(false, 1.0, new RGBColor(1.0, 1.0, 1.0));
 
-            this.camera = new Pinhole();
-            //this.camera = new Orthographic();
+            this.world_camera = new Pinhole();
+            //this.world_camera = new Orthographic();
 
             if (background_color) {
                 this.background_color = background_color;
@@ -92,7 +92,7 @@ module Tracejs {
          * @returns {string}
          */
         renderScene(fixture?: boolean, callback ?: any) : any {
-            this.camera.render_scene(this);
+            this.world_camera.render_scene(this);
 
             return JSON.stringify(this.view_plane_matrix);
         }
@@ -328,6 +328,23 @@ module Tracejs {
                     }
             }
             return this.lights
+        }
+
+        /**
+         * camera()
+         * @param camera
+         * @returns {Camera}
+         */
+        camera(camera ?: any) : Camera {
+            if (camera) {
+                if (camera.type === 'pinhole') {
+                    this.world_camera = new Pinhole()
+                }
+                else if (camera.type === 'orthographic') {
+                    this.world_camera = new Orthographic()
+                }
+            }
+            return this.world_camera
         }
     }
 }

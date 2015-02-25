@@ -1,3 +1,10 @@
+<div id="camera-controller" class="gui-controller" ng-if="world.camera">
+    <span>Camera</span><br>
+    <select class="selectpicker" ng-model="world.camera.type"
+            ng-options="value for value in cameraOptions.type">
+    </select>
+</div>
+
 <div id="viewplane-controller" class="gui-controller" ng-if="world.vp">
     <span>View Plane</span><br>
     <input type="number" placeholder="horizontal resolution" ng-model="world.vp.hres" required /><br>

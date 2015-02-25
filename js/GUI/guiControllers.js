@@ -46,6 +46,12 @@
                         'directional'
                     ]
                 };
+                $scope.cameraOptions = {
+                    type : [
+                        'pinhole',
+                        'orthographic'
+                    ]
+                };
 
                 /**
                  * world data model
@@ -65,6 +71,9 @@
                     sampler : {
                         type : $scope.samplerOptions.type[1],
                         num_samples : $scope.samplerOptions.num_samples[2]
+                    },
+                    camera : {
+                        type : $scope.cameraOptions.type[0]
                     },
                     light : [
                         {
@@ -91,11 +100,11 @@
                                 z: 150
                             },
                             radius: 100,
-                            colorHex : "#48F342",
+                            colorHex : "#FF0000",
                             color : {
-                                r : 72,
-                                g : 243,
-                                b : 66
+                                r : 255,
+                                g : 0,
+                                b : 0
                             },
                             material : {
                                 type : $scope.materialOptions.type[0]

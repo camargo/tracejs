@@ -30,6 +30,7 @@
                     $world.object(params.object);
                     $world.sampler(params.sampler.type, params.sampler.num_samples);
                     $world.light(params.light);
+                    $world.camera(params.camera);
 
                     return $world.renderScene();
                 }
