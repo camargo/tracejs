@@ -1,3 +1,11 @@
+<div class="add-item-controller">
+    <span>Add a light: </span>
+    <select class="selectpicker" ng-model="world.addLight"
+            ng-options="value for value in lightTypes.type"></select>
+    <button class="btn btn-primary" ng-click="addToWorld('light', world.addLight)"><i class="fa fa-plus"></i></button>
+    <br><br>
+</div>
+
 <div id="light-controller" class="gui-controller" ng-if="world.light" ng-repeat="light in world.light">
     <span>{{capitalize(light.type)}} Light</span>
     <br>

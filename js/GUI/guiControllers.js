@@ -53,6 +53,17 @@
                         'orthographic'
                     ]
                 };
+                $scope.objectTypes = {
+                    type : [
+                        'sphere'
+                    ]
+                };
+                $scope.lightTypes = {
+                    type : [
+                        'directional',
+                        'point'
+                    ]
+                };
 
                 /**
                  * world data model
@@ -76,6 +87,7 @@
                     camera : {
                         type : $scope.cameraOptions.type[0]
                     },
+                    addLight : $scope.lightTypes.type[0],
                     light : [
                         {
                             type : $scope.lightOptions.type[1],
@@ -92,6 +104,7 @@
                             }
                         }
                     ],
+                    addObject : $scope.objectTypes.type[0],
                     object : [
                         {
                             type : 'sphere',
@@ -170,6 +183,12 @@
                         colorObj[key] = value
                     })
                 };
+
+                $scope.addToWorld = function(identifier, type) {
+                    this.world[identifier].push(worldService.newWorldComponent(identifier, type, this));
+                    this.bootstrapSelect();
+                    debugger;
+                }
 
 
                 /**

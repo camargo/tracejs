@@ -30,12 +30,13 @@
 
 .gui-controller {
     display: inline-block;
-    width: 40%;
     margin: 10px;
+    padding: 5px 10px 10px 10px;
     text-align: left;
+    box-shadow: 0 0 3px 3px #888888;
 }
 
-.gui-controller > span {
+.gui-controller > span, .add-item-controller > span {
     font-size: large;
 }
 

@@ -8,7 +8,6 @@
         .factory('worldService', function($window) {
 
             var $Tracejs = {};
-
             if ($window.Tracejs) {
                 $Tracejs = $window.Tracejs
             }
@@ -17,7 +16,49 @@
                 return undefined
             }
 
+            // World Component factory
+            var worldComponent = function(identifier, $scope) {
+                    this.type = 'base';
+                    this.colorHex = '#FFFFFF';
+                    this.color = {};
+                    if (identifier === 'object') {
+                        this.colorHex = '#7D0000';
+                        this.color.r = 0.5;
+                        this.color.g = this.color.b = 0;
+                        this.center = {
+                            x:0,
+                            y:0,
+                            z:0
+                        };
+                        this.material = {
+                            type : $scope.materialOptions.type[0]
+                        }
+                    }
+                    else if (identifier === 'light') {
+                        this.colorHex = '#FFFFFF';
+                        this.color.r = this.color.g = this.color.b = 1;
+                        this.location = {
+                            x : -200,
+                            y : 200,
+                            z : -200
+                        }
+                    }
+                };
+
+            worldComponent.prototype.create = function(type) {
+                this.type = type;
+                if (this.type === 'sphere') {
+                    this.radius = 100;
+                }
+                debugger;
+                return this;
+            };
+
             return {
+                newWorldComponent : function(identifier, type, $scope) {
+                    var comp = new worldComponent(identifier, $scope);
+                    return comp.create(type)
+                },
                 getTracejs : function () {
                     return $Tracejs
                 },

@@ -1,5 +1,9 @@
 <div class="add-item-controller">
-
+    <span>Add an object: </span>
+    <select class="selectpicker" ng-model="world.addObject"
+            ng-options="value for value in objectTypes.type"></select>
+    <button type="submit" class="btn btn-primary" ng-click="addToWorld('object', world.addObject)"><i class="fa fa-plus"></i></button>
+    <br><br>
 </div>
 
 <div id="sphere-controller" class="gui-controller" ng-repeat="object in world.object">
