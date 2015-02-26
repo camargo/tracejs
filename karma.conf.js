@@ -26,7 +26,7 @@ module.exports = function(config) {
 	    'src/js/Utilities/Vector3D.js',
         'src/js/BRDFs/BRDF.js',
         'src/js/**/*.js',
-        'js/gui/*.js',
+        'js/GUI/*.js',
         'tests/unit/**/*.js'
     ],
 
