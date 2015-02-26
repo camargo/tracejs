@@ -1,30 +1,42 @@
 // Trace.js - World.ts
 
 /// <reference path="./ViewPlane.ts" />
+
 /// <reference path="./../Utilities/RGBColor.ts" />
-/// <reference path="./../Tracers/SingleSphere.ts" />
-/// <reference path="./../Tracers/RayCast.ts" />
 /// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/Point3D.ts" />
 /// <reference path="./../Utilities/Point2D.ts" />
 /// <reference path="./../Utilities/Vector3D.ts" />
 /// <reference path="./../Utilities/Utils.ts" />
+
 /// <reference path="./../GeometricObjects/Primitives/Sphere.ts" />
+
 /// <reference path="./../Samplers/Sampler.ts" />
 /// <reference path="./../Samplers/Regular.ts" />
+/// <reference path="./../Samplers/MultiJittered.ts" />
+
+/// <reference path="./../Tracers/SingleSphere.ts" />
+/// <reference path="./../Tracers/RayCast.ts" />
+/// <reference path="./../Tracers/Whitted.ts" />
+
 /// <reference path="./../Cameras/Camera.ts" />
 /// <reference path="./../Cameras/Orthographic.ts" />
 /// <reference path="./../Cameras/Pinhole.ts" />
+
 /// <reference path="./../Lights/Light.ts" />
 /// <reference path="./../Lights/AmbientLight.ts" />
 /// <reference path="./../Lights/DirectionalLight.ts" />
 /// <reference path="./../Lights/PointLight.ts" />
+
 /// <reference path="./../BRDFs/BRDF.ts" />
 /// <reference path="./../BRDFs/Lambertian.ts" />
 /// <reference path="./../BRDFs/GlossySpecular.ts" />
+/// <reference path="./../BRDFs/PerfectSpecular.ts" />
+
 /// <reference path="./../Materials/Material.ts" />
 /// <reference path="./../Materials/Matte.ts" />
 /// <reference path="./../Materials/Phong.ts" />
+/// <reference path="./../Materials/Reflective.ts" />
 
 module Tracejs {
     export class World {
@@ -37,6 +49,8 @@ module Tracejs {
         ambient_brdf : Lambertian;
         diffuse_brdf : Lambertian;
         specular_brdf : GlossySpecular;
+        reflective_brdf : PerfectSpecular;
+
         material : Material;
 
         objects : Sphere[]; // TODO : assume for now all objects are spheres
@@ -55,14 +69,15 @@ module Tracejs {
             this.ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
             this.diffuse_brdf = new Lambertian(1.0, new RGBColor(0.4, 0.9, 0.1));
             this.specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
+            this.reflective_brdf = new PerfectSpecular(0.75, new RGBColor(0.1, 0.1, 0.1));
 
-            this.material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf);
+            //this.material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf);
 
             this.objects = [];
             this.objects[0] = new Sphere(this.material, null, new Point3D(-50.0, 0.0, 0.0), 100.0); // for legacy testing purposes
             //this.objects[1] = new Sphere(this.material, null, new Point3D(100.0, -80.0, 200.0), 100.0);
 
-            this.tracer = new RayCast(this);
+            this.tracer = new Whitted(this);
 
             this.lights = [];
             this.lights[0] = new PointLight(false, 1.0, 
@@ -218,12 +233,15 @@ module Tracejs {
                                 else if (object[i].material.type === 'phong') {
                                     this.objects[i].set_material(new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf))
                                 }
+                                else if (object[i].material.type === 'reflective') {
+                                    this.objects[i].set_material(new Reflective(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf, this.reflective_brdf));
+                                }
                             }
                         }
                         else { // else create a new object at this index
                             // set defaults
                             var material = this.material,
-                                color =  new RGBColor(255,255,255),
+                                color =  new RGBColor(1,1,1),
                                 center = new Point3D(0,0,0),
                                 radius = 50;
 
@@ -242,6 +260,9 @@ module Tracejs {
                                 }
                                 else if (object[i].material.type === 'phong') {
                                     material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf)
+                                }
+                                else if (object[i].material.type === 'reflective') {
+                                    material = new Reflective(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf, this.reflective_brdf);
                                 }
                             }
 

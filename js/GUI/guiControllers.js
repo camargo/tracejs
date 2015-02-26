@@ -37,7 +37,8 @@
                 $scope.materialOptions = {
                     type : [
                         'phong',
-                        'matte'
+                        'matte',
+                        'reflective'
                     ]
                 };
                 $scope.lightOptions = {
@@ -64,9 +65,9 @@
                     },
                     bgColorHex: "#000000",
                     bgColor: {
-                        r: 0,
-                        g: 0,
-                        b: 0
+                        r: 0.5,
+                        g: 0.5,
+                        b: 0.5
                     },
                     sampler : {
                         type : $scope.samplerOptions.type[1],
@@ -97,7 +98,7 @@
                             center: {
                                 x: -100,
                                 y: -100,
-                                z: 150
+                                z: 500
                             },
                             radius: 100,
                             colorHex : "#FF0000",
@@ -107,17 +108,17 @@
                                 b : 0
                             },
                             material : {
-                                type : $scope.materialOptions.type[0]
+                                type : $scope.materialOptions.type[1]
                             }
                         },
                         {
                             type : 'sphere',
                             center : {
-                                x : 50,
-                                y : 50,
+                                x : 0,
+                                y : 0,
                                 z : 0
                             },
-                            radius : 100,
+                            radius : 250,
                             colorHex : "#D52828",
                             color : {
                                 r : 213,
@@ -125,7 +126,7 @@
                                 b : 40
                             },
                             material : {
-                                type : $scope.materialOptions.type[1]
+                                type : $scope.materialOptions.type[2]
                             }
                         }
                     ]
