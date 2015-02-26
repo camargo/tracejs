@@ -59,7 +59,7 @@
                  */
                 $scope.world = {
                     vp: {
-                        hres: 512,
+                        hres: 800,
                         vres: 512,
                         psize: 1
                     },
@@ -155,8 +155,9 @@
                 $scope.resetScene = function() {
                     var self = this;
 
-                    canvasService.setCanvasDimensions(self.$canvas, '512', '512');
-                    self.world.vp.hres = self.world.vp.vres = 512;
+                    canvasService.setCanvasDimensions(self.$canvas, '800', '512');
+                    self.world.vp.hres = 800;
+                    self.world.vp.vres = 512;
                     self.world.vp.psize = 1
                 };
 
