@@ -15,9 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'js/underscore-min.js',
-        'js/angular.min.js',
-        'js/angular*.js',
+        'js/libs/underscore-min.js',
+        'js/libs/angular.min.js',
+        'js/libs/angular*.js',
         'src/js/Tracers/Tracer.js',
         'src/js/GeometricObjects/GeometricObject.js',
         'src/js/Lights/Light.js',
@@ -26,7 +26,7 @@ module.exports = function(config) {
 	    'src/js/Utilities/Vector3D.js',
         'src/js/BRDFs/BRDF.js',
         'src/js/**/*.js',
-        'js/GUI/*.js',
+        'js/gui/*.js',
         'tests/unit/**/*.js'
     ],
 
