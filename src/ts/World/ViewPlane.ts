@@ -44,7 +44,7 @@ module Tracejs {
                 this.max_depth = max_depth;
             }
             else {
-                this.max_depth = 1;
+                this.max_depth = 5;
             }
         }
 
