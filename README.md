@@ -1,6 +1,8 @@
 # trace.js<br>
 A Browser Based Ray Tracer
 <br><br>
+Demo: http://camargo.github.io/tracejs/#/
+<br><br>
 Scrum Board: https://trello.com/b/hDYuaHtJ/tracejs-scrum-board
 <br><br>
 Build Instructions (complete in order):
