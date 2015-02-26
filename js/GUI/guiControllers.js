@@ -187,8 +187,11 @@
                 $scope.addToWorld = function(identifier, type) {
                     this.world[identifier].push(worldService.newWorldComponent(identifier, type, this));
                     this.bootstrapSelect();
-                    debugger;
-                }
+                };
+
+                $scope.deleteFromWorld = function(identifier, arraymember) {
+                    this.world[identifier].splice(this.world[identifier].indexOf(arraymember), 1)
+                };
 
 
                 /**

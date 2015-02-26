@@ -8,6 +8,7 @@
 
 <div id="light-controller" class="gui-controller" ng-if="world.light" ng-repeat="light in world.light">
     <span>{{capitalize(light.type)}} Light</span>
+    <button class="btn-danger delete pull-right" ng-click="deleteFromWorld('light', light)"><i class="fa fa-minus-circle"></i></button>
     <br>
     <select class="selectpicker" ng-model="light.type"
             ng-options="value for value in lightOptions.type"></select>

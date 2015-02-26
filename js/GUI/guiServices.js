@@ -50,7 +50,6 @@
                 if (this.type === 'sphere') {
                     this.radius = 100;
                 }
-                debugger;
                 return this;
             };
 

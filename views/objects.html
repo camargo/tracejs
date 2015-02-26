@@ -8,6 +8,7 @@
 
 <div id="sphere-controller" class="gui-controller" ng-repeat="object in world.object">
     <span>{{capitalize(object.type)}}</span>
+    <button class="btn-danger delete pull-right" ng-click="deleteFromWorld('object', object)"><i class="fa fa-minus-circle"></i></button>
     <br>
     <table>
     <tr><td>X:</td><td><input type="number" placeholder="center x" ng-model="object.center.x" required /></td></tr>

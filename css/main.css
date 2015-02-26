@@ -21,6 +21,11 @@
     border: 2px solid #000000;
 }
 
+.btn-danger.delete {
+    border : 0px;
+    border-radius : 50%;
+}
+
 .btn-primary:focus, .btn-primary:hover, .btn-primary:active,
 .open .dropdown-toggle.btn-primary, .nav li a:hover, .nav li a.active {
     background: #000000; !important;
