@@ -67,7 +67,7 @@ module Tracejs {
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
             this.ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
-            this.diffuse_brdf = new Lambertian(1.0, new RGBColor(0.4, 0.9, 0.1));
+            this.diffuse_brdf = new Lambertian(1.0, new RGBColor(0.9, 0.9, 0.0));
             this.specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
             this.reflective_brdf = new PerfectSpecular(0.75, new RGBColor(0.1, 0.1, 0.1));
 
