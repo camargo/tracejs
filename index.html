@@ -2,62 +2,34 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>tracejs</title>
+    <title>Trace.js</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-select.css" />
-    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />-->
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/tracejs.css" />
+
+    <!-- Fonts (Through CDN for now). -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- JS -->
-    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/angular-route.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/underscore-min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular.min.js"></script>
+    <script type="text/javascript" src="js/libs/angular-route.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/libs/underscore-min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap-select.js"></script>
 
-    <!-- Tracejs -->
-    <script type="text/javascript" src="src/js/Utilities/Utils.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/Point3D.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/Point2D.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/Vector3D.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/Normal.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/Ray.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/RGBColor.js"></script>
-    <script type="text/javascript" src="src/js/Utilities/ShadeRec.js"></script>
+    <!-- Trace.js (Minified). -->
+    <script type="text/javascript" src="dist/trace.js"></script>
 
-    <script type="text/javascript" src="src/js/Tracers/Tracer.js"></script>
-    <script type="text/javascript" src="src/js/Tracers/SingleSphere.js"></script>
-    <script type="text/javascript" src="src/js/Tracers/RayCast.js"></script>
-
-    <script type="text/javascript" src="src/js/GeometricObjects/GeometricObject.js"></script>
-    <script type="text/javascript" src="src/js/GeometricObjects/Primitives/Sphere.js"></script>
-
-    <script type="text/javascript" src="src/js/Samplers/Sampler.js"></script>
-    <script type="text/javascript" src="src/js/Samplers/Regular.js"></script>
-    <script type="text/javascript" src="src/js/Samplers/MultiJittered.js"></script>
-
-    <script type="text/javascript" src="src/js/Cameras/Camera.js"></script>
-    <script type="text/javascript" src="src/js/Cameras/Pinhole.js"></script>
-    <script type="text/javascript" src="src/js/Cameras/Orthographic.js"></script>
-
-    <script type="text/javascript" src="src/js/Lights/Light.js"></script>
-    <script type="text/javascript" src="src/js/Lights/AmbientLight.js"></script>
-    <script type="text/javascript" src="src/js/Lights/DirectionalLight.js"></script>
-    <script type="text/javascript" src="src/js/Lights/PointLight.js"></script>
-
-    <script type="text/javascript" src="src/js/BRDFs/BRDF.js"></script>
-    <script type="text/javascript" src="src/js/BRDFs/Lambertian.js"></script>
-    <script type="text/javascript" src="src/js/BRDFs/GlossySpecular.js"></script>
-
-    <script type="text/javascript" src="src/js/Materials/Material.js"></script>
-    <script type="text/javascript" src="src/js/Materials/Matte.js"></script>
-    <script type="text/javascript" src="src/js/Materials/Phong.js"></script>
-
-    <script type="text/javascript" src="src/js/World/ViewPlane.js"></script>
-    <script type="text/javascript" src="src/js/World/World.js"></script>
+    <!-- Trace.js (Debug, not minified). -->
+    <!--<script type="text/javascript" src="dist/trace.debug.js"></script>-->
 
     <script type="text/javascript" src="js/GUI/guiControllers.js"></script>
     <script type="text/javascript" src="js/GUI/guiServices.js"></script>
@@ -65,21 +37,40 @@
     <script type="text/javascript" src="js/GUI/guiApp.js"></script>
 </head>
 <body ng-app="guiApp">
-
-    <div class="container page-container" ng-controller="MainController">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Trace.js</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="./#/">Trace.js</a>
             </div>
-        </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="./#/">Tracer</a>
+                    </li>
+                </ul>
+            </div> <!-- /.navbar-collapse -->
+        </div> <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container" ng-controller="MainController">
         <div class="row">
-            <div class="col-md-8">
-                <canvas id="canvas" width="512" height="512" style="box-shadow: 0 0 3px 3px #888888;">
+            <div class="col-12" align="center">
+                <canvas id="canvas" width="800" height="512" style="box-shadow: 0 0 3px 3px #888888;">
                 </canvas>
             </div>
-
-            <div class="col-md-4 right-sidebar">
-
+            <br>
+            <div class="col-12" align="center">
                 <div class="controls-wrapper">
                     <div class="btn-group">
                         <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
@@ -90,23 +81,24 @@
 
                 <div class="settings-wrapper">
                     <ul class="nav nav-tabs">
-                        <li><a class="active" ng-href="#/scene">General</a></li>
-                        <li><a ng-href="#/objects">Objects</a></li>
-                        <li><a ng-href="#/lights">Lights</a></li>
+                        <li><a class="active" ng-href="./#/scene">General</a></li>
+                        <li><a ng-href="./#/objects">Objects</a></li>
+                        <li><a ng-href="./#/lights">Lights</a></li>
                     </ul>
                 </div>
 
                 <ng-view onload="bootstrapSelect()"></ng-view>
-
             </div>
         </div>
     </div>
 
-<!-- bootstrap nav -->
-<script>
+    <br><br>
+
+    <!-- bootstrap nav -->
+    <script>
         $('ul.nav.nav-tabs li a').click(function() {
             $(this).addClass('active').parent().siblings().children().removeClass('active');
         })
-</script>
+    </script>
 </body>
 </html>

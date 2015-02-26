@@ -24,7 +24,7 @@ module Tracejs {
                 this.cr = cr;
             }
             else {
-                this.cr = new RGBColor(0.0, 0.0, 0.0);
+                this.cr = new RGBColor(1.0, 1.0, 1.0);
             }
         }
 
@@ -33,15 +33,20 @@ module Tracejs {
             return new RGBColor(0.0 ,0.0, 0.0); //return Black
         }
 
-        fSample(sr : ShadeRec, wi : Vector3D, wo : Vector3D) : RGBColor{
-
+        sample_f(sr : ShadeRec, wo : Vector3D, wi : Vector3D) : RGBColor {
             var n_dot_wo : number = sr.normal.dot_vec(wo); //n_dot_wi = sr.normal * wo;
-            var n : Normal = sr.normal.mult_right(n_dot_wo); // sr.normal * n_dot_wo
-            n = Normal.mult_left(2.0, n); // 2.0 * sr.normal
-            wi = Normal.add_vec_norm(wo.negate(), n); //wi = -wo + 2.0 * sr.normal * wo
+            
+            n_dot_wo = n_dot_wo * 2;
 
-            //Swapped cr and kr from book, should not matter. 
-            return(this.cr.scale(this.kr).div(sr.normal.dot_vec(wi))); //return(cr * kr / (sr.normal * wi))
+            var n : Normal = sr.normal.mult_right(n_dot_wo); // sr.normal * n_dot_wo
+            
+            var wi_tmp : Vector3D = Normal.add_vec_norm(wo.negate(), n); //wi = -wo + 2.0 * sr.normal * wo
+
+            wi.x = wi_tmp.x;
+            wi.y = wi_tmp.y;
+            wi.z = wi_tmp.z;
+
+            return this.cr.scale(this.kr).div(sr.normal.dot_vec(wi)); //return(cr * kr / (sr.normal * wi))
         }
 
         rho(sr : ShadeRec, wo : Vector3D) : RGBColor{

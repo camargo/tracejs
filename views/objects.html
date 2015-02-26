@@ -1,12 +1,18 @@
 <div class="add-item-controller" ng-add-item="object"></div>
 <div id="sphere-controller" class="gui-controller" ng-repeat="object in world.object">
     <span>{{capitalize(object.type)}}</span>
-    <input type="number" placeholder="center x" ng-model="object.center.x" required /><br>
-    <input type="number" placeholder="center y" ng-model="object.center.y" required /><br>
-    <input type="number" placeholder="center z" ng-model="object.center.z" required /><br>
-    <input type="number" placeholder="radius" ng-model="object.radius" required /><br>
-    Color: <input type="color" ng-model="object.colorHex" ng-change="postColor(object.colorHex,object.color)" required /><br>
-    Material<br>
+    <br>
+    <br>
+    X: <input type="number" placeholder="center x" ng-model="object.center.x" required /><br>
+    Y: <input type="number" placeholder="center y" ng-model="object.center.y" required /><br>
+    Z: <input type="number" placeholder="center z" ng-model="object.center.z" required /><br>
+    R: <input type="number" placeholder="radius" ng-model="object.radius" required /><br>
+    <br>
+    Color: <input type="color" ng-model="object.colorHex" ng-change="postColor(object.colorHex,object.color)" required />
+    <br>
+    <br>
+    Material
+    <br>
     <select class="selectpicker" ng-model="object.material.type"
             ng-options="value for value in materialOptions.type"></select>
 </div>

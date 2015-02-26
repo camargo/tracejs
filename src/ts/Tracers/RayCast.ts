@@ -1,11 +1,11 @@
 // Trace.js - RayCast.ts
 
-/// <reference path="../Tracers/Tracer.ts" />
-/// <reference path="../Utilities/Ray.ts" />
+/// <reference path="./Tracer.ts" />
+/// <reference path="./../Utilities/Ray.ts" />
 /// <reference path="./../Utilities/RGBColor.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
-/// <reference path="../GeometricObjects/GeometricObject.ts" />
-/// <reference path="../GeometricObjects/Primitives/Sphere.ts" />
+/// <reference path="./../GeometricObjects/GeometricObject.ts" />
+/// <reference path="./../GeometricObjects/Primitives/Sphere.ts" />
 
 module Tracejs {
     export class RayCast extends Tracer {
