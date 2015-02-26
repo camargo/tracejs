@@ -108,7 +108,7 @@
                                 b : 0
                             },
                             material : {
-                                type : $scope.materialOptions.type[1]
+                                type : $scope.materialOptions.type[0]
                             }
                         },
                         {
