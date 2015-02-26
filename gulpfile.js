@@ -1,7 +1,9 @@
 // gulpfile.js
 
 var gulp = require('gulp');
-var ts = require('gulp-typescript'); // (https://github.com/ivogabe/gulp-typescript)
+var ts = require('gulp-typescript'); // https://github.com/ivogabe/gulp-typescript
+var concat = require('gulp-concat'); // https://github.com/wearefractal/gulp-concat
+var uglify = require('gulp-uglify'); // https://www.npmjs.com/package/gulp-uglify
 
 var tsProject = { declarationFiles: true,
                   noExternalResolve: false,
@@ -67,6 +69,38 @@ gulp.task('ts-to-js-materials', function() {
                .pipe(gulp.dest('./src/js/Materials/'));
 });
 
+var fileList = ['./src/js/Utilities/*.js', 
+                   './src/js/Tracers/Tracer.js',
+                   './src/js/Tracers/*.js',
+                   './src/js/GeometricObjects/*.js',
+                   './src/js/GeometricObjects/Primitives/*.js',
+                   './src/js/Samplers/Sampler.js',
+                   './src/js/Samplers/*.js',
+                   './src/js/Cameras/Camera.js',
+                   './src/js/Cameras/*.js',
+                   './src/js/Lights/Light.js',
+                   './src/js/Lights/*.js',
+                   './src/js/BRDFs/BRDF.js',
+                   './src/js/BRDFs/*.js',
+                   './src/js/Materials/Material.js',
+                   './src/js/Materials/*.js',
+                   './src/js/World/ViewPlane.js',
+                   './src/js/World/World.js'
+                ]
+
+gulp.task('concat', function() {
+  return gulp.src(fileList)
+             .pipe(concat('trace.debug.js'))
+             .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('concat-and-min', function() {
+  return gulp.src(fileList)
+             .pipe(concat('trace.js'))
+             .pipe(uglify())
+             .pipe(gulp.dest('./dist/'));
+});
+
 // The default task (called when you run `gulp` from cli).
 gulp.task('default', ['ts-to-js-utilities',
                       'ts-to-js-world',
@@ -77,4 +111,11 @@ gulp.task('default', ['ts-to-js-utilities',
 		                  'ts-to-js-cameras',
                       'ts-to-js-brdfs',
                       'ts-to-js-materials',
-                      'ts-to-js-lights']);
+                      'ts-to-js-lights',
+                      'dist-release']);
+
+// Dist debug task (called when you run 'gulp dist-debug' from cli).
+gulp.task('dist-debug', ['concat']);
+
+// Dist release task (called when you run 'gulp dist-debug' from cli).
+gulp.task('dist-release', ['concat-and-min']);
