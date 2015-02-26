@@ -5,12 +5,15 @@
             ng-options="value for value in lightOptions.type"></select>
     <br>
     <br>
-    Location
+    <span>Location</span>
     <br>
-    X: <input type="number" placeholder="x" ng-model="light.location.x" required /><br>
-    Y: <input type="number" placeholder="y" ng-model="light.location.y" required /><br>
-    Z: <input type="number" placeholder="z" ng-model="light.location.z" required /><br>
+    <table>
+    <tr><td>X:</td><td><input type="number" placeholder="x" ng-model="light.location.x" required /><br></td></tr>
+    <tr><td>Y:</td><td><input type="number" placeholder="y" ng-model="light.location.y" required /><br></td></tr>
+    <tr><td>Z:</td><td><input type="number" placeholder="z" ng-model="light.location.z" required /><br></td></tr>
+    </table>
     <br>
-    Color: <input type="color" ng-model="light.colorHex" ng-change="postColor(light.colorHex, light.color)" required />
+    <span>Color</span><br>
+    <input type="color" ng-model="light.colorHex" ng-change="postColor(light.colorHex, light.color)" required />
     <br>
 </div>

@@ -12,10 +12,10 @@
 }
 
 .controls-wrapper, .settings-wrapper {
-    margin: 0 0 20px 0;
+    margin: 20px 0 20px 0;
 }
 
-.btn-primary, .btn-danger, .nav li a {
+.btn-primary, .btn-danger, .nav li a, input{
     color: #000000;
     background: transparent;
     border: 2px solid #000000;
@@ -31,7 +31,16 @@
 .gui-controller {
     display: inline-block;
     width: 40%;
-    margin: 0 10px 0 10px;
+    margin: 10px;
+    text-align: left;
+}
+
+.gui-controller > span {
+    font-size: large;
+}
+
+td {
+    padding: 3px;
 }
 
 .nav-tabs {
