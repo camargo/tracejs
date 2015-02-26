@@ -6,3 +6,5 @@
 node_modules
 
 src/js
+
+dist/trace.debug.js

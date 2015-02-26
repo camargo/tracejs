@@ -10,7 +10,7 @@ module Tracejs {
 
         trace(ray : Ray, depth : number) : RGBColor {
             if (depth > this.world_ptr.view_plane.max_depth) {
-                return this.world_ptr.background_color;
+                return new RGBColor(0.0, 0.0, 0.0);
             }
             else {
                 var sr : ShadeRec = this.world_ptr.hit_objects(ray);
