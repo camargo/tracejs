@@ -63,7 +63,7 @@
                         vres: 512,
                         psize: 1
                     },
-                    bgColorHex: "#000000",
+                    bgColorHex: "#7D7D7D",
                     bgColor: {
                         r: 0.5,
                         g: 0.5,
@@ -84,7 +84,7 @@
                                 y : 300,
                                 z : 300
                             },
-                            colorHex : "#010101",
+                            colorHex : "#FFFFFF",
                             color : {
                                 r: 1,
                                 g: 1,
@@ -103,7 +103,7 @@
                             radius: 100,
                             colorHex : "#FF0000",
                             color : {
-                                r : 255,
+                                r : 1,
                                 g : 0,
                                 b : 0
                             },
@@ -121,9 +121,9 @@
                             radius : 250,
                             colorHex : "#D52828",
                             color : {
-                                r : 213,
-                                g : 40,
-                                b : 40
+                                r : 213/255,
+                                g : 40/255,
+                                b : 40/255
                             },
                             material : {
                                 type : $scope.materialOptions.type[2]
@@ -179,9 +179,9 @@
                 $scope.hexToRgb = function(hex) {
                     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
                     return result ? {
-                        r: parseInt(result[1], 16),
-                        g: parseInt(result[2], 16),
-                        b: parseInt(result[3], 16)
+                        r: parseInt(result[1], 16)/255,
+                        g: parseInt(result[2], 16)/255,
+                        b: parseInt(result[3], 16)/255
                     } : null;
                 };
 

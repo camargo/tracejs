@@ -104,15 +104,12 @@ describe("World class", function() {
 
         expect(result[0].get_center()).toEqual(new Tracejs.Point3D(0,0,0));
         expect(result[0].get_radius()).toEqual(200);
-        expect(result[0].get_color()).toEqual(new Tracejs.RGBColor(72,243,66));
 
         expect(result[1].get_center()).toEqual(new Tracejs.Point3D(50,50,0));
         expect(result[1].get_radius()).toEqual(100);
-        expect(result[1].get_color()).toEqual(new Tracejs.RGBColor(213,40,40));
 
         expect(result[2].get_center()).toEqual(new Tracejs.Point3D(100,100,50));
         expect(result[2].get_radius()).toEqual(250);
-        expect(result[2].get_color()).toEqual(new Tracejs.RGBColor(254,254,254));
     });
 
     it("renderScene()", function() {

@@ -101,18 +101,24 @@ gulp.task('concat-and-min', function() {
         .pipe(gulp.dest('./dist/'));
 });
 
+function tasks(release) {
+    return ['ts-to-js-utilities',
+        'ts-to-js-world',
+        'ts-to-js-tracers',
+        'ts-to-js-geometricObjects',
+        'ts-to-js-primitives',
+        'ts-to-js-samplers',
+        'ts-to-js-cameras',
+        'ts-to-js-brdfs',
+        'ts-to-js-materials',
+        'ts-to-js-lights',
+        release]
+}
+
 // The default task (called when you run `gulp` from cli).
-gulp.task('default', ['ts-to-js-utilities',
-    'ts-to-js-world',
-    'ts-to-js-tracers',
-    'ts-to-js-geometricObjects',
-    'ts-to-js-primitives',
-    'ts-to-js-samplers',
-    'ts-to-js-cameras',
-    'ts-to-js-brdfs',
-    'ts-to-js-materials',
-    'ts-to-js-lights',
-    'dist-release']);
+// Develop task (`gulp develop` from cli)
+gulp.task('default', tasks('dist-release'));
+gulp.task('develop', tasks('dist-debug'));
 
 // Dist debug task (called when you run 'gulp dist-debug' from cli).
 gulp.task('dist-debug', ['concat']);
