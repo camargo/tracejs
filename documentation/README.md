@@ -5,5 +5,5 @@
 <br>
 3. ./release - Contains Release Plan and User Documentation.
 <br>
-4. ./sprint{1, 2, 3} - Contains sprint plan and report for each given sprint.
+4. ./sprint{1, 2, 3} - Contains sprint plan, report, and burn-up chart for each given sprint.
 <br>
