@@ -46,10 +46,10 @@ module Tracejs {
         view_plane_zw: number;
         view_plane_matrix : RGBColor[][];
 
-        ambient_brdf : Lambertian;
-        diffuse_brdf : Lambertian;
-        specular_brdf : GlossySpecular;
-        reflective_brdf : PerfectSpecular;
+        ambient_brdf : Lambertian[];
+        diffuse_brdf : Lambertian[];
+        specular_brdf : GlossySpecular[];
+        reflective_brdf : PerfectSpecular[];
 
         material : Material;
 
@@ -66,12 +66,12 @@ module Tracejs {
             this.view_plane.set_sampler(new Regular(10)); // Set sampler (10 samples / pixel).
             this.view_plane_zw = 100.0; // Create default view plane z-distance.
 
-            this.ambient_brdf = new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2));
-            this.diffuse_brdf = new Lambertian(1.0, new RGBColor(0.9, 0.9, 0.0));
-            this.specular_brdf = new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8));
-            this.reflective_brdf = new PerfectSpecular(0.75, new RGBColor(0.1, 0.1, 0.1));
+            this.ambient_brdf = [new Lambertian(1.0, new RGBColor(0.2, 0.2, 0.2))];
+            this.diffuse_brdf = [new Lambertian(1.0, new RGBColor(0.9, 0.9, 0.0))];
+            this.specular_brdf = [new GlossySpecular(1, 100, new RGBColor(0.8, 0.8, 0.8))];
+            this.reflective_brdf = [new PerfectSpecular(0.75, new RGBColor(0.1, 0.1, 0.1))];
 
-            //this.material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf);
+            this.material = new Phong(this.ambient_brdf[0], this.diffuse_brdf[0], this.specular_brdf[0]);
 
             this.objects = [];
             this.objects[0] = new Sphere(this.material, null, new Point3D(-50.0, 0.0, 0.0), 100.0); // for legacy testing purposes
@@ -224,17 +224,26 @@ module Tracejs {
                                 this.objects[i].set_radius(object[i].radius)
                             }
                             if (object[i].color) {
-                                this.objects[i].set_color(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
+                                if (!this.diffuse_brdf[i] || !this.specular_brdf[i] || !this.ambient_brdf[i] || !this.reflective_brdf[i]) {
+                                    this.diffuse_brdf[i] = new Lambertian(1.0);
+                                    this.specular_brdf[i] = new GlossySpecular(1.0, 100.0);
+                                    this.ambient_brdf[i] = new Lambertian(1.0);
+                                    this.reflective_brdf[i] = new PerfectSpecular(0.75)
+                                }
+                                this.diffuse_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.specular_brdf[i].set_cs(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.ambient_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.reflective_brdf[i].set_cr(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
                             }
                             if (object[i].material) {
                                 if (object[i].material.type === 'matte') {
-                                    this.objects[i].set_material(new Matte(this.ambient_brdf, this.diffuse_brdf))
+                                    this.objects[i].set_material(new Matte(this.ambient_brdf[i], this.diffuse_brdf[i]))
                                 }
                                 else if (object[i].material.type === 'phong') {
-                                    this.objects[i].set_material(new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf))
+                                    this.objects[i].set_material(new Phong(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i]))
                                 }
                                 else if (object[i].material.type === 'reflective') {
-                                    this.objects[i].set_material(new Reflective(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf, this.reflective_brdf));
+                                    this.objects[i].set_material(new Reflective(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i], this.reflective_brdf[i]));
                                 }
                             }
                         }
@@ -252,21 +261,30 @@ module Tracejs {
                                 radius = object[i].radius
                             }
                             if (object[i].color) {
-                                color = new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b)
+                                if (!this.diffuse_brdf[i] || !this.specular_brdf[i] || !this.ambient_brdf[i] || !this.reflective_brdf[i]) {
+                                    this.diffuse_brdf[i] = new Lambertian(1.0);
+                                    this.specular_brdf[i] = new GlossySpecular(1.0, 100.0);
+                                    this.ambient_brdf[i] = new Lambertian(1.0);
+                                    this.reflective_brdf[i] = new PerfectSpecular(0.75)
+                                }
+                                this.diffuse_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.specular_brdf[i].set_cs(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.ambient_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.reflective_brdf[i].set_cr(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
                             }
                             if (object[i].material) {
                                 if (object[i].material.type === 'matte') {
-                                    material = new Matte(this.ambient_brdf, this.diffuse_brdf)
+                                    material = new Matte(this.ambient_brdf[i], this.diffuse_brdf[i])
                                 }
                                 else if (object[i].material.type === 'phong') {
-                                    material = new Phong(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf)
+                                    material = new Phong(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i])
                                 }
                                 else if (object[i].material.type === 'reflective') {
-                                    material = new Reflective(this.ambient_brdf, this.diffuse_brdf, this.specular_brdf, this.reflective_brdf);
+                                    material = new Reflective(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i], this.reflective_brdf[i]);
                                 }
                             }
 
-                            this.objects[i] = new Sphere(material, color, center, radius)
+                            this.objects[i] = new Sphere(material, null, center, radius)
                         }
                     }
                     else {

@@ -4,6 +4,13 @@
 
 (function(angular) {
 
-    angular.module('guiDirectives', []);
+    angular.module('guiDirectives', [])
+        .directive('ngAddItem', function() {
+            return {
+                linkFn : function(scope,element,somethingelse) {
+
+                }
+            }
+        });
 
 })(angular || (angular = {}));

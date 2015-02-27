@@ -5,14 +5,25 @@
     padding: 10px 0 0 10px;
 }
 
-.controls-wrapper, .settings-wrapper {
-    margin: 0 0 20px 0;
+.right-sidebar {
+    height: 512px;
+    border-left: 2px solid #888888;
+    padding: 20px 0 20px 20px;
 }
 
-.btn-primary, .btn-danger, .nav li a {
+.controls-wrapper, .settings-wrapper {
+    margin: 20px 0 20px 0;
+}
+
+.btn-primary, .btn-danger, .nav li a, input{
     color: #000000;
     background: transparent;
     border: 2px solid #000000;
+}
+
+.btn-danger.delete {
+    border : 0px;
+    border-radius : 50%;
 }
 
 .btn-primary:focus, .btn-primary:hover, .btn-primary:active,
@@ -24,8 +35,18 @@
 
 .gui-controller {
     display: inline-block;
-    width: 40%;
-    margin: 0 10px 0 10px;
+    margin: 10px;
+    padding: 5px 10px 10px 10px;
+    text-align: left;
+    box-shadow: 0 0 3px 3px #888888;
+}
+
+.gui-controller > span, .add-item-controller > span {
+    font-size: large;
+}
+
+td {
+    padding: 3px;
 }
 
 .nav-tabs {

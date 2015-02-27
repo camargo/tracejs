@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/tracejs.css" />
 
     <!-- Fonts (Through CDN for now). -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -65,13 +65,13 @@
 
     <div class="container" ng-controller="MainController">
         <div class="row">
-            <div class="col-12" align="center">
+            <div class="col-md-12" align="center">
                 <canvas id="canvas" width="800" height="512" style="box-shadow: 0 0 3px 3px #888888;">
                 </canvas>
             </div>
             <br>
-            <div class="col-12" align="center">
-                <div class="controls-wrapper">
+            <div class="col-md-12">
+                <div class="controls-wrapper" align="center">
                     <div class="btn-group">
                         <button id="render-scene" type="submit" class="btn btn-primary" ng-click="renderScene()">Render</button>
                         <button class="btn btn-danger" type="reset" ng-click="resetScene()">Reset scene</button>
