@@ -1,0 +1,28 @@
+<div class="add-item-controller">
+    <span>Add a light: </span>
+    <select class="selectpicker" ng-model="world.addLight"
+            ng-options="value for value in lightTypes.type"></select>
+    <button class="btn btn-primary" ng-click="addToWorld('light', world.addLight)"><i class="fa fa-plus"></i></button>
+    <br><br>
+</div>
+
+<div id="light-controller" class="gui-controller" ng-if="world.light" ng-repeat="light in world.light">
+    <span>{{capitalize(light.type)}} Light</span>
+    <button class="btn-danger delete pull-right" ng-click="deleteFromWorld('light', light)"><i class="fa fa-minus-circle"></i></button>
+    <br>
+    <select class="selectpicker" ng-model="light.type"
+            ng-options="value for value in lightOptions.type"></select>
+    <br>
+    <br>
+    <span>Location</span>
+    <br>
+    <table>
+    <tr><td>X:</td><td><input type="number" placeholder="x" ng-model="light.location.x" required /><br></td></tr>
+    <tr><td>Y:</td><td><input type="number" placeholder="y" ng-model="light.location.y" required /><br></td></tr>
+    <tr><td>Z:</td><td><input type="number" placeholder="z" ng-model="light.location.z" required /><br></td></tr>
+    </table>
+    <br>
+    <span>Color</span><br>
+    <input type="color" ng-model="light.colorHex" ng-change="postColor(light.colorHex, light.color)" required />
+    <br>
+</div>

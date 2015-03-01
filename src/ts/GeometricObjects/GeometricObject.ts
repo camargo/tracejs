@@ -27,8 +27,13 @@ module Tracejs {
             }
         }
 
-        set_material(material : Material) {
+        set_material(material : Material) : Material {
             this.material = material;
+            return this.material;
+        }
+
+        get_material() : Material {
+            return this.material;
         }
 
         hit(ray : Ray, sr ?: ShadeRec) : boolean {

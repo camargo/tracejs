@@ -20,7 +20,7 @@ module Tracejs {
                 this.zw = zw;
             }
             else {
-                this.zw = -100;
+                this.zw = 100;
             }
         }
 

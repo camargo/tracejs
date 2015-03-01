@@ -1,0 +1,32 @@
+<div id="camera-controller" class="gui-controller" ng-if="world.camera">
+    <span>Camera</span><br>
+    <select class="selectpicker" ng-model="world.camera.type"
+            ng-options="value for value in cameraOptions.type">
+    </select>
+</div>
+
+<div id="viewplane-controller" class="gui-controller" ng-if="world.vp">
+    <span>View Plane</span>
+    <br>
+    <br>
+    <table>
+    <tr><td>X:</td><td><input type="number" placeholder="horizontal resolution" ng-model="world.vp.hres" required /><br></td></tr>
+    <tr><td>Y:</td><td><input type="number" placeholder="vertical resolution" ng-model="world.vp.vres" required /><br></td></tr>
+    <tr><td>Z:</td><td><input type="number" placeholder="pixel size" ng-model="world.vp.psize" required /><br></td></tr>
+    </table>
+</div>
+
+<div id="bgcolor-controller" class="gui-controller" ng-if="world.bgColor">
+    <span>Background color</span><br>
+    <input type="color" ng-model="world.bgColorHex" ng-change="postColor(world.bgColorHex,world.bgColor)">
+</div>
+
+<div id="sampler-controller" class="gui-controller" ng-if="world.sampler">
+    <span>Sampling</span><br>
+    <select class="selectpicker" ng-model="world.sampler.type"
+            ng-options="value for value in samplerOptions.type">
+    </select>
+    <select class="selectpicker" ng-model="world.sampler.num_samples"
+            ng-options="value for value in samplerOptions.num_samples">
+    </select>
+</div>

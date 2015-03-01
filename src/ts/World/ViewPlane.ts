@@ -12,6 +12,7 @@ module Tracejs {
         psize : number;
         sampler : Sampler;
         num_samples : number; // Samples per pixel.
+        max_depth : number; // Max Whitted recursion depth.
 
         /**
          * ViewPlane()
@@ -20,7 +21,7 @@ module Tracejs {
          * @param psize
          * @constructor
          */
-        constructor(hres?:number, vres?:number, psize?:number) {
+        constructor(hres ?: number, vres ?: number, psize ?: number, max_depth ?: number) {
             if (hres) {
                 this.hres = hres;
             }
@@ -38,6 +39,12 @@ module Tracejs {
             }
             else {
                 this.psize = 1;
+            }
+            if (max_depth) {
+                this.max_depth = max_depth;
+            }
+            else {
+                this.max_depth = 5;
             }
         }
 

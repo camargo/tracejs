@@ -1,7 +1,7 @@
 describe("World class", function() {
     var world = {};
     beforeEach(function() {
-        world = new Tracejs.World()
+        world = new Tracejs.World();
     });
     afterEach(function() {
         world = {}
@@ -45,6 +45,71 @@ describe("World class", function() {
 
         //world.sphere({x:1,y:2,z:3},5.0);
         //expect(world.sphere()).toEqual(null, null, new Tracejs.Sphere(new Tracejs.Point3D(1,2,3), 5.0));
+    });
+
+    it("object API", function() {
+        var newObjectArray = [
+            {
+                type : 'sphere',
+                center: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                },
+                radius: 200,
+                colorHex : "#48F342",
+                color : {
+                    r : 72,
+                    g : 243,
+                    b : 66
+                }
+            },
+            {
+                type : 'sphere',
+                center : {
+                    x : 50,
+                    y : 50,
+                    z : 0
+                },
+                radius : 100,
+                colorHex : "#D52828",
+                color : {
+                    r : 213,
+                    g : 40,
+                    b : 40
+                }
+            },
+            {
+                type : 'sphere',
+                center : {
+                    x : 100,
+                    y : 100,
+                    z : 50
+                },
+                radius : 250,
+                colorHex : "#888888",
+                color : {
+                    r : 254,
+                    g : 254,
+                    b : 254
+                }
+            }
+        ];
+
+        var result = world.object(newObjectArray);
+
+        for (var i = 0; i < 3; i++) {
+            expect(result[i]).toBeDefined();
+        }
+
+        expect(result[0].get_center()).toEqual(new Tracejs.Point3D(0,0,0));
+        expect(result[0].get_radius()).toEqual(200);
+
+        expect(result[1].get_center()).toEqual(new Tracejs.Point3D(50,50,0));
+        expect(result[1].get_radius()).toEqual(100);
+
+        expect(result[2].get_center()).toEqual(new Tracejs.Point3D(100,100,50));
+        expect(result[2].get_radius()).toEqual(250);
     });
 
     it("renderScene()", function() {
