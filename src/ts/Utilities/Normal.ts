@@ -99,9 +99,12 @@ module Tracejs {
 
         normalize() : void {
             var length = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-            this.x /= length;
-            this.y /= length;
-            this.z /= length;
+            // protect against dividing by zero
+            if(length != 0){
+              this.x /= length;
+              this.y /= length;
+              this.z /= length;
+            }
         }
 
         // Non-Member Functions.
