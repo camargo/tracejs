@@ -5,6 +5,7 @@
 /// <reference path="./../BRDFs/GlossySpecular.ts" />
 /// <reference path="./../Utilities/ShadeRec.ts" />
 /// <reference path="./../Utilities/Vector3D.ts" />
+/// <reference path="./../Utilities/Ray.ts" />
 
 module Tracejs {
     export class Phong extends Material {
@@ -47,7 +48,16 @@ module Tracejs {
                 var n_dot_wi : number = sr.normal.dot_vec(wi); // Cosine of angle between light and normal.
 
                 if (n_dot_wi > 0.0) { // Check if light is above surface.
-                    L = L.add_color((this.diffuse_brdf.f(sr, wo, wi).add_color(this.specular_brdf.f(sr, wo, wi))).mult_color(sr.w.lights[i].L(sr)).scale(n_dot_wi));
+                    var in_shadow : boolean = false;
+
+                    if (sr.w.lights[i].shadows) {
+                        var shadow_ray : Ray = new Ray(sr.hit_point, wi);
+                        in_shadow = sr.w.lights[i].in_shadow(shadow_ray, sr);
+                    }
+
+                    if (!in_shadow) {
+                        L = L.add_color((this.diffuse_brdf.f(sr, wo, wi).add_color(this.specular_brdf.f(sr, wo, wi))).mult_color(sr.w.lights[i].L(sr)).scale(n_dot_wi));
+                    }
                 }
 
             }

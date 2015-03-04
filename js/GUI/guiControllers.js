@@ -90,7 +90,7 @@
                     addLight : $scope.lightTypes.type[0],
                     light : [
                         {
-                            type : $scope.lightOptions.type[1],
+                            type : $scope.lightOptions.type[0],
                             location : {
                                 x : 300,
                                 y : 300,
@@ -101,7 +101,8 @@
                                 r: 1,
                                 g: 1,
                                 b: 1
-                            }
+                            },
+                            shadows: true
                         }
                     ],
                     addObject : $scope.objectTypes.type[0],
