@@ -82,5 +82,19 @@ module Tracejs {
       L(sr : ShadeRec) : RGBColor {
         return (this.color).scale(this.ls);
       }
+
+      in_shadow(ray : Ray, sr : ShadeRec) : boolean {
+        var tmp_sr : ShadeRec = new ShadeRec(sr.w);
+        var num_objects = sr.w.objects.length;
+        var d : number = this.location.distance_from(new Vector3D(ray.o.x, ray.o.y, ray.o.z));
+
+        for (var i = 0; i < num_objects; ++i) {
+          if (sr.w.objects[i].hit(ray, tmp_sr) && tmp_sr.t < d) {
+            return true;
+          }
+        }
+
+        return false;
+      }
     }
 }

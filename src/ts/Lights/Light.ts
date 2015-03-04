@@ -9,7 +9,7 @@
 
 module Tracejs {
     export class Light {
-      shadows : boolean;
+      shadows : boolean; // Only PointLights should this be true!
       
       constructor(shadow ?: boolean) {
         if (shadow) {

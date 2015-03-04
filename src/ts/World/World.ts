@@ -345,6 +345,11 @@ module Tracejs {
                                         this.lights[i].set_direction(new Vector3D(light[i].location.x, light[i].location.y, light[i].location.z))
                                     }
                                 }
+                                if (light[i].shadows) {
+                                    if (worldLightType === 'point') { // PointLight
+                                        this.lights[i].shadows = true;
+                                    }
+                                }
                             }
                         }
                         else { // create new World light at index
@@ -359,6 +364,9 @@ module Tracejs {
 
                             if (light[i].type === 'point') { // PointLight
                                 this.lights[i] = new PointLight(null, 1.0, color, vector)
+                                if (light[i].shadows === true) {
+                                    this.lights[i].shadows = true; // Only Point Lights should cast shadows.
+                                }
                             }
                             else if (light[i].type === 'directional') { // DirectionalLight
                                 this.lights[i] = new DirectionalLight(null, 1.0, color, vector)
