@@ -1,0 +1,43 @@
+describe("Plane class", function() {
+    it("should construct plane correctly", function() {
+        var plane = new Tracejs.Plane();
+
+        plane.set_color(new Tracejs.RGBColor(0.0, 0.0, 0.0));
+        expect(plane.get_color()).toEqual(new Tracejs.RGBColor(0.0, 0.0, 0.0));
+        expect(plane.get_point()).toEqual(new Tracejs.Point3D(0.0, 0.0, 0.0));
+        expect(plane.get_normal()).toEqual(new Tracejs.Normal(0.0, 0.0, 0.0));
+
+        var point = new Tracejs.Point3D(10.0, 10.0, 10.0);
+        var normal = 200.0;
+        var plane = new Tracejs.Plane(null, null, point, normal);
+        expect(plane.get_point()).toEqual(point);
+        expect(plane.get_normal()).toEqual(normal);
+
+        expect(Tracejs.Plane.kEpsilon).toEqual(0.001);
+        
+    });
+
+/**
+    it("should correctly record a miss plane intersection", function() {
+        var plane = new Tracejs.Plane();
+        var origin = new Tracejs.Point3D(0.0, 0.0, 100.0);
+        var dir = new Tracejs.Vector3D(0.0, 0.0, -1.0);
+        var ray = new Tracejs.Ray(origin, dir);
+
+        expect(plane.hit(ray)).toEqual(false);
+    });
+
+
+    it("should correctly record a hit plane intersection", function() {
+        var plane = new Tracejs.Plane();
+
+        var origin = new Tracejs.Point3D(3.0, 2000.0, 100.0);
+        var dir = new Tracejs.Vector3D(3.0, 0.0, 3.0);
+
+        var ray = new Tracejs.Ray(origin, dir);
+
+        expect(plane.hit(ray)).toEqual(true);
+    });
+*/
+
+});

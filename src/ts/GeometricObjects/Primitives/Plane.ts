@@ -27,7 +27,7 @@ module Tracejs {
 
 
 
-        hit_plane(ray : Ray, min_t ?: number, sr ?: ShadeRec) : boolean {
+        hit(ray : Ray, sr ?: ShadeRec) : boolean {
             /**
             variable t holds 3 parts: 
             1) point - ray.o
@@ -38,32 +38,41 @@ module Tracejs {
 
             */
 
+
             var t : number; //t = (point - ray.o) * normal / (ray.d * normal);
-
-            var first : Vector3D = ray.o.sub_point(this.point); // (point - ray.o) MATH PLACEMENT MAY BE WRONG CHECK LATER
-
+            var first : Vector3D = ray.o.sub_point(this.point); // (point - ray.o) 
             var second : number = this.normal.dot_vec(first); //normal * (point - ray.o)           
-
             var third : number = this.normal.dot_vec(ray.d); //(ray.d * normal);
+            t = second / third;         
 
-            t = second / third; //COULD BE TOTALLY WRONG CHECK LATER            
+            if(t <= Plane.kEpsilon){
+                return false;
+            }
+            else{
 
-            
-            if(t > Plane.kEpsilon) {
-		        min_t = t;
+	        	    sr.normal = this.normal;
+                    var temp: Vector3D = ray.d.mult(t); //t * ray.d
+                    sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + (t * ray.d) OR ray.o + temp
 
-	        	sr.normal = this.normal;
-
-                var temp: Vector3D = ray.d.mult(t); //t * ray.d
-
-                sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + t * ray.d OR ray.o + temp
-
-
-		        return true;
+                    return true;     
 	        }
-	        else {
-		        return false;
-	        }
+	
+        }
+
+        get_point(): Point3D{
+            return this.point;
+        }
+
+        set_point(point : Point3D) : void{
+            this.point = point;
+        }
+
+        get_normal(): Normal{
+            return this.normal;
+        }
+
+        set_normal(normal : Normal) : void{
+            this.normal = normal;
         }
     }
 }
