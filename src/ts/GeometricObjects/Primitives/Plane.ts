@@ -21,7 +21,7 @@ module Tracejs {
                 this.normal = normal;
             }
             else {
-                this.normal = new Normal(0.0, 0.0, 0.0);
+                this.normal = new Normal(1.0, 0.0, 0.0);
             }
         }
 
