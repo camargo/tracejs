@@ -17,7 +17,7 @@ describe("Plane class", function() {
         
     });
 
-/**
+
     it("should correctly record a miss plane intersection", function() {
         var plane = new Tracejs.Plane();
         var origin = new Tracejs.Point3D(0.0, 0.0, 100.0);
@@ -27,6 +27,8 @@ describe("Plane class", function() {
         expect(plane.hit(ray)).toEqual(false);
     });
 
+
+/**
 
     it("should correctly record a hit plane intersection", function() {
         var plane = new Tracejs.Plane();

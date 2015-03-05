@@ -45,18 +45,19 @@ module Tracejs {
             var third : number = this.normal.dot_vec(ray.d); //(ray.d * normal);
             t = second / third;         
 
-            if(t <= Plane.kEpsilon){
+            if(t > Plane.kEpsilon) {
+                sr.normal = this.normal;
+
+                var temp: Vector3D = ray.d.mult(t); //t * ray.d
+
+                sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + t * ray.d OR ray.o + temp
+
+
+                return true;
+            }
+            else {
                 return false;
             }
-            else{
-
-	        	    sr.normal = this.normal;
-                    var temp: Vector3D = ray.d.mult(t); //t * ray.d
-                    sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + (t * ray.d) OR ray.o + temp
-
-                    return true;     
-	        }
-	
         }
 
         get_point(): Point3D{
