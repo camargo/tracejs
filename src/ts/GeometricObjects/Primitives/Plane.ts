@@ -25,8 +25,6 @@ module Tracejs {
             }
         }
 
-
-
         hit(ray : Ray, sr ?: ShadeRec) : boolean {
             /**
             variable t holds 3 parts: 
@@ -35,43 +33,21 @@ module Tracejs {
             3) (ray.d * normal)
 
             Together you should get t = (point - ray.o) * normal / (ray.d * normal)
-
             */
 
-
-/**
- CHRIS' MATH
-var d_dot_n : number = this.normal.dot_vec(ray.d); // You have this.
-
-var a_sub_o : Vector3D = this.point.sub_point(ray.o); // Correct just reverse it.
-
-var vec_dot_n : number = this.normal.dot_vec(a_sub_o);
-
-var t : number = vec_dot_n / d_dot_n
-*/
-
-
             var t : number; //t = (point - ray.o) * normal / (ray.d * normal);
-
-            //var first : Vector3D = ray.o.sub_point(this.point); // (point - ray.o) 
             var first : Vector3D = this.point.sub_point(ray.o);
             var second : number = this.normal.dot_vec(first); //normal * (point - ray.o)           
             var third : number = this.normal.dot_vec(ray.d); //(ray.d * normal);
             t = second / third; 
             
-
-
-
-                    
-
             if(t > Plane.kEpsilon) {
-                sr.normal = this.normal;
-
                 var temp: Vector3D = ray.d.mult(t); //t * ray.d
-
-                sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + t * ray.d OR ray.o + temp
-
-
+                
+                if(sr){
+                    sr.normal = this.normal;
+                    sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + t * ray.d OR ray.o + temp
+                }
                 return true;
             }
             else {
