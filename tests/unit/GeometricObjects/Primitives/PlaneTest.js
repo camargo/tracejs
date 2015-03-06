@@ -28,13 +28,18 @@ describe("Plane class", function() {
     });
 
 
-
+    
     it("should correctly record a hit plane intersection", function() {
 
         var plane = new Tracejs.Plane();          
+
+        //t = (point - ray.o) * normal / (ray.d * normal);
+
+        plane.set_normal(new Tracejs.Normal(1.0, 1.0, 1.0));
+        plane.set_point(new Tracejs.Point3D(1.0, 1.0, 1.0));
         
-        var origin = new Tracejs.Point3D(1.0, 0.0, 0.0); //ray.o
-        var dir = new Tracejs.Vector3D(1.0, 0.0, 0.0); // ray.d
+        var origin = new Tracejs.Point3D(0.0, 0.0, 0.0); //ray.o
+        var dir = new Tracejs.Vector3D(1.0, 1.0, 1.0); // ray.d
 
         var ray = new Tracejs.Ray(origin, dir);
         expect(plane.hit(ray)).toEqual(true);
