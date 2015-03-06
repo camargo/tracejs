@@ -7,7 +7,7 @@ var uglify = require('gulp-uglify'); // https://www.npmjs.com/package/gulp-uglif
 
 var tsProject = { declarationFiles: true,
     noExternalResolve: false,
-    removeComments: false }
+    removeComments: true }
 
 gulp.task('ts-to-js-utilities', function() {
     return gulp.src('./src/ts/Utilities/*.ts')
