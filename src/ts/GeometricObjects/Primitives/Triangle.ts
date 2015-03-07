@@ -13,8 +13,7 @@ module Tracejs {
         point3 : Point3D;
         normal : Normal = new Normal(0.0, 1.0, 0.0);
 
-        constructor(material ?: Material, color ?: RGBColor, p1 ?: Point3D, 
-                    p2 ?: Point3D, p3 ?: Point3D) {
+        constructor(material ?: Material, color ?: RGBColor, p1 ?: Point3D, p2 ?: Point3D, p3 ?: Point3D) {
             super(material, color);
 
             if (p1) {

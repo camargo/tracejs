@@ -43,8 +43,8 @@
                 };
                 $scope.lightOptions = {
                     type : [
-                        'point',
-                        'directional'
+                        'directional',
+                        'point'
                     ]
                 };
                 $scope.cameraOptions = {
@@ -55,7 +55,8 @@
                 };
                 $scope.objectTypes = {
                     type : [
-                        'sphere'
+                        'sphere',
+                        'triangle'
                     ]
                 };
                 $scope.lightTypes = {
@@ -90,11 +91,11 @@
                     addLight : $scope.lightTypes.type[0],
                     light : [
                         {
-                            type : $scope.lightOptions.type[0],
+                            type : $scope.lightOptions.type[1],
                             location : {
-                                x : 300,
+                                x : 0,
                                 y : 300,
-                                z : 300
+                                z : 0
                             },
                             colorHex : "#FFFFFF",
                             color : {
