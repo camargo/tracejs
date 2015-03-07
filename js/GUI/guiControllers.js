@@ -162,7 +162,7 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }
+                        }*/
                         // Objects have different constructor criteria.
                         // Need different UI for each respective shape.
                     ]
