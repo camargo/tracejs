@@ -274,10 +274,10 @@ module Tracejs {
                             }
                         }
                         else if (object[i].type === 'triangle') {
-                            if (this.objects[i]) { // if this World has object at index, update it
+                            if (this.objects[i]) {
                                 
                             }
-                            else { // Else create a new object at this index.
+                            else {
                                 var material : Material;
                                 var p1 : Point3D;
                                 var p2 : Point3D;
@@ -303,7 +303,26 @@ module Tracejs {
                                     }
                                 }
 
+                                // Errors when we change objects : Sphere[]; -> objects : GeometricObject[];
+                                // I did get the triangle to draw tho regardless of the errors.
+                                // TO DO: need custom UI for each shape
                                 //this.objects[i] = new Triangle(material, color, p1, p2, p3);
+                            }
+                        }
+                        else if (object[i].type === 'plane') {
+                            if (this.objects[i]) {
+                                
+                            }
+                            else {
+
+                            }
+                        }
+                        else if (object[i].type === 'torus') {
+                            if (this.objects[i]) {
+                                
+                            }
+                            else {
+                                
                             }
                         }
                     }
