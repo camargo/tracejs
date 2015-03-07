@@ -3,7 +3,7 @@
 <br>
 2. ./presentations - Contains presentation slides.
 <br>
-3. ./release - Contains Release Plan, User Documentation, and Test Plan.
+3. ./release - Contains Release Plan, User Documentation, Test Plan, and Backlog.
 <br>
 4. ./sprint{1, 2, 3} - Contains sprint plan, report, and burn-up chart for each given sprint.
 <br>
