@@ -1,4 +1,4 @@
-# Trace.js - Deliverables Index
+# Trace.js - Documentation Index
 1. ./images - Contains images of our application at the end of each sprint.
 <br>
 2. ./presentations - Contains presentation slides.
