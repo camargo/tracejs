@@ -145,7 +145,24 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }
+                        },
+                        /*{
+                            type : 'triangle',
+                            location : {
+                                p1 : [0, 0, 0],
+                                p2 : [300, 0, 0],
+                                p3 : [0, 300, 0]
+                            },
+                            colorHex : "#D52828",
+                            color : {
+                                r : 1,
+                                g : 0,
+                                b : 0
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[2]
+                            }
+                        }*/
                         // Objects have different constructor criteria.
                         // Need different UI for each respective shape.
                     ]
