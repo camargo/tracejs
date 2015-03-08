@@ -109,11 +109,9 @@ module Tracejs {
             }
 
             if(!intersected) { return false; }
-            //tmin = t;
 
-            // ray.o * ray.d, i dont know how to do this properly, so
-            // I stuck add_vector in there
-            sr.local_hit_point = ray.o.add_vector(ray.d);
+            sr.t = t;
+            sr.local_hit_point = ray.o.add_vector(ray.d.mult(t));
             sr.normal = this.compute_normal(sr.local_hit_point);
 
             return true;;
