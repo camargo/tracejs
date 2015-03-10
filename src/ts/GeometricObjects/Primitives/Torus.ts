@@ -10,11 +10,12 @@ module Tracejs {
             b : number;
 
         // constructor
-        constructor(a ?: number, b ?: number) {
-            
+        constructor(m ?: Material, c ?: RGBColor, a ?: number, b ?: number) {
+
+            super(m,c);
             this.a = a;
             this.b = b;
-            super();
+
         }
 
         // c, s are arrays
@@ -30,14 +31,14 @@ module Tracejs {
 
             if (D === 0) {
                 s[0] = -p;
-                return -1;
+                return 1;
             }
             else if (D > 0) {
                 var sqrt_D : number;
                 sqrt_D = Math.sqrt(D);
 
                 s[0] = sqrt_D - p;
-                s[1] = -(sqrt_D - p);
+                s[1] = - sqrt_D - p;
                 return 2;
             }
             else {
@@ -115,6 +116,24 @@ module Tracejs {
             sr.normal = this.compute_normal(sr.local_hit_point);
 
             return true;
+        }
+
+        get_a() : number {
+            return this.a
+        }
+
+        set_a(a : number) : number {
+            this.a = a;
+            return a
+        }
+
+        get_b() : number {
+            return this.b
+        }
+
+        set_b(b : number) : number {
+            this.b = b;
+            return b
         }
 
     }

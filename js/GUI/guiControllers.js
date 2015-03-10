@@ -111,41 +111,23 @@
                     addObject : $scope.objectTypes.type[0],
                     object : [
                         {
-                            type : 'sphere',
+                            type: 'sphere',
                             center: {
                                 x: -100,
                                 y: -100,
                                 z: 500
                             },
                             radius: 100,
-                            colorHex : "#FF0000",
-                            color : {
-                                r : 1,
-                                g : 0,
-                                b : 0
+                            colorHex: "#FF0000",
+                            color: {
+                                r: 1,
+                                g: 0,
+                                b: 0
                             },
-                            material : {
-                                type : $scope.materialOptions.type[0]
+                            material: {
+                                type: $scope.materialOptions.type[0]
                             }
                         }/*,
-                        {
-                            type : 'sphere',
-                            center : {
-                                x : 0,
-                                y : 0,
-                                z : 0
-                            },
-                            radius : 250,
-                            colorHex : "#D52828",
-                            color : {
-                                r : 213/255,
-                                g : 40/255,
-                                b : 40/255
-                            },
-                            material : {
-                                type : $scope.materialOptions.type[2]
-                            }
-                        }*/,
                         {
                             type : 'triangle',
                             location : {
@@ -162,7 +144,21 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }
+                        }*//*,
+                         {
+                            type : 'torus',
+                            a : 100,
+                            b : 20,
+                            colorHex : "#D52828",
+                            color : {
+                                r : 213/255,
+                                g : 40/255,
+                                b : 40/255
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[2]
+                            }
+                         }*/
                     ]
                 };
 
@@ -222,6 +218,13 @@
                     return obj.type === 'triangle'
                 };
 
+                $scope.isTorus = function(obj) {
+                    return obj.type === 'torus'
+                };
+
+                $scope.isPlane = function(obj) {
+                    return obj.type === 'plane'
+                };
 
                 /**
                  * helper functions
