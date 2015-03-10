@@ -114,7 +114,7 @@ module Tracejs {
             sr.local_hit_point = ray.o.add_vector(ray.d.mult(t));
             sr.normal = this.compute_normal(sr.local_hit_point);
 
-            return true;;
+            return true;
         }
 
     }
