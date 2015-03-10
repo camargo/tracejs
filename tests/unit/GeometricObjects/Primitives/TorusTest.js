@@ -1,17 +1,18 @@
 describe("Torus Class", function() {
     it("should construct plane correctly", function() {
         var torus = new Tracejs.Torus();
+
         expect(torus).toBeDefined();
 
         var a = 20.4; var b = 3;
-        var t2 = new Tracejs.Torus(a,b);
-        expect(a).toEqual(t2.a);
-        expect(b).toEqual(t2.b);
+        var t2 = new Tracejs.Torus(new Tracejs.Material(), new Tracejs.RGBColor(), a, b);
+        expect(a).toEqual(t2.get_a());
+        expect(b).toEqual(t2.get_b());
     });
 
     it("should compute_normal", function() {
-        var t = new Tracejs.Torus(1,2);
-        var t_test = new Tracejs.Torus(1,2);
+        var t = new Tracejs.Torus(new Tracejs.Material(), new Tracejs.RGBColor(),1,2);
+        var t_test = new Tracejs.Torus(new Tracejs.Material(), new Tracejs.RGBColor(), 1,2);
 
         var p = new Tracejs.Point3D(2,3,4);
         var p_test = new Tracejs.Point3D(2,3,4);

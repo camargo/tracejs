@@ -57,6 +57,10 @@
                         p3: [0,100,0]
                     }
                 }
+                else if (this.type === 'torus') {
+                    this.a = 200;
+                    this.b = 100
+                }
                 return this;
             };
 
