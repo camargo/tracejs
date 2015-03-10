@@ -10,12 +10,35 @@
     <span>{{capitalize(object.type)}}</span>
     <button class="btn-danger delete pull-right" ng-click="deleteFromWorld('object', object)"><i class="fa fa-minus-circle"></i></button>
     <br>
-    <table>
+    <table ng-if="isSphere(object)">
     <tr><td>X:</td><td><input type="number" placeholder="center x" ng-model="object.center.x" required /></td></tr>
     <tr><td>Y:</td><td><input type="number" placeholder="center y" ng-model="object.center.y" required /></td></tr>
     <tr><td>Z:</td><td><input type="number" placeholder="center z" ng-model="object.center.z" required /></td></tr>
     <tr><td>R:</td><td><input type="number" placeholder="radius" ng-model="object.radius" required /></td></tr>
     </table>
+    <table ng-if="isTriangle(object)" class="triangle-table">
+        <tr><td>P1:</td><td><input type="number" placeholder="x" ng-model="object.location.p1[0]" required /></td>
+                        <td><input type="number" placeholder="y" ng-model="object.location.p1[1]" required /></td>
+                        <td><input type="number" placeholder="z" ng-model="object.location.p1[2]" required /></td></tr>
+        <tr><td>P2:</td><td><input type="number" placeholder="x" ng-model="object.location.p2[0]" required /></td>
+                        <td><input type="number" placeholder="y" ng-model="object.location.p2[1]" required /></td>
+                        <td><input type="number" placeholder="z" ng-model="object.location.p2[2]" required /></td></tr>
+        <tr><td>P3:</td><td><input type="number" placeholder="x" ng-model="object.location.p3[0]" required /></td>
+                        <td><input type="number" placeholder="y" ng-model="object.location.p3[1]" required /></td>
+                        <td><input type="number" placeholder="z" ng-model="object.location.p3[2]" required /></td></tr>
+    </table>
+    <!--
+    <table ng-if="isTorus(object)">
+        <tr><td>P1:</td><td><input type="number" placeholder="point 1" ng-model="object.center.x" required /></td></tr>
+        <tr><td>P2:</td><td><input type="number" placeholder="point 2" ng-model="object.center.y" required /></td></tr>
+        <tr><td>P3:</td><td><input type="number" placeholder="point 3" ng-model="object.center.z" required /></td></tr>
+    </table>
+    <table ng-if="isPlane(object)">
+        <tr><td>P1:</td><td><input type="number" placeholder="point 1" ng-model="object.center.x" required /></td></tr>
+        <tr><td>P2:</td><td><input type="number" placeholder="point 2" ng-model="object.center.y" required /></td></tr>
+        <tr><td>P3:</td><td><input type="number" placeholder="point 3" ng-model="object.center.z" required /></td></tr>
+    </table>
+    -->
     <br>
     <span>Color</span>
     <br>

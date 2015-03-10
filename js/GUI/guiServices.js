@@ -25,11 +25,6 @@
                         this.colorHex = '#7D0000';
                         this.color.r = 0.5;
                         this.color.g = this.color.b = 0;
-                        this.center = {
-                            x:0,
-                            y:0,
-                            z:0
-                        };
                         this.material = {
                             type : $scope.materialOptions.type[0]
                         }
@@ -49,6 +44,18 @@
                 this.type = type;
                 if (this.type === 'sphere') {
                     this.radius = 100;
+                    this.center = {
+                        x:0,
+                        y:0,
+                        z:0
+                    }
+                }
+                else if (this.type === 'triangle') {
+                    this.location = {
+                        p1: [0,0,0],
+                        p2: [100,0,0],
+                        p3: [0,100,0]
+                    }
                 }
                 return this;
             };

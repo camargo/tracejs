@@ -52,3 +52,7 @@ td {
 .nav-tabs {
     border-bottom: 1.5px solid black;
 }
+
+.triangle-table td input {
+    width: 50px;
+}

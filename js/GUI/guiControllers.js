@@ -127,7 +127,7 @@
                             material : {
                                 type : $scope.materialOptions.type[0]
                             }
-                        },
+                        }/*,
                         {
                             type : 'sphere',
                             center : {
@@ -145,7 +145,7 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }/*,
+                        }*/,
                         {
                             type : 'triangle',
                             location : {
@@ -162,9 +162,7 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }*/
-                        // Objects have different constructor criteria.
-                        // Need different UI for each respective shape.
+                        }
                     ]
                 };
 
@@ -214,6 +212,14 @@
 
                 $scope.deleteFromWorld = function(identifier, arraymember) {
                     this.world[identifier].splice(this.world[identifier].indexOf(arraymember), 1)
+                };
+
+                $scope.isSphere = function(obj) {
+                    return obj.type === 'sphere'
+                };
+
+                $scope.isTriangle = function(obj) {
+                    return obj.type === 'triangle'
                 };
 
 
