@@ -201,9 +201,9 @@ module Tracejs {
         object(object ?: any) : any {
             if (object) {
                 for (var i:number = 0; i < object.length; i++) {
-                    if (object[i]) { // check GUI object exists at index
+                    if (object[i]) {
                         if (object[i].type === 'sphere') {
-                            // set defaults
+
                             var material = this.material,
                                 color = new RGBColor(1, 1, 1),
                                 center = new Point3D(0, 0, 0),
@@ -212,9 +212,11 @@ module Tracejs {
                             if (object[i].center) {
                                 center = new Point3D(object[i].center.x, object[i].center.y, object[i].center.z)
                             }
+
                             if (object[i].radius > 0) {
                                 radius = object[i].radius
                             }
+
                             if (object[i].color) {
                                 this.diffuse_brdf[i] = new Lambertian(1.0);
                                 this.specular_brdf[i] = new GlossySpecular(1.0, 100.0);
@@ -225,6 +227,7 @@ module Tracejs {
                                 this.ambient_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
                                 this.reflective_brdf[i].set_cr(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
                             }
+
                             if (object[i].material) {
                                 if (object[i].material.type === 'matte') {
                                     material = new Matte(this.ambient_brdf[i], this.diffuse_brdf[i])
@@ -239,6 +242,7 @@ module Tracejs {
 
                             this.objects[i] = new Sphere(material, null, center, radius)
                         }
+
                         else if (object[i].type === 'triangle') {
                             var material:Material;
                             var p1:Point3D;
@@ -277,17 +281,47 @@ module Tracejs {
                                 }
                             }
 
-                            // Errors when we change objects : Sphere[]; -> objects : GeometricObject[];
-                            // I did get the triangle to draw tho regardless of the errors.
-                            // TO DO: need custom UI for each shape
                             this.objects[i] = new Triangle(material, null, p1, p2, p3);
                         }
                         else if (object[i].type === 'plane') {
+                            var material : Material;
+                            var point : Point3D;
+                            var normal : Normal = new Normal(0, 1, 0);
 
+                            if (object[i].point) {
+                                var p = object[i].point;
+                                point = new Point3D(p.x, p.y, p.z);
+                            }
+
+                            if (object[i].color) {
+                                this.diffuse_brdf[i] = new Lambertian(1.0);
+                                this.specular_brdf[i] = new GlossySpecular(1.0, 100.0);
+                                this.ambient_brdf[i] = new Lambertian(1.0);
+                                this.reflective_brdf[i] = new PerfectSpecular(0.75);
+                                this.diffuse_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.specular_brdf[i].set_cs(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.ambient_brdf[i].set_cd(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b));
+                                this.reflective_brdf[i].set_cr(new RGBColor(object[i].color.r, object[i].color.g, object[i].color.b))
+                            }
+
+                            if (object[i].material) {
+                                if (object[i].material.type === 'matte') {
+                                    material = new Matte(this.ambient_brdf[i], this.diffuse_brdf[i])
+                                }
+                                else if (object[i].material.type === 'phong') {
+                                    material = new Phong(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i])
+                                }
+                                else if (object[i].material.type === 'reflective') {
+                                    material = new Reflective(this.ambient_brdf[i], this.diffuse_brdf[i], this.specular_brdf[i], this.reflective_brdf[i]);
+                                }
+                            }
+
+                            this.objects[i] = new Plane(material, null, point, normal);
                         }
+                        
                         else if (object[i].type === 'torus') {
-                            debugger;
-                            var material : Material = new Material();
+                            //debugger;
+                            var material : Material;
                             var a : number = 100;
                             var b : number = 20;
 

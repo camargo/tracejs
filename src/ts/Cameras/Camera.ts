@@ -21,6 +21,7 @@ module Tracejs {
             this.u      = new Vector3D(1.0, 0.0, 0.0);
             this.v      = new Vector3D(0.0, 1.0, 0.0);
             this.w      = new Vector3D(0.0, 0.0, 1.0);
+            this.compute_uvw();
         }
 
         compute_uvw() : void {

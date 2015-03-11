@@ -5,7 +5,7 @@ describe("Plane class", function() {
         plane.set_color(new Tracejs.RGBColor(0.0, 0.0, 0.0));
         expect(plane.get_color()).toEqual(new Tracejs.RGBColor(0.0, 0.0, 0.0));
         expect(plane.get_point()).toEqual(new Tracejs.Point3D(0.0, 0.0, 0.0));
-        expect(plane.get_normal()).toEqual(new Tracejs.Normal(1.0, 0.0, 0.0));
+        expect(plane.get_normal()).toEqual(new Tracejs.Normal(0.0, 1.0, 0.0));
 
         var point = new Tracejs.Point3D(10.0, 10.0, 10.0);
         var normal = 200.0;

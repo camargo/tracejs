@@ -57,8 +57,8 @@
                     type : [
                         'sphere',
                         'triangle',
-                        'plane',
-                        'torus'
+                        'plane'/*,
+                        'torus'*/
                     ]
                 };
                 $scope.lightTypes = {
@@ -96,7 +96,7 @@
                             type : $scope.lightOptions.type[1],
                             location : {
                                 x : 0,
-                                y : 300,
+                                y : 500,
                                 z : 0
                             },
                             colorHex : "#FFFFFF",
@@ -113,11 +113,11 @@
                         {
                             type: 'sphere',
                             center: {
-                                x: -100,
-                                y: -100,
-                                z: 500
+                                x: 0,
+                                y: 0,
+                                z: 0
                             },
-                            radius: 100,
+                            radius: 250,
                             colorHex: "#FF0000",
                             color: {
                                 r: 1,
@@ -125,7 +125,7 @@
                                 b: 0
                             },
                             material: {
-                                type: $scope.materialOptions.type[0]
+                                type: $scope.materialOptions.type[2]
                             }
                         }/*,
                         {
@@ -144,7 +144,8 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                        }*//*,
+                        }*/
+                        /*,
                          {
                             type : 'torus',
                             a : 100,
@@ -158,7 +159,26 @@
                             material : {
                                 type : $scope.materialOptions.type[2]
                             }
-                         }*/
+                         },*/
+                         /*
+                         {
+                            type : 'plane',
+                            point: {
+                                x: 0,
+                                y: 0,
+                                z: 0
+                            },
+                            colorHex : "#FF0000",
+                            color : {
+                                r : 1,
+                                g : 0,
+                                b : 0
+                            },
+                            material : {
+                                type : $scope.materialOptions.type[2]
+                            }
+                         }
+                         */
                     ]
                 };
 
@@ -193,7 +213,7 @@
 
                 $scope.postColor = function(hex, colorObj) {
                     var self = this;
-                    debugger;
+                    //debugger;
 
                     //self.world.bgColor = self.hexToRgb(self.world.bgColorHex)
                     _.map(self.hexToRgb(hex), function(value, key) {

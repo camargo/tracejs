@@ -1,3 +1,5 @@
+// Trace.js - Plane.ts
+
 /// <reference path="./../GeometricObject.ts" />
 /// <reference path="./../../Utilities/Point3D.ts" />
 
@@ -21,32 +23,22 @@ module Tracejs {
                 this.normal = normal;
             }
             else {
-                this.normal = new Normal(1.0, 0.0, 0.0);
+                this.normal = new Normal(0.0, 1.0, 0.0);
             }
         }
 
         hit(ray : Ray, sr ?: ShadeRec) : boolean {
-            /**
-            variable t holds 3 parts: 
-            1) point - ray.o
-            2) (point - ray.o) * normal
-            3) (ray.d * normal)
-
-            Together you should get t = (point - ray.o) * normal / (ray.d * normal)
-            */
-
             var t : number; //t = (point - ray.o) * normal / (ray.d * normal);
             var first : Vector3D = this.point.sub_point(ray.o);
             var second : number = this.normal.dot_vec(first); //normal * (point - ray.o)           
             var third : number = this.normal.dot_vec(ray.d); //(ray.d * normal);
             t = second / third; 
             
-            if(t > Plane.kEpsilon) {
-                var temp: Vector3D = ray.d.mult(t); //t * ray.d
-                
-                if(sr){
+            if (t > Plane.kEpsilon) {                
+                if (sr) {
+                    sr.t = t;
                     sr.normal = this.normal;
-                    sr.local_hit_point = ray.o.add_vector(temp); //sr.local_hit_point = ray.o + t * ray.d OR ray.o + temp
+                    sr.local_hit_point = ray.o.add_vector(ray.d.mult(t));
                 }
                 return true;
             }
@@ -55,11 +47,11 @@ module Tracejs {
             }
         }
 
-        get_point(): Point3D{
+        get_point(): Point3D {
             return this.point;
         }
 
-        set_point(point : Point3D) : void{
+        set_point(point : Point3D) : void {
             this.point = point;
         }
 
@@ -67,7 +59,7 @@ module Tracejs {
             return this.normal;
         }
 
-        set_normal(normal : Normal) : void{
+        set_normal(normal : Normal) : void {
             this.normal = normal;
         }
     }

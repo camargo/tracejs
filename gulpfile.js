@@ -73,6 +73,7 @@ var fileList = ['./src/js/Utilities/*.js',
     './src/js/Tracers/Tracer.js',
     './src/js/Tracers/*.js',
     './src/js/GeometricObjects/*.js',
+    './src/js/GeometricObjects/Primitives/Plane.js',
     './src/js/GeometricObjects/Primitives/*.js',
     './src/js/Samplers/Sampler.js',
     './src/js/Samplers/*.js',
@@ -118,6 +119,7 @@ function tasks(release) {
 // The default task (called when you run `gulp` from cli).
 // Develop task (`gulp develop` from cli)
 gulp.task('default', tasks('dist-release'));
+
 gulp.task('develop', tasks('dist-debug'));
 
 // Dist debug task (called when you run 'gulp dist-debug' from cli).

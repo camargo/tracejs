@@ -43,11 +43,11 @@
             worldComponent.prototype.create = function(type) {
                 this.type = type;
                 if (this.type === 'sphere') {
-                    this.radius = 100;
+                    this.radius = 250;
                     this.center = {
-                        x:0,
-                        y:0,
-                        z:0
+                        x: 0,
+                        y: 0,
+                        z: 0
                     }
                 }
                 else if (this.type === 'triangle') {
@@ -55,6 +55,13 @@
                         p1: [0,0,0],
                         p2: [100,0,0],
                         p3: [0,100,0]
+                    }
+                }
+                else if (this.type === 'plane') {
+                    this.point = {
+                        x: 0,
+                        y: 200,
+                        z: 0
                     }
                 }
                 else if (this.type === 'torus') {
