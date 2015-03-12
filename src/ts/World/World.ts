@@ -407,28 +407,9 @@ module Tracejs {
         light(light ?: any) : any {
             if (light) {
                 for (var i:number = 0; i < light.length; i++) {
-                    if (this.lights[i] && this.lights[i].set_direction ? 'directional' : 'point' === light[i].type) { // check if World has light at index and it's the right type of light
-                        var worldLightType:string = this.lights[i].set_direction ? 'directional' : 'point';
-                            if (light[i]) { // check if light exists at index
-                                if (light[i].color) {
-                                    this.lights[i].set_color(new RGBColor(light[i].color.r, light[i].color.g, light[i].color.b))
-                                }
-                                if (light[i].location) {
-                                    if (worldLightType === 'point') { // PointLight
-                                        this.lights[i].set_location(new Vector3D(light[i].location.x, light[i].location.y, light[i].location.z))
-                                    }
-                                    else if (worldLightType === 'directional') { // DirectionalLight
-                                        this.lights[i].set_direction(new Vector3D(light[i].location.x, light[i].location.y, light[i].location.z))
-                                    }
-                                }
-                                if (light[i].shadows) {
-                                    if (worldLightType === 'point') { // PointLight
-                                        this.lights[i].shadows = true;
-                                    }
-                                }
+                            if (!this.lights[i]) { // create World light at this index if it doesn't exist yet
+                                this.lights[i] = new PointLight(null, 1.0)
                             }
-                        }
-                        else { // create new World light at index
                             var color = new RGBColor(1,1,1),
                                 vector = new Vector3D(300,300,0);
                             if (light[i].color) {
@@ -439,7 +420,7 @@ module Tracejs {
                             }
 
                             if (light[i].type === 'point') { // PointLight
-                                this.lights[i] = new PointLight(null, 1.0, color, vector)
+                                this.lights[i] = new PointLight(null, 1.0, color, vector);
                                 if (light[i].shadows === true) {
                                     this.lights[i].shadows = true; // Only Point Lights should cast shadows.
                                 }
@@ -447,7 +428,6 @@ module Tracejs {
                             else if (light[i].type === 'directional') { // DirectionalLight
                                 this.lights[i] = new DirectionalLight(null, 1.0, color, vector)
                             }
-                        }
                     }
                 // if World has too many lights, remove them
                 if (this.lights.length > light.length) {
